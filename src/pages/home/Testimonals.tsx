@@ -41,48 +41,74 @@ export default function Testimonials() {
 
   const [current, setCurrent] = useState(0);
 
-  return (
-    <section className="py-24 bg-gray-50 text-center overflow-hidden">
-      <h3 className="text-blue-600 font-semibold">Testimonials</h3>
-      <h2 className="text-3xl font-bold mt-2 mb-20">
-        Opinions of our Clients
-      </h2>
+    return (
+        <section className="relative py-24 bg-white overflow-hidden flex items-center justify-center min-h-[900px]">
+            <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-center">
 
-      {/* Orbit Container */}
-      <div className="relative w-[620px] h-[420px] mx-auto">
-        {/* Outer Oval */}
-        <div className="absolute inset-0 rounded-[100%] border border-dashed border-blue-500"></div>
+                {/* Header Container */}
+                <div className="text-center absolute top-24 z-20">
+                    <motion.h2
+                        initial={{ opacity: 0, y: -20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-2xl md:text-3xl font-black text-blue-700 mb-2"
+                    >
+                        Testimonials
+                    </motion.h2>
+                    <motion.h3
+                        initial={{ opacity: 0, y: -10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight"
+                    >
+                        Opinions of our Clients
+                    </motion.h3>
+                </div>
 
-        {/* Middle Oval */}
-        <div className="absolute inset-[45px] rounded-[50%] border border-dashed border-blue-400"></div>
+                {/* Orbit System */}
+                <div className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] flex items-center justify-center mt-32 md:mt-0">
 
-        {/* Inner Oval */}
-        <div className="absolute inset-[100px] rounded-[100%] border border-dashed border-blue-300"></div>
+                    {/* Inner Orbit Line */}
+                    <div className="absolute w-[80%] h-[80%] border border-blue-100 rounded-full" />
 
-        {/* Orbit Avatars (NO background / NO border) */}
-        {testimonials.map((item, index) => {
-          const angle = (index / testimonials.length) * 360;
-
-          return (
-            <img
-              key={index}
-              src={item.img}
-              alt={item.name}
-              onClick={() => setCurrent(index)}
-              className="absolute w-12 h-12 rounded-full cursor-pointer transition-transform hover:scale-110"
-              style={{
-                top: "50%",
-                left: "50%",
-                transform: `
-                  rotate(${angle}deg)
-                  translateX(230px)
-                  translateY(80px)
-                  rotate(-${angle}deg)
-                `,
-              }}
-            />
-          );
-        })}
+                    {/* Outer Orbit Line */}
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-full h-full border border-blue-50 rounded-full"
+                    >
+                        {/* Orbiting Items (Avatars & Dots) */}
+                        {testimonials.map((t, i) => {
+                            const angle = (i * 360) / testimonials.length;
+                            return (
+                                <div
+                                    key={t.id}
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        transform: `rotate(${angle}deg) translate(${window.innerWidth < 768 ? 150 : 300}px) rotate(${-angle}deg)`
+                                    }}
+                                    className="flex items-center justify-center"
+                                >
+                                    <motion.div
+                                        animate={{ rotate: -360 }}
+                                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                                    >
+                                        <button
+                                            onClick={() => {
+                                                setActiveIndex(i);
+                                                setIsModalOpen(true);
+                                            }}
+                                            className={`w-12 h-12 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg overflow-hidden transition-all duration-500 hover:scale-110 active:scale-95 ${activeIndex === i ? 'scale-125 border-blue-500 z-10' : 'scale-100 opacity-60'}`}
+                                        >
+                                            <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                                        </button>
+                                    </motion.div>
+                                </div>
+                            );
+                        })}
 
         {/* Center Card */}
         <div className="absolute inset-[130px] bg-white rounded- shadow- flex flex-col items-center justify-center px-6 py-5">

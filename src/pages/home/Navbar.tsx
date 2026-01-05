@@ -66,7 +66,7 @@ export default function Navbar() {
                     <motion.img
                         whileHover={{ scale: 1.05 }}
                         src={logo}
-                        alt="Wealth Zone Group AI"
+                        alt="Wealth_Zone_Group_AI"
                         className="h-10 w-auto"
                     />
                 </NavLink>

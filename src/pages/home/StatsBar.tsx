@@ -56,7 +56,7 @@ export default function StatsBar() {
     ];
 
     return (
-        <section className="bg-white py-2">
+        <section className="bg-white  my-8">
             <div className="max-w-9xl mx-auto ">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
