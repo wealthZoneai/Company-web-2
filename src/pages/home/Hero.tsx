@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
     return (
@@ -19,31 +20,46 @@ const FloatBlob: React.FC<{ className: string; duration: number }> = ({ classNam
     );
 };
 
+const VideoBackground: React.FC = () => {
+    const videoId = "-P6Qr3gdlxw";
+    return (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+            <iframe
+                className="absolute inset-0 w-full h-[100%] -top-[10%] pointer-events-none scale-150"
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`}
+                title="Background Video"
+                frameBorder="0"
+                allow="autoplay; fullscreen"
+            />
+            {/* Subtle Overlay for Legibility */}
+            {/* <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white"></div> */}
+        </div>
+    );
+};
+
 const AnimatedBackground: React.FC = () => {
     return (
         <div className="absolute inset-0 z-0 overflow-hidden">
-            <FloatBlob className="bg-blue-200/40 w-[40rem] h-[40rem] -top-40 -left-40" duration={15} />
-            <FloatBlob className="bg-purple-200/40 w-[45rem] h-[45rem] -bottom-40 -right-40" duration={18} />
-            <FloatBlob className="bg-cyan-100/30 w-96 h-96 top-1/4 right-1/4" duration={12} />
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
+            <VideoBackground />
+            {/* Grid/Noise Pattern */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none"></div>
         </div>
     );
 };
 
 export default function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+        <section className="relative min-h-screen flex items-center justify-center  ">
             <AnimatedBackground />
 
-            <div className="relative z-10 text-center px-6 max-w-5xl">
+            <div className="relative z-10 text-center px-6 max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <span className="inline-block py-1 px-4 rounded-full bg-blue-50 text-blue-600 border border-blue-100 text-sm font-semibold mb-6">
+                    <span className="inline-block py-1 px-4 rounded-full  text-blue-600 border  text-sm font-semibold mb-6">
                         Pioneering the AI Revolution
                     </span>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-[1.1] tracking-tight">
@@ -68,19 +84,25 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-12 flex flex-col sm:flex-row justify-center gap-6"
+                    className="mt-12 flex flex-row items-center justify-center gap-6"
                 >
-                    <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/25 hover:scale-105 active:scale-95">
-                        Explore Services
-                    </button>
-                    <button className="px-8 py-4 bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95">
-                        View Products
-                    </button>
+                    <Link
+                        to="/contact"
+                        className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/25 hover:scale-105 active:scale-95 inline-block"
+                    >
+                        Contact Us
+                    </Link>
+                    <Link
+                        to="/services"
+                        className="px-8 py-4 bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 inline-block"
+                    >
+                        Our Services
+                    </Link>
                 </motion.div>
             </div>
 
             {/* Scroll Indicator */}
-            <motion.div
+            {/* <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 1 }}
@@ -93,7 +115,7 @@ export default function Hero() {
                         className="w-1.5 h-1.5 bg-blue-600 rounded-full"
                     />
                 </div>
-            </motion.div>
+            </motion.div> */}
         </section>
     );
 }

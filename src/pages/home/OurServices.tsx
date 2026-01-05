@@ -48,8 +48,8 @@ const services: Service[] = [
 ];
 
 const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, index }) => {
-    // Extract video ID from URL
-    const videoId = service.videoUrl.split('v=')[1];
+    // Extract video ID from URL (handles multiple formats)
+    const videoId = service.videoUrl.split('v=')[1]?.split('&')[0];
 
     return (
         <motion.div
@@ -69,13 +69,14 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
                 />
 
                 {/* Hover Video Background */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none">
                     <iframe
-                        className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none"
-                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
+                        className="absolute inset-0 w-full h-full scale-[1.25] pointer-events-none"
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`}
                         title={service.title}
                         frameBorder="0"
-                        allow="autoplay; fullscreen"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        style={{ filter: 'grayscale(0.2) contrast(1.1)' }}
                     />
                 </div>
 
