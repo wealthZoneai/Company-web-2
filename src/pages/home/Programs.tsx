@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
-import robotics from "../../assets/robotic.png";
-import corporate from "../../assets/cap.png";
+import robotics from "../../assets/images/robotic.png";
+import corporate from "../../assets/images/cap.png";
 
 interface Program {
     title: string;
@@ -35,7 +35,7 @@ const ProgramCard: React.FC<{ program: Program; index: number }> = ({ program, i
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="group relative h-[380px] rounded-[1.5rem] overflow-hidden shadow-2xl border border-gray-100 bg-black"
+            className="group relative h-95 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-black"
         >
             {/* Video Background */}
             <div className="absolute inset-0">
@@ -62,7 +62,7 @@ const ProgramCard: React.FC<{ program: Program; index: number }> = ({ program, i
                 </div>
 
                 {/* Description */}
-                <p className="text-white/90 text-[12px] md:text-sm leading-relaxed mb-6 max-w-[500px] font-medium line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
+                <p className="text-white/90 text-[12px] md:text-sm leading-relaxed mb-6 max-w-125 font-medium line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
                     {program.description}
                 </p>
 
@@ -82,7 +82,7 @@ const ProgramCard: React.FC<{ program: Program; index: number }> = ({ program, i
 
 export default function Programs() {
     return (
-        <section className="relative  bg-slate-50">
+        <section className="relative  bg-slate-50 my-8">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     {programs.map((program, index) => (

@@ -63,7 +63,7 @@ export default function Testimonials() {
             <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-center">
 
                 {/* Header Container */}
-                <div className="text-center absolute top-24 z-20">
+                <div className="text-center mb-16 relative z-20">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export default function Testimonials() {
                 </div>
 
                 {/* Orbit System */}
-                <div className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] flex items-center justify-center mt-32 md:mt-0">
+                <div className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] flex items-center justify-center">
 
                     {/* Inner Orbit Line */}
                     <div className="absolute w-[80%] h-[80%] border border-blue-100 rounded-full" />
@@ -116,7 +116,7 @@ export default function Testimonials() {
                                         <button
                                             onClick={() => {
                                                 setActiveIndex(i);
-                                                setIsModalOpen(true);
+                                                // setIsModalOpen(true); // Disable modal on orbit click
                                             }}
                                             className={`w-12 h-12 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg overflow-hidden transition-all duration-500 hover:scale-110 active:scale-95 ${activeIndex === i ? 'scale-125 border-blue-500 z-10' : 'scale-100 opacity-60'}`}
                                         >

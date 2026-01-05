@@ -22,12 +22,12 @@ const FloatBlob: React.FC<{ className: string; duration: number }> = ({ classNam
 const AnimatedBackground: React.FC = () => {
     return (
         <div className="absolute inset-0 z-0 overflow-hidden">
-            <FloatBlob className="bg-blue-200/40 w-[40rem] h-[40rem] -top-40 -left-40" duration={15} />
-            <FloatBlob className="bg-purple-200/40 w-[45rem] h-[45rem] -bottom-40 -right-40" duration={18} />
+            <FloatBlob className="bg-blue-200/40 w-160 h-160 -top-40 -left-40" duration={15} />
+            <FloatBlob className="bg-purple-200/40 w-180 h-180 -bottom-40 -right-40" duration={18} />
             <FloatBlob className="bg-cyan-100/30 w-96 h-96 top-1/4 right-1/4" duration={12} />
             {/* Grid Pattern */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-white/50 to-white"></div>
         </div>
     );
 };
@@ -46,9 +46,9 @@ export default function Hero() {
                     <span className="inline-block py-1 px-4 rounded-full bg-blue-50 text-blue-600 border border-blue-100 text-sm font-semibold mb-6">
                         Pioneering the AI Revolution
                     </span>
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-[1.1] tracking-tight">
+                    <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight">
                         Wealth Zone <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+                        <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600">
                             Group AI
                         </span>
                     </h1>
@@ -79,21 +79,6 @@ export default function Hero() {
                 </motion.div>
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2"
-            >
-                <div className="w-6 h-10 border-2 border-gray-200 rounded-full flex justify-center p-2">
-                    <motion.div
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-1.5 h-1.5 bg-blue-600 rounded-full"
-                    />
-                </div>
-            </motion.div>
         </section>
     );
 }

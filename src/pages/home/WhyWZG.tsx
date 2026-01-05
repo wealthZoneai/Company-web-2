@@ -44,7 +44,7 @@ export default function WhyWZG() {
     const [activeTab, setActiveTab] = useState(tabData[0]);
 
     return (
-        <section className="relative  bg-white overflow-hidden">
+        <section className="relative  bg-white overflow-hidden py-6">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 {/* Header */}
                 <div className="mb-12">

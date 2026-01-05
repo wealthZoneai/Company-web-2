@@ -56,20 +56,20 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.6 }}
-            className="group relative rounded-[1.5rem] overflow-hidden border border-gray-100 shadow-xl bg-white flex flex-col h-full cursor-pointer hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500"
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
         >
-            {/* Header Content Area (Media) */}
-            <div className="relative aspect-[4/3] overflow-hidden bg-black">
-                {/* Initial Static Image */}
+            {/* Media Area */}
+            <div className="relative aspect-video overflow-hidden bg-gray-100">
+                {/* Image */}
                 <img
                     src={service.image}
                     alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Hover Video Background */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out">
+                {/* Video Overlay on Hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <iframe
                         className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none"
                         src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
@@ -79,16 +79,14 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
                     />
                 </div>
 
-                {/* Visual Polish Layer */}
-                <div className="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
             </div>
 
-            {/* Footer Area (Titles) */}
-            <div className=" text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
-                <h3 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-all duration-300 tracking-tight leading-tight">
+            {/* Content Area */}
+            <div className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                     {service.title}
                 </h3>
-                <div className="w-12 h-1 bg-blue-600 mt-4 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             </div>
         </motion.div>
     );
@@ -96,27 +94,23 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
 
 export default function OurServices() {
     return (
-        <section className="relative py-2 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto  relative z-10">
-                <div className="text-center ">
+        <section className="relative py-24 px-6 bg-white overflow-hidden">
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-16">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-black text-blue-900 tracking-tight mb-4"
+                        className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-4"
                     >
                         Our Services
                     </motion.h2>
-                    {/* <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: 80 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="h-1.5 bg-blue-600 mx-auto rounded-full"
-                    /> */}
+                    <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                        Comprehensive digital solutions tailored to elevate your business.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
                         <ServiceCard key={service.id} service={service} index={index} />
                     ))}
