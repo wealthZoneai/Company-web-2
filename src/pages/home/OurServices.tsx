@@ -1,6 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
+    return (
+        <motion.div
+            className={`absolute rounded-full blur-[120px] ${className}`}
+            animate={{
+                x: [0, 50, -50, 0],
+                y: [0, -50, 50, 0],
+                scale: [1, 1.1, 0.9, 1],
+            }}
+            transition={{
+                duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+            }}
+        />
+    );
+};
+
+const AnimatedBackground: React.FC = () => {
+    return (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+            <FloatBlob className="bg-blue-200/40 w-[40rem] h-[40rem] -top-40 -left-40" duration={15} />
+            <FloatBlob className="bg-purple-200/40 w-[45rem] h-[45rem] -bottom-40 -right-40" duration={18} />
+            <FloatBlob className="bg-cyan-100/30 w-96 h-96 top-1/4 right-1/4" duration={12} />
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
+        </div>
+    );
+};
+
 interface Service {
     id: string;
     title: string;
@@ -85,7 +116,7 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
             </div>
 
             {/* Footer Area (Titles) */}
-            <div className=" text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
+            <div className="p-6 text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
                 <h3 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-all duration-300 tracking-tight leading-tight">
                     {service.title}
                 </h3>
@@ -97,9 +128,11 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
 
 export default function OurServices() {
     return (
-        <section className="relative py-2 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto  relative z-10">
-                <div className="text-center ">
+        <section className="relative py-24 px-6 bg-white overflow-hidden">
+            <AnimatedBackground />
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-16">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -108,13 +141,7 @@ export default function OurServices() {
                     >
                         Our Services
                     </motion.h2>
-                    {/* <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: 80 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="h-1.5 bg-blue-600 mx-auto rounded-full"
-                    /> */}
+                    <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full" />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

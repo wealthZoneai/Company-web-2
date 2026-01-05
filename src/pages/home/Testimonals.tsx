@@ -84,7 +84,7 @@ export default function Testimonials() {
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const active = testimonials[activeIndex];
 
-    // Smooth continuous rotation (More perceptible speed)
+    // Smooth continuous rotation
     useEffect(() => {
         const interval = setInterval(() => {
             setRotation(prev => (prev + 0.1) % 360);
@@ -118,12 +118,11 @@ export default function Testimonials() {
     return (
         <section className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex items-center justify-center">
             <AnimatedBackground />
-            {/* Soft Grey Container - Restored for Reference Match */}
 
             {/* Orbit System Area */}
             <div
                 ref={containerRef}
-                className="relative w-full h-[70vh] md:h-[80vh]  flex items-center justify-center px-4"
+                className="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center px-4"
             >
 
                 {/* Background Ellipses - 3 Thick Colored Lines (Aligned with lineScale) */}
@@ -199,7 +198,6 @@ export default function Testimonials() {
                 {/* Central Testimonial Content */}
                 <div className="relative z-10 flex flex-col items-center text-center w-full max-w-[90%] md:max-w-[700px]">
 
-
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={active.id}
@@ -207,7 +205,8 @@ export default function Testimonials() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -15 }}
                             className="flex flex-col items-center"
-                        > <div className="">
+                        >
+                            <div className="">
                                 <motion.h2 className="text-xl md:text-[22px] font-bold text-[#1457AB] mb-2 tracking-tight">
                                     Testimonials
                                 </motion.h2>
@@ -217,28 +216,39 @@ export default function Testimonials() {
                             </div>
 
                             <div
-                                className="w-10 h-12 md:w-20 md:h-20 rounded-full  shadow-2xl overflow-hidden  cursor-pointer hover:scale-105 transition-all duration-500"
+                                className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
                                 onClick={() => setIsModalOpen(true)}
                                 style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                             >
                                 <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
                             </div>
 
-
-                            <p className="text-[#475569] text-base md:text-[12px] font-medium leading-relaxed max-w-[600px]  italic">
+                            <p className="text-[#475569] text-base md:text-lg font-medium leading-relaxed max-w-[600px] italic mb-6">
                                 “{active.comment}”
                             </p>
 
-                            <h4 className="text-lg md:text-[18px] font-bold text-[#1e293b]">
-                                -{active.name}
+                            <h4 className="text-lg md:text-xl font-bold text-[#1e293b]">
+                                - {active.name}
                             </h4>
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
+                {/* Navigation */}
+                <button
+                    onClick={handlePrev}
+                    className="absolute left-4 md:-left-12 lg:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl hover:bg-blue-600 hover:text-white transition-all duration-300 z-30 flex items-center justify-center font-bold text-xl"
+                >
+                    ←
+                </button>
 
+                <button
+                    onClick={handleNext}
+                    className="absolute right-4 md:-right-12 lg:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl hover:bg-blue-600 hover:text-white transition-all duration-300 z-30 flex items-center justify-center font-bold text-xl"
+                >
+                    →
+                </button>
             </div>
-
 
             {/* Modal for Details */}
             <AnimatePresence>
