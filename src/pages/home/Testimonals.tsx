@@ -1,5 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
+    return (
+        <motion.div
+            className={`absolute rounded-full blur-[120px] ${className}`}
+            animate={{
+                x: [0, 50, -50, 0],
+                y: [0, -50, 50, 0],
+                scale: [1, 1.1, 0.9, 1],
+            }}
+            transition={{
+                duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+            }}
+        />
+    );
+};
+
+const AnimatedBackground: React.FC = () => {
+    return (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+            <FloatBlob className="bg-blue-200/40 w-[45rem] h-[45rem] -top-60 -left-60" duration={15} />
+            <FloatBlob className="bg-purple-200/30 w-[50rem] h-[50rem] -bottom-60 -right-60" duration={18} />
+            <FloatBlob className="bg-cyan-100/20 w-96 h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" duration={12} />
+            {/* Grain/Noise Pattern */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/90 via-transparent to-white/90"></div>
+        </div>
+    );
+};
 
 interface Testimonial {
     id: number;
@@ -48,7 +79,33 @@ const testimonials: Testimonial[] = [
 export default function Testimonials() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [rotation, setRotation] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const active = testimonials[activeIndex];
+
+    // Smooth continuous rotation
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRotation(prev => (prev + 0.1) % 360);
+        }, 50);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Update dimensions for precise path alignment
+    useEffect(() => {
+        const updateDimensions = () => {
+            if (containerRef.current) {
+                setDimensions({
+                    width: containerRef.current.clientWidth,
+                    height: containerRef.current.clientHeight
+                });
+            }
+        };
+        updateDimensions();
+        window.addEventListener('resize', updateDimensions);
+        return () => window.removeEventListener('resize', updateDimensions);
+    }, []);
 
     // Animation constants
     const duration = 60; // seconds for full orbit
@@ -59,142 +116,169 @@ export default function Testimonials() {
     const handlePrev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
     return (
-        <section className="relative py-24 bg-white overflow-hidden flex items-center justify-center min-h-[800px]">
-            <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-center">
+        <section className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex items-center justify-center">
+            <AnimatedBackground />
 
-                {/* Header Container */}
-                <div className="text-center mb-12 relative z-20">
-                    <motion.h2
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-2xl md:text-3xl font-black text-blue-700 mb-2"
-                    >
-                        Testimonials
-                    </motion.h2>
-                    <motion.h3
-                        initial={{ opacity: 0, y: -10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight"
-                    >
-                        Opinions of our Clients
-                    </motion.h3>
-                </div>
+            {/* Orbit System Area */}
+            <div
+                ref={containerRef}
+                className="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center px-4"
+            >
 
-                {/* Orbit System Container - Oval Shape */}
-                <div className="relative w-full max-w-[900px] h-[400px] flex items-center justify-center">
+                {/* Background Ellipses - 3 Thick Colored Lines (Aligned with lineScale) */}
+                <div className="absolute w-[50%] h-[50%] border-2 border-blue-400/20 rounded-[100%] pointer-events-none" />
+                <div className="absolute w-[70%] h-[70%] border-2 border-blue-300/30 rounded-[100%] pointer-events-none" />
+                <div className="absolute w-[90%] h-[90%] border-2 border-blue-200/40 rounded-[100%] pointer-events-none" />
 
-                    {/* Oval Track Line */}
-                    <div className="absolute w-[90%] md:w-full h-[60%] md:h-full border border-blue-100 rounded-[50%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                {/* Orbiting Images (ONLY ON LINE PATHS) */}
+                {testimonials.map((t, i) => {
+                    const angle = (i * 360) / testimonials.length + rotation;
+                    const angleRad = (angle * Math.PI) / 180;
 
-                    {/* Orbiting Items */}
-                    <div className="absolute inset-0 pointer-events-none">
-                        {testimonials.map((t, i) => (
-                            <OrbitItem
-                                key={t.id}
-                                index={i}
-                                total={testimonials.length}
-                                duration={duration}
-                                rx={window.innerWidth < 768 ? 160 : 400} // poor man's responsive check, ideally use a hook or percent
-                                ry={window.innerWidth < 768 ? 80 : 200}
-                                isActive={activeIndex === i}
+                    // Precise radii matching the background lines percentages (90%, 70%, 50%)
+                    const lineScale = [0.90, 0.70, 0.50][i % 3];
+                    const rx = (dimensions.width * lineScale) / 2;
+                    const ry = (dimensions.height * lineScale) / 2;
+
+                    const x = rx * Math.cos(angleRad);
+                    const y = ry * Math.sin(angleRad);
+
+                    return (
+                        <div
+                            key={t.id}
+                            style={{
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                            }}
+                            className="flex items-center justify-center z-20"
+                        >
+                            {/* Images orbit and also have a subtle "floating" rotation */}
+                            <motion.button
                                 onClick={() => setActiveIndex(i)}
+                                animate={{
+                                    rotate: -rotation + (Math.sin(rotation * 0.05) * 10), // Mostly upright but with a subtle sway
+                                    scale: activeIndex === i ? 1.25 : 1
+                                }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                className={`w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white shadow-xl overflow-hidden transition-all duration-500 hover:scale-110 active:scale-90 ${activeIndex === i ? 'border-blue-500 z-10 shadow-blue-200 ring-4 ring-blue-100/50' : 'scale-100'}`}
                             >
                                 <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
-                            </OrbitItem>
-                        ))}
-                    </div>
+                            </motion.button>
+                        </div>
+                    );
+                })}
 
+                {/* Decorative points on the line paths */}
+                {[...Array(12)].map((_, i) => {
+                    const angle = (i * 360) / 12 + 15 + rotation;
+                    const angleRad = (angle * Math.PI) / 180;
+                    const lineScale = [0.90, 0.70, 0.50][i % 3];
+                    const rx = (dimensions.width * lineScale) / 2;
+                    const ry = (dimensions.height * lineScale) / 2;
 
-                    {/* Central Content */}
-                    <div className="relative z-10 flex flex-col items-center text-center max-w-[80%] pointer-events-auto mt-8">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={active.id}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
-                                transition={{ duration: 0.5 }}
-                                className="flex flex-col items-center cursor-pointer"
+                    const x = rx * Math.cos(angleRad);
+                    const y = ry * Math.sin(angleRad);
+
+                    return (
+                        <div
+                            key={`dot-${i}`}
+                            style={{
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+                            }}
+                            className="w-2 h-2 md:w-3 md:h-3 bg-blue-500 opacity-60 rounded-full"
+                        />
+                    );
+                })}
+
+                {/* Central Testimonial Content */}
+                <div className="relative z-10 flex flex-col items-center text-center w-full max-w-[90%] md:max-w-[700px]">
+
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={active.id}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -15 }}
+                            className="flex flex-col items-center"
+                        >
+                            <div className="">
+                                <motion.h2 className="text-xl md:text-[22px] font-bold text-[#1457AB] mb-2 tracking-tight">
+                                    Testimonials
+                                </motion.h2>
+                                <motion.h3 className="text-3xl md:text-[45px] font-black text-[#1A1A1A] leading-tight mb-8">
+                                    Opinions of our Clients
+                                </motion.h3>
+                            </div>
+
+                            <div
+                                className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
                                 onClick={() => setIsModalOpen(true)}
+                                style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                             >
-                                <div className="w-24 h-24 md:w-40 md:h-40 rounded-full border-8 border-white shadow-2xl overflow-hidden mb-8 hover:scale-105 transition-transform duration-300">
-                                    <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
-                                </div>
+                                <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
+                            </div>
 
-                                <p className="text-gray-700 text-lg md:text-xl font-medium leading-relaxed mb-6 px-4">
-                                    “{active.comment}”
-                                </p>
+                            <p className="text-[#475569] text-base md:text-lg font-medium leading-relaxed max-w-[600px] italic mb-6">
+                                “{active.comment}”
+                            </p>
 
-                                <h4 className="text-xl md:text-2xl font-black text-gray-900 mb-1">
-                                    -{active.name}
-                                </h4>
-                                <p className="text-blue-600 font-bold text-sm uppercase tracking-widest">
-                                    {active.role}
-                                </p>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
+                            <h4 className="text-lg md:text-xl font-bold text-[#1e293b]">
+                                - {active.name}
+                            </h4>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
-                {/* Navigation Arrows */}
-                <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4 md:px-12 pointer-events-none">
-                    <button onClick={handlePrev} className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all pointer-events-auto group">
-                        <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                    <button onClick={handleNext} className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all pointer-events-auto group">
-                        <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
+                {/* Navigation */}
+                <button
+                    onClick={handlePrev}
+                    className="absolute left-4 md:-left-12 lg:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl hover:bg-blue-600 hover:text-white transition-all duration-300 z-30 flex items-center justify-center font-bold text-xl"
+                >
+                    ←
+                </button>
+
+                <button
+                    onClick={handleNext}
+                    className="absolute right-4 md:-right-12 lg:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl hover:bg-blue-600 hover:text-white transition-all duration-300 z-30 flex items-center justify-center font-bold text-xl"
+                >
+                    →
+                </button>
             </div>
 
-            {/* Pop-up Modal */}
+            {/* Modal for Details */}
             <AnimatePresence>
                 {isModalOpen && (
                     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-md">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="bg-white rounded-[2.5rem] shadow-2xl max-w-2xl w-full p-8 md:p-12 relative overflow-hidden"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            className="bg-white rounded-[2.5rem] shadow-2xl max-w-2xl w-full p-12 relative"
                         >
-                            <button
-                                onClick={() => setIsModalOpen(false)}
-                                className="absolute top-6 right-6 p-2 rounded-full bg-gray-50 text-gray-500 hover:bg-red-50 hover:text-red-500 transition-colors"
-                            >
+                            <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors">
                                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
-
                             <div className="flex flex-col items-center text-center">
-                                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-blue-500/20 shadow-xl overflow-hidden mb-6">
-                                    <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
-                                </div>
+                                <img src={active.image} alt={active.name} className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-blue-50 shadow-xl mb-6" />
                                 <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{active.name}</h3>
-                                <p className="text-blue-600 font-bold text-sm uppercase tracking-widest mb-8">{active.role}</p>
-                                <div className="w-full h-px bg-gray-100 mb-8" />
-                                <p className="text-gray-600 text-lg leading-relaxed mb-6 italic">“{active.comment}”</p>
-                                {active.fullDetails && (
-                                    <p className="text-gray-500 text-sm md:text-base leading-relaxed font-medium">
-                                        {active.fullDetails}
-                                    </p>
-                                )}
+                                <p className="text-blue-600 font-bold text-sm uppercase mb-8">{active.role}</p>
+                                <p className="text-gray-600 text-lg italic mb-6">“{active.comment}”</p>
+                                {active.fullDetails && <p className="text-gray-500 font-medium">{active.fullDetails}</p>}
                             </div>
+
+                            {/* Decorative Background for Modal */}
                             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-50 rounded-full blur-[80px] -z-10" />
                         </motion.div>
                     </div>
                 )}
             </AnimatePresence>
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-50/20 rounded-full blur-[100px]" />
-            </div>
         </section>
     );
 }

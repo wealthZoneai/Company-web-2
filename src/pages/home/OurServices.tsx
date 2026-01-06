@@ -1,6 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
+    return (
+        <motion.div
+            className={`absolute rounded-full blur-[120px] ${className}`}
+            animate={{
+                x: [0, 50, -50, 0],
+                y: [0, -50, 50, 0],
+                scale: [1, 1.1, 0.9, 1],
+            }}
+            transition={{
+                duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+            }}
+        />
+    );
+};
+
+const AnimatedBackground: React.FC = () => {
+    return (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+            <FloatBlob className="bg-blue-200/40 w-[40rem] h-[40rem] -top-40 -left-40" duration={15} />
+            <FloatBlob className="bg-purple-200/40 w-[45rem] h-[45rem] -bottom-40 -right-40" duration={18} />
+            <FloatBlob className="bg-cyan-100/30 w-96 h-96 top-1/4 right-1/4" duration={12} />
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
+        </div>
+    );
+};
+
 interface Service {
     id: string;
     title: string;
@@ -48,45 +79,48 @@ const services: Service[] = [
 ];
 
 const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, index }) => {
-    // Extract video ID from URL
-    const videoId = service.videoUrl.split('v=')[1];
+    // Extract video ID from URL (handles multiple formats)
+    const videoId = service.videoUrl.split('v=')[1]?.split('&')[0];
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            transition={{ delay: index * 0.1, duration: 0.6 }}
+            className="group relative rounded-[1.5rem] overflow-hidden border border-gray-100 shadow-xl bg-white flex flex-col h-full cursor-pointer hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500"
         >
-            {/* Media Area */}
-            <div className="relative aspect-video overflow-hidden bg-gray-100">
-                {/* Image */}
+            {/* Header Content Area (Media) */}
+            <div className="relative aspect-[4/3] overflow-hidden bg-black">
+                {/* Initial Static Image */}
                 <img
                     src={service.image}
                     alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out group-hover:opacity-0"
                 />
 
-                {/* Video Overlay on Hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {/* Hover Video Background */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none">
                     <iframe
-                        className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none"
-                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
+                        className="absolute inset-0 w-full h-full scale-[1.25] pointer-events-none"
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`}
                         title={service.title}
                         frameBorder="0"
-                        allow="autoplay; fullscreen"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        style={{ filter: 'grayscale(0.2) contrast(1.1)' }}
                     />
                 </div>
 
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+                {/* Visual Polish Layer */}
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none" />
             </div>
 
-            {/* Content Area */}
-            <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+            {/* Footer Area (Titles) */}
+            <div className="p-6 text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
+                <h3 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-all duration-300 tracking-tight leading-tight">
                     {service.title}
                 </h3>
+                <div className="w-12 h-1 bg-blue-600 mt-4 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             </div>
         </motion.div>
     );
@@ -95,22 +129,22 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
 export default function OurServices() {
     return (
         <section className="relative py-24 px-6 bg-white overflow-hidden">
+            <AnimatedBackground />
+
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-4"
+                        className="text-4xl md:text-5xl font-black text-blue-900 tracking-tight mb-4"
                     >
                         Our Services
                     </motion.h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                        Comprehensive digital solutions tailored to elevate your business.
-                    </p>
+                    <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full" />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {services.map((service, index) => (
                         <ServiceCard key={service.id} service={service} index={index} />
                     ))}
