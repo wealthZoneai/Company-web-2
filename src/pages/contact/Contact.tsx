@@ -97,9 +97,32 @@ const Contact = () => {
                 Follow us
               </p>
               <div className="flex gap-3">
-                <SocialIcon icon={<Instagram size={18} />} />
-                <SocialIcon icon={<Linkedin size={18} />} />
-                <SocialIcon icon={<Facebook size={18} />} />
+                <a
+                  href="https://www.linkedin.com/company/wealth-zone-group-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Wealth_Zone_Group_AI on LinkedIn"
+                >
+                  <SocialIcon icon={<Linkedin size={18} />} />
+                </a>
+
+                <a
+                  href="https://www.instagram.com/wealth_zone_group_ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Wealth_Zone_Group_AI on Instagram"
+                >
+                  <SocialIcon icon={<Instagram size={18} />} />
+                </a>
+
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Wealth_Zone_Group_AI on Facebook"
+                >
+                  <SocialIcon icon={<Facebook size={18} />} />
+                </a>
               </div>
             </div>
           </div>
@@ -107,10 +130,19 @@ const Contact = () => {
 
         {/* Location */}
         <div className="mt-16">
-          <h3 className="mb-6 text-center text-2xl font-bold">
-            Our Location
-          </h3>
-          <div className="h-64 w-full rounded-lg bg-gray-200" />
+          <h3 className="mb-6 text-center text-2xl font-bold">Our Location</h3>
+
+          <div className="h-64 w-full overflow-hidden rounded-lg border">
+            <iframe
+              src="https://www.google.com/maps?q=17.451194,78.387556&z=15&output=embed"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="border-0"
+              allowFullScreen
+            />
+          </div>
         </div>
       </div>
     </section>
