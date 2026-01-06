@@ -50,20 +50,20 @@ export default function Testimonials() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const active = testimonials[activeIndex];
 
-    const handleNext = () => {
-        setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    };
+    // Animation constants
+    const duration = 60; // seconds for full orbit
+    const rx = 400; // horizontal radius (will scale responsive)
+    const ry = 150; // vertical radius
 
-    const handlePrev = () => {
-        setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    };
+    const handleNext = () => setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    const handlePrev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
     return (
-        <section className="relative py-24 bg-white overflow-hidden flex items-center justify-center min-h-[900px]">
+        <section className="relative py-24 bg-white overflow-hidden flex items-center justify-center min-h-[800px]">
             <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex flex-col items-center">
 
                 {/* Header Container */}
-                <div className="text-center mb-16 relative z-20">
+                <div className="text-center mb-12 relative z-20">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -83,67 +83,33 @@ export default function Testimonials() {
                     </motion.h3>
                 </div>
 
-                {/* Orbit System */}
-                <div className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] flex items-center justify-center">
+                {/* Orbit System Container - Oval Shape */}
+                <div className="relative w-full max-w-[900px] h-[400px] flex items-center justify-center">
 
-                    {/* Inner Orbit Line */}
-                    <div className="absolute w-[80%] h-[80%] border border-blue-100 rounded-full" />
+                    {/* Oval Track Line */}
+                    <div className="absolute w-[90%] md:w-full h-[60%] md:h-full border border-blue-100 rounded-[50%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
-                    {/* Outer Orbit Line */}
-                    <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                        className="absolute w-full h-full border border-blue-50 rounded-full"
-                    >
-                        {/* Orbiting Items (Avatars & Dots) */}
-                        {testimonials.map((t, i) => {
-                            const angle = (i * 360) / testimonials.length;
-                            return (
-                                <div
-                                    key={t.id}
-                                    style={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '50%',
-                                        transform: `rotate(${angle}deg) translate(${window.innerWidth < 768 ? 150 : 300}px) rotate(${-angle}deg)`
-                                    }}
-                                    className="flex items-center justify-center"
-                                >
-                                    <motion.div
-                                        animate={{ rotate: -360 }}
-                                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                                    >
-                                        <button
-                                            onClick={() => {
-                                                setActiveIndex(i);
-                                                // setIsModalOpen(true); // Disable modal on orbit click
-                                            }}
-                                            className={`w-12 h-12 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg overflow-hidden transition-all duration-500 hover:scale-110 active:scale-95 ${activeIndex === i ? 'scale-125 border-blue-500 z-10' : 'scale-100 opacity-60'}`}
-                                        >
-                                            <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
-                                        </button>
-                                    </motion.div>
-                                </div>
-                            );
-                        })}
-
-                        {/* Additional decorative dots on orbit */}
-                        {[...Array(6)].map((_, i) => (
-                            <div
-                                key={`dot-${i}`}
-                                style={{
-                                    position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    transform: `rotate(${i * 60 + 30}deg) translate(${window.innerWidth < 768 ? 150 : 300}px)`
-                                }}
-                                className="w-3 h-3 bg-blue-500 rounded-full shadow-sm"
-                            />
+                    {/* Orbiting Items */}
+                    <div className="absolute inset-0 pointer-events-none">
+                        {testimonials.map((t, i) => (
+                            <OrbitItem
+                                key={t.id}
+                                index={i}
+                                total={testimonials.length}
+                                duration={duration}
+                                rx={window.innerWidth < 768 ? 160 : 400} // poor man's responsive check, ideally use a hook or percent
+                                ry={window.innerWidth < 768 ? 80 : 200}
+                                isActive={activeIndex === i}
+                                onClick={() => setActiveIndex(i)}
+                            >
+                                <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                            </OrbitItem>
                         ))}
-                    </motion.div>
+                    </div>
+
 
                     {/* Central Content */}
-                    <div className="relative z-10 flex flex-col items-center text-center max-w-[80%]">
+                    <div className="relative z-10 flex flex-col items-center text-center max-w-[80%] pointer-events-auto mt-8">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={active.id}
@@ -175,18 +141,12 @@ export default function Testimonials() {
 
                 {/* Navigation Arrows */}
                 <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-4 md:px-12 pointer-events-none">
-                    <button
-                        onClick={handlePrev}
-                        className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all pointer-events-auto group"
-                    >
+                    <button onClick={handlePrev} className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all pointer-events-auto group">
                         <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button
-                        onClick={handleNext}
-                        className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all pointer-events-auto group"
-                    >
+                    <button onClick={handleNext} className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all pointer-events-auto group">
                         <svg className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
                         </svg>
@@ -204,7 +164,6 @@ export default function Testimonials() {
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             className="bg-white rounded-[2.5rem] shadow-2xl max-w-2xl w-full p-8 md:p-12 relative overflow-hidden"
                         >
-                            {/* Close Button */}
                             <button
                                 onClick={() => setIsModalOpen(false)}
                                 className="absolute top-6 right-6 p-2 rounded-full bg-gray-50 text-gray-500 hover:bg-red-50 hover:text-red-500 transition-colors"
@@ -220,31 +179,77 @@ export default function Testimonials() {
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{active.name}</h3>
                                 <p className="text-blue-600 font-bold text-sm uppercase tracking-widest mb-8">{active.role}</p>
-
                                 <div className="w-full h-px bg-gray-100 mb-8" />
-
-                                <p className="text-gray-600 text-lg leading-relaxed mb-6 italic">
-                                    “{active.comment}”
-                                </p>
-
+                                <p className="text-gray-600 text-lg leading-relaxed mb-6 italic">“{active.comment}”</p>
                                 {active.fullDetails && (
                                     <p className="text-gray-500 text-sm md:text-base leading-relaxed font-medium">
                                         {active.fullDetails}
                                     </p>
                                 )}
                             </div>
-
-                            {/* Decorative Background for Modal */}
                             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-50 rounded-full blur-[80px] -z-10" />
                         </motion.div>
                     </div>
                 )}
             </AnimatePresence>
-
-            {/* Background decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-50/20 rounded-full blur-[100px]" />
             </div>
         </section>
     );
 }
+
+// Separate component for orbiting item to use hooks safely
+const OrbitItem = ({ index, total, duration, rx, ry, isActive, onClick, children }: any) => {
+    // We can't use useTime hook inside a conditional map easily if we want resizing to work without full re-mount,
+    // but here we are mounting clean components.
+    // For simplicity, let's use standard CSS animation or useTime if we import it.
+    // Since useTime is from framer-motion, let's use it.
+
+    // However, useTime returns a MotionValue.
+    // We need to calculate x and y based on time.
+
+    // NOTE: If useTime is not available in the installed framer-motion version, we might need a requestAnimationFrame loop.
+    // Assuming standard framer-motion usage.
+
+    const [angle, setAngle] = useState((index / total) * 360);
+
+    useEffect(() => {
+        let animationFrame: number;
+        const startTime = Date.now();
+        const startAngle = (index / total) * 360;
+
+        const animate = () => {
+            const now = Date.now();
+            const elapsed = (now - startTime) / 1000; // seconds
+            const newAngle = startAngle + (elapsed / duration) * 360;
+            setAngle(newAngle);
+            animationFrame = requestAnimationFrame(animate);
+        };
+
+        animate();
+        return () => cancelAnimationFrame(animationFrame);
+    }, [index, total, duration]);
+
+    // Calculate position
+    const rad = (angle * Math.PI) / 180;
+    const x = Math.cos(rad) * rx;
+    const y = Math.sin(rad) * ry;
+
+    return (
+        <div
+            className="absolute top-1/2 left-1/2 pointer-events-auto"
+            style={{
+                transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
+                transition: 'transform 16ms linear' // smooth out frame updates
+            }}
+        >
+            <button
+                onClick={onClick}
+                className={`w-12 h-12 md:w-20 md:h-20 rounded-full border-4 border-white shadow-lg overflow-hidden transition-all duration-300 hover:scale-110 active:scale-95 ${isActive ? 'scale-125 border-blue-500 z-10' : 'scale-100 opacity-60'}`}
+            >
+                {children}
+            </button>
+        </div>
+    );
+};
