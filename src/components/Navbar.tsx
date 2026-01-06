@@ -56,8 +56,8 @@ export default function Navbar() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-3 shadow-sm"
-                    : "bg-transparent py-5"
+                ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-3 shadow-sm"
+                : "bg-transparent py-5"
                 }`}
         >
             <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -76,6 +76,8 @@ export default function Navbar() {
                     <NavItem to="/">Home</NavItem>
                     <NavItem to="/about">About</NavItem>
                     <NavItem to="/services">Services</NavItem>
+                    <NavItem to="/careers">Careers</NavItem>
+
                 </ul>
 
                 {/* CTA Button */}

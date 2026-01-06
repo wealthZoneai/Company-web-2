@@ -10,6 +10,9 @@ import OurBranches from './OurBranches';
 import StatsBar from '../home/StatsBar';
 import FutureGoalCTA from './FutureGoalCTA';
 
+import Leadership from './Leadership';
+import OurPortfolio from './OurPortfolio';
+
 export default function About() {
     return (
         <div className="bg-white min-h-screen font-sans overflow-x-hidden">
@@ -23,6 +26,8 @@ export default function About() {
                 <WhatWeDo />
                 <WhyChooseUs />
                 <OurBranches />
+                <Leadership />
+                <OurPortfolio />
             </div>
 
             <StatsBar />

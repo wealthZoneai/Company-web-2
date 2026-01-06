@@ -73,9 +73,6 @@ export default function Partners() {
         .animate-marquee-partners {
           animation: marquee-partners 25s linear infinite;
         }
-        .animate-marquee-partners:hover {
-          animation-play-state: paused;
-        }
       `}} />
         </section>
     );

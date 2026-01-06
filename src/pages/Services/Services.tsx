@@ -249,12 +249,15 @@ const CTASection: React.FC = () => {
     );
 };
 
+import StaffingSolutions from './StaffingSolutions';
+
 // --- Main Page Component ---
 export default function Services() {
     return (
         <main className="bg-white min-h-screen font-sans overflow-x-hidden">
             <ServiceHero />
             <ServicesGrid />
+            <StaffingSolutions />
             <CTASection />
         </main>
     );
