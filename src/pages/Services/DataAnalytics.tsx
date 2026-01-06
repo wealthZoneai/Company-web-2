@@ -1,4 +1,4 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaChartLine,
   FaCode,
@@ -14,236 +14,346 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaPaperPlane,
+   FaBrain,
+    FaSearchDollar,
+     FaProjectDiagram,
 } from "react-icons/fa";
-export default function Services() {
+import {
+  FiTrendingUp,
+  FiSettings,
+  FiShield,
+  FiDatabase ,
+  FiArrowLeft ,
+} from "react-icons/fi";
+import Footer from "../../components/Footer";
+import two from "../../assets/viedos/dataa.mp4"
+export default function DataAnalytics() {
+  const navigate = useNavigate();
   return (
     <div className="bg-gray-50">
+    <section className="relative h-[420px] overflow-hidden">
 
-      {/* ================= HEADER ================= */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
-              WZ
-            </div>
-            <div>
-              <h1 className="font-bold text-blue-700">
-                WEALTH ZONE GROUP AI
-              </h1>
-              <p className="text-xs text-gray-500">
-                International Private Limited
-              </p>
-            </div>
-          </div>
+  {/* BACKGROUND VIDEO */}
+  <video
+    className="absolute inset-0 w-full h-full object-cover"
+    src={two}
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
 
-          <nav className="hidden md:flex gap-6 text-sm font-medium">
-            <a>Home</a>
-            <a>About</a>
-            <a>Projects</a>
-            <a>Staffing</a>
-            <a>Our Team</a>
-            <a className="text-blue-600">Services</a>
-            <a>Careers</a>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded">
-              Contact
-            </button>
-          </nav>
-        </div>
-      </header>
+  {/* DARK OVERLAY */}
+  <div className="absolute inset-0"></div>
 
-      {/* ================= HERO ================= */}
-      <section
-        className="relative h-[420px] bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1551288049-bebda4e38f71)",
-        }}
-      >
-        <div className="absolute inset-0 bg-blue-900/70"></div>
+ 
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
-          <div className="text-white max-w-xl">
-            <h2 className="text-3xl font-bold mb-4">
-              Unlock Actionable Insight With <br /> WZG-AI Data Analytics
-            </h2>
-            <p className="text-sm mb-6">
-              Transform your raw data into tangible business growth and gain a
-              competitive edge in your industry.
-            </p>
-            <button className="bg-white text-blue-700 px-6 py-3 rounded font-medium">
-              Learn More
-            </button>
-          </div>
-        </div>
-      </section>
+  {/* CONTENT */}
+<div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex items-center">
+  <div className="text-white max-w-xl">
 
-      {/* ================= FEATURES ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-6">
-        {[
-          "Drive Growth",
-          "Enhance Efficiency",
-          "Mitigate Risks",
-        ].map((title, i) => (
-          <div key={i} className="bg-white p-6 rounded-xl shadow">
-            <h3 className="font-semibold mb-2">{title}</h3>
-            <p className="text-sm text-gray-600">
-              Utilize predictive analytics to identify opportunities and
-              optimize your strategy for maximum impact.
-            </p>
-          </div>
-        ))}
-      </section>
+    {/* BACK ARROW – EXACTLY ABOVE "Unlock" */}
+    <button
+      onClick={() => navigate("/services")}
+      className="mb-4
+                 bg-white/90 hover:bg-white
+                 p-2 rounded-full shadow-lg
+                 transition"
+    >
+      <FiArrowLeft className="text-blue-700 text-xl" />
+    </button>
+
+    <h2 className="text-3xl font-bold mb-4">
+      Unlock Actionable Insight With <br /> WZG-AI Data Analytics
+    </h2>
+
+    <p className="text-sm mb-6">
+      Transform your raw data into tangible business growth and gain a
+      competitive edge in your industry.
+    </p>
+
+    <button className="bg-white text-blue-700 px-6 py-3 rounded font-medium">
+      Learn More
+    </button>
+  </div>
+</div>
+
+</section>
+
+
+     {/* ================= DRIVE GROWTH SECTION ================= */}
+<section className="max-w-7xl mx-auto px-6 py-12">
+  <div className="grid md:grid-cols-3 gap-8">
+
+    {/* Drive Growth */}
+    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+      <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-blue-100 mb-4">
+        <FiTrendingUp className="text-blue-600 text-2xl" />
+      </div>
+      <h3 className="font-semibold mb-2">Drive Growth</h3>
+      <p className="text-sm text-gray-600">
+        Utilize predictive analytics to identify opportunities and accelerate
+        sustainable business growth.
+      </p>
+    </div>
+
+    {/* Enhance Efficiency */}
+    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+      <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-green-100 mb-4">
+        <FiSettings className="text-green-600 text-2xl" />
+      </div>
+      <h3 className="font-semibold mb-2">Enhance Efficiency</h3>
+      <p className="text-sm text-gray-600">
+        Streamline operations and optimize workflows using data-driven
+        automation and insights.
+      </p>
+    </div>
+
+    {/* Mitigate Risks */}
+    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+      <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-red-100 mb-4">
+        <FiShield className="text-red-600 text-2xl" />
+      </div>
+      <h3 className="font-semibold mb-2">Mitigate Risks</h3>
+      <p className="text-sm text-gray-600">
+        Identify potential risks early and ensure compliance with intelligent
+        monitoring and analytics.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 
       {/* ================= SERVICES GRID ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <h2 className="font-semibold mb-6">
-          Our Comprehensive Analytics Services
-        </h2>
+   <section className="bg-gray-50 py-5">
 
-        <div className="grid md:grid-cols-4 gap-6">
-          {[
-            { icon: FaChartLine, title: "Predictive Analytics" },
-            { icon: FaCode, title: "Software Development" },
-            { icon: FaCloud, title: "Cloud Services" },
-            { icon: FaRobot, title: "AI Agents" },
-            { icon: FaBriefcase, title: "BPO Services" },
-            { icon: FaBullhorn, title: "Marketing Services" },
-            { icon: FaUserCog, title: "Customer Support" },
-            { icon: FaMapMarkedAlt, title: "Google Mapping" },
-            { icon: FaBug, title: "Software Testing" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition"
-            >
-              <item.icon className="text-blue-600 text-2xl mb-3" />
-              <h3 className="font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Unlock powerful insights to make smarter, faster business
-                decisions.
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+  {/* FULL-WIDTH CARD */}
+  <div
+    className="
+      bg-white
+      w-full
+      px-20
+      py-8
+      shadow-[0_-6px_10px_-6px_rgba(0,0,0,0.15),0_6px_10px_-6px_rgba(0,0,0,0.15)]
+    "
+  >
+    <div className="max-w-7xl mx-auto">
 
-      {/* ================= PROCESS ================= */}
-      <section className="bg-gray-100 py-14">
-        <h2 className="text-center font-semibold mb-10">Our Process</h2>
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 text-center">
-          {["Data Collection", "Processing & Analysis", "Insight Delivery"].map(
-            (step, i) => (
-              <div key={i}>
-                <div className="w-12 h-12 mx-auto bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mb-3">
-                  {i + 1}
-                </div>
-                <h3 className="font-semibold">{step}</h3>
-              </div>
-            )
-          )}
+      {/* Heading */}
+      <h2 className="text-xl font-semibold text-gray-900 mb-2">
+        Our Comprehensive Analytics Services
+      </h2>
+
+      {/* Matter */}
+      <p className="text-gray-600 max-w-4xl text-sm">
+        We provide end-to-end data solutions designed to address your most
+        complex challenges and drive measurable business results through
+        advanced analytics and AI-driven insights.
+      </p>
+
+    </div>
+  </div>
+
+</section>
+  <section className="bg-gray-50 py-8">
+  <div className="max-w-7xl mx-auto px-6">
+
+    <div className="grid md:grid-cols-4 gap-6">
+
+      {/* Card 1 */}
+      <div className="bg-white p-6 rounded-xl
+                      shadow-[0_12px_28px_-6px_rgba(0,0,0,0.25)]
+                      hover:shadow-[0_18px_40px_-8px_rgba(0,0,0,0.35)]
+                      transition-shadow duration-300">
+        <FaChartLine className="text-blue-600 text-3xl mb-4" />
+        <h3 className="font-semibold text-gray-900 mb-2">
+          Predictive Analytics
+        </h3>
+        <p className="text-sm text-gray-600">
+          Anticipate future trends and behaviours with high accuracy to make
+          proactive business decisions.
+        </p>
+      </div>
+
+      {/* Card 2 */}
+      <div className="bg-white p-6 rounded-xl
+                      shadow-[0_12px_28px_-6px_rgba(0,0,0,0.25)]
+                      hover:shadow-[0_18px_40px_-8px_rgba(0,0,0,0.35)]
+                      transition-shadow duration-300">
+        <FaBrain className="text-blue-600 text-3xl mb-4" />
+        <h3 className="font-semibold text-gray-900 mb-2">
+          Predictive Analytics
+        </h3>
+        <p className="text-sm text-gray-600">
+          Anticipate future trends and behaviours with high accuracy to make
+          proactive business decisions.
+        </p>
+      </div>
+
+      {/* Card 3 */}
+      <div className="bg-white p-6 rounded-xl
+                      shadow-[0_12px_28px_-6px_rgba(0,0,0,0.25)]
+                      hover:shadow-[0_18px_40px_-8px_rgba(0,0,0,0.35)]
+                      transition-shadow duration-300">
+        <FaSearchDollar className="text-blue-600 text-3xl mb-4" />
+        <h3 className="font-semibold text-gray-900 mb-2">
+          Predictive Analytics
+        </h3>
+        <p className="text-sm text-gray-600">
+          Anticipate future trends and behaviours with high accuracy to make
+          proactive business decisions.
+        </p>
+      </div>
+
+      {/* Card 4 */}
+      <div className="bg-white p-6 rounded-xl
+                      shadow-[0_12px_28px_-6px_rgba(0,0,0,0.25)]
+                      hover:shadow-[0_18px_40px_-8px_rgba(0,0,0,0.35)]
+                      transition-shadow duration-300">
+        <FaProjectDiagram className="text-blue-600 text-3xl mb-4" />
+        <h3 className="font-semibold text-gray-900 mb-2">
+          Predictive Analytics
+        </h3>
+        <p className="text-sm text-gray-600">
+          Anticipate future trends and behaviours with high accuracy to make
+          proactive business decisions.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+     <section className="py-20" style={{ backgroundColor: "#d1d7ddff" }}>
+  <div className="max-w-7xl mx-auto px-6 text-center">
+
+    <h2 className="text-2xl font-semibold text-gray-900 mb-3">
+      Our Process
+    </h2>
+
+    <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-sm">
+      Hear Directly from our satisfied clients about how WZG-AI transformed
+      their data into a competitive advantage
+    </p>
+
+    <div className="grid md:grid-cols-3 gap-12">
+
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <FiDatabase className="text-blue-700 text-2xl" />
         </div>
-      </section>
+        <h3 className="font-semibold text-gray-900">Data Collection</h3>
+        <p className="text-sm text-gray-500 mt-1">Step 1</p>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <FiSettings className="text-blue-700 text-2xl" />
+        </div>
+        <h3 className="font-semibold text-gray-900">Processing & Analysis</h3>
+        <p className="text-sm text-gray-500 mt-1">Step 2</p>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <FiTrendingUp className="text-blue-700 text-2xl" />
+        </div>
+        <h3 className="font-semibold text-gray-900">Insight Delivery</h3>
+        <p className="text-sm text-gray-500 mt-1">Step 3</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ================= TESTIMONIALS ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-14">
-        <h2 className="text-center font-semibold mb-10">
-          What Our Clients Say
-        </h2>
+      {/* ================= WHAT OUR CLIENTS SAY ================= */}
+<section className="bg-[#F7FAFD] py-20">
+  <div className="max-w-7xl mx-auto px-6 text-center">
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            {
-              name: "Ravi Teja",
-              text:
-                "WZG-AI’s predictive analytics model was a game-changer for our growth.",
-            },
-            {
-              name: "Revanth",
-              text:
-                "The real-time dashboards gave us visibility and faster decisions.",
-            },
-            {
-              name: "Lithish",
-              text:
-                "They didn’t just provide a service, they became our partner.",
-            },
-          ].map((t, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow">
-              <h4 className="font-semibold mb-2">{t.name}</h4>
-              <p className="text-sm text-gray-600">{t.text}</p>
-            </div>
-          ))}
+    {/* Heading */}
+    <h2 className="text-2xl font-semibold text-gray-900 mb-3">
+      What Our Clients Say
+    </h2>
+
+    <p className="text-gray-600 max-w-2xl mx-auto mb-14 text-sm">
+      Hear Directly from our satisfied clients about how WZG-AI transformed
+      their data into a competitive advantage
+    </p>
+
+    {/* Testimonials */}
+    <div className="grid md:grid-cols-3 gap-8">
+
+      {/* Card 1 */}
+      <div className="bg-white rounded-xl p-6 text-left
+                      shadow-[0_10px_30px_-10px_rgba(0,0,0,0.25)]">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-10 rounded-full bg-blue-600 text-white
+                          flex items-center justify-center font-semibold">
+            R
+          </div>
+          <h4 className="font-semibold text-gray-900">
+            Ravi Teja
+          </h4>
         </div>
-      </section>
+
+        <p className="text-sm text-gray-600 leading-relaxed">
+          “WZG-AI’s predictive analytics model was a game-changer for our
+          marketing strategy. We’ve seen 30% increase in conversion rates
+          since implementation.”
+        </p>
+      </div>
+
+      {/* Card 2 */}
+      <div className="bg-white rounded-xl p-6 text-left
+                      shadow-[0_10px_30px_-10px_rgba(0,0,0,0.25)]">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-10 rounded-full bg-blue-600 text-white
+                          flex items-center justify-center font-semibold">
+            R
+          </div>
+          <h4 className="font-semibold text-gray-900">
+            Revanth
+          </h4>
+        </div>
+
+        <p className="text-sm text-gray-600 leading-relaxed">
+          “The real-time BI dashboards have given us visibility into our
+          supply chain. We can now identify and resolve bottlenecks before
+          they become major issues.”
+        </p>
+      </div>
+
+      {/* Card 3 */}
+      <div className="bg-white rounded-xl p-6 text-left
+                      shadow-[0_10px_30px_-10px_rgba(0,0,0,0.25)]">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-10 rounded-full bg-blue-600 text-white
+                          flex items-center justify-center font-semibold">
+            L
+          </div>
+          <h4 className="font-semibold text-gray-900">
+            Lithish
+          </h4>
+        </div>
+
+        <p className="text-sm text-gray-600 leading-relaxed">
+          “Their team didn’t just provide a service — they became a true
+          partner. Their insights helped us navigate volatile markets and
+          emerge stronger than ever.”
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-[#263238] text-gray-300">
-        <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
-
-          {/* LOGO */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
-                WZ
-              </div>
-              <h3 className="text-white font-semibold">
-                WEALTH ZONE GROUP AI
-              </h3>
-            </div>
-            <p className="text-sm mb-4">
-              Empowering businesses with intelligent, scalable solutions.
-            </p>
-
-            <div className="flex gap-3">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaLinkedinIn />
-              <FaInstagram />
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-white mb-3 font-semibold">Company</h4>
-            <ul className="space-y-2 text-sm">
-              <li>About us</li>
-              <li>Services</li>
-              <li>Contact us</li>
-              <li>Our Team</li>
-              <li>Testimonials</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white mb-3 font-semibold">Support</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Help center</li>
-              <li>Terms of service</li>
-              <li>Legal</li>
-              <li>Privacy policy</li>
-              <li>Status</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white mb-3 font-semibold">
-              Stay up to date
-            </h4>
-            <div className="flex bg-gray-700 rounded overflow-hidden">
-              <input
-                placeholder="Your email address"
-                className="bg-transparent px-4 py-3 text-sm w-full outline-none text-white"
-              />
-              <button className="bg-blue-600 px-4">
-                <FaPaperPlane />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-700 py-4 text-center text-sm">
-          © 2026 Wealth Zone Group AI. All rights reserved.
-        </div>
-      </footer>
+     <Footer/>
     </div>
   );
 }

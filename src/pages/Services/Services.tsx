@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import {
   FiBarChart2,
@@ -20,8 +21,11 @@ import {
   FaInstagram,
   FaPaperPlane,
 } from "react-icons/fa";
+import Footer from "../../components/Footer";
 
 export default function Services() {
+  const navigate = useNavigate();
+
   const services = [
     { title: "Data Analytics", icon: FiBarChart2, bg: "bg-blue-100", color: "text-blue-600" },
     { title: "Software Development", icon: FiCode, bg: "bg-green-100", color: "text-green-600" },
@@ -48,18 +52,17 @@ export default function Services() {
       </section>
 
       {/* ================= CONTENT SECTION ================= */}
-<section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-start">
+      <section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-start">
         <div>
-     <h2 className="text-2xl font-semibold mb-4 leading-snug">
-  <span className="text-blue-700">
-    Comprehensive Technology
-  </span>
-  <br />
-  <span className="text-black">
-    Solutions by WZG-AI
-  </span>
-</h2>
-
+          <h2 className="text-2xl font-semibold mb-4 leading-snug">
+            <span className="text-blue-700">
+              Comprehensive Technology
+            </span>
+            <br />
+            <span className="text-black">
+              Solutions by WZG-AI
+            </span>
+          </h2>
 
           <p className="text-gray-600 mb-6 leading-relaxed">
             We provide a comprehensive suite of intelligent digital solutions
@@ -95,12 +98,19 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
+
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-gray-300"
+                onClick={() => {
+                  if (service.title === "Data Analytics") {
+                    navigate("/services/data-analytics");
+                  }
+                }}
+                className={`bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-gray-300
+                  ${service.title === "Data Analytics" ? "cursor-pointer" : ""}
+                `}
               >
-                {/* COLORED LOGO */}
                 <div
                   className={`w-14 h-14 flex items-center justify-center rounded-xl mb-4 ${service.bg}`}
                 >
@@ -120,115 +130,28 @@ export default function Services() {
           })}
         </div>
       </section>
+
       {/* ================= CTA SECTION ================= */}
-<section className="bg-blue-100 py-20">
-  <div className="max-w-4xl mx-auto text-center px-6">
-    <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
-      Ready to power your wealth with Intelligence?
-    </h2>
+      <section className="bg-blue-100 py-20">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
+            Ready to power your wealth with Intelligence?
+          </h2>
 
-    <p className="text-gray-700 mb-8 leading-relaxed">
-      Connect with our experts to discover how WZG-AI can help you
-      achieve sustainable growth through intelligent technology solutions.
-    </p>
-
-    <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
-      Contact Us
-    </button>
-  </div>
-</section>
-
-{/* ================= FOOTER ================= */}
-  <footer className="bg-[#263238] text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
-
-        {/* LOGO & ABOUT */}
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
-              WZ
-            </div>
-            <div>
-              <h3 className="font-semibold text-white">
-                WEALTH ZONE GROUP AI
-              </h3>
-              <p className="text-xs text-gray-400">
-                International Private Limited
-              </p>
-            </div>
-          </div>
-
-          <p className="text-sm text-gray-400 mb-4">
-            Empowering businesses with intelligent, scalable, and future-ready
-            digital solutions.
+          <p className="text-gray-700 mb-8 leading-relaxed">
+            Connect with our experts to discover how WZG-AI can help you
+            achieve sustainable growth through intelligent technology solutions.
           </p>
 
-          {/* SOCIAL ICONS */}
-          <div className="flex gap-3">
-            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
-              <FaFacebookF />
-            </a>
-            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
-              <FaTwitter />
-            </a>
-            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
-              <FaLinkedinIn />
-            </a>
-            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
-              <FaInstagram />
-            </a>
-          </div>
+          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
+            Contact Us
+          </button>
         </div>
+      </section>
+<>
+     <Footer/>
+</>
 
-        {/* COMPANY */}
-        <div>
-          <h4 className="text-white font-semibold mb-4">Company</h4>
-          <ul className="space-y-2 text-sm">
-            <li>About Us</li>
-            <li>Services</li>
-            <li>Contact Us</li>
-            <li>Our Team</li>
-            <li>Testimonials</li>
-          </ul>
-        </div>
-
-        {/* SUPPORT */}
-        <div>
-          <h4 className="text-white font-semibold mb-4">Support</h4>
-          <ul className="space-y-2 text-sm">
-            <li>Help Center</li>
-            <li>Terms of Service</li>
-            <li>Legal</li>
-            <li>Privacy Policy</li>
-            <li>Status</li>
-          </ul>
-        </div>
-
-        {/* STAY UP TO DATE */}
-        <div>
-          <h4 className="text-white font-semibold mb-4">
-            Stay up to date
-          </h4>
-
-          <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="bg-transparent px-4 py-3 text-sm w-full outline-none text-white"
-            />
-            <button className="bg-blue-600 px-4 py-3 text-white">
-              <FaPaperPlane />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* BOTTOM BAR */}
-      <div className="border-t border-gray-700 py-4 text-center text-sm text-gray-400">
-        © 2026 Wealth Zone Group AI. All rights reserved.
-      </div>
-    </footer>
     </div>
-    
   );
 }
