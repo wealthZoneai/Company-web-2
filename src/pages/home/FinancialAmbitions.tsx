@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function FinancialAmbitions() {
     return (
-        <section className="relative py-4 bg-[#EAF5FF] overflow-hidden">
+        <section className="relative py-8 bg-[#EAF5FF] overflow-hidden ">
             <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
                 {/* Main Heading */}
                 <motion.h2

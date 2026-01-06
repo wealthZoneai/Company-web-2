@@ -88,7 +88,7 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.6 }}
-            className="group relative rounded-[1.5rem] overflow-hidden border border-gray-100 shadow-xl bg-white flex flex-col h-full cursor-pointer hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500"
+            className="group relative rounded-2xl overflow-hidden border border-gray-100 shadow-lg bg-white flex flex-col h-full cursor-pointer hover:shadow-2xl hover:shadow-blue-600/10 hover:-translate-y-1 transition-all duration-300"
         >
             {/* Header Content Area (Media) */}
             <div className="relative aspect-[4/3] overflow-hidden bg-black">
@@ -116,8 +116,8 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
             </div>
 
             {/* Footer Area (Titles) */}
-            <div className="p-6 text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
-                <h3 className="text-xl md:text-2xl font-black text-gray-900 group-hover:text-blue-600 transition-all duration-300 tracking-tight leading-tight">
+            <div className="p-5 text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-all duration-300 tracking-tight leading-snug">
                     {service.title}
                 </h3>
                 <div className="w-12 h-1 bg-blue-600 mt-4 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
@@ -137,7 +137,7 @@ export default function OurServices() {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-black text-blue-900 tracking-tight mb-4"
+                        className="text-2xl md:text-3xl font-black text-blue-900 tracking-tight mb-4"
                     >
                         Our Services
                     </motion.h2>

@@ -62,9 +62,6 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <span className="inline-block py-1 px-4 rounded-full text-blue-600 border border-blue-100 bg-blue-50/50 text-sm font-semibold mb-6">
-                        Pioneering the AI Revolution
-                    </span>
                     <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 leading-[1.1] tracking-tight">
                         Wealth Zone <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
@@ -103,22 +100,6 @@ export default function Hero() {
                     </Link>
                 </motion.div>
             </div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2"
-            >
-                <div className="w-6 h-10 border-2 border-gray-200 rounded-full flex justify-center p-2">
-                    <motion.div
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="w-1.5 h-1.5 bg-blue-600 rounded-full"
-                    />
-                </div>
-            </motion.div>
         </section>
     );
 }
