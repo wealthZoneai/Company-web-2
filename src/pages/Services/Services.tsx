@@ -1,196 +1,234 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-
-const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6 }
-};
-
-const staggerContainer = {
-    initial: {},
-    whileInView: { transition: { staggerChildren: 0.2 } },
-    viewport: { once: true }
-};
-
-const ServiceCard: React.FC<{
-    title: string;
-    description: string;
-    items: string[];
-    icon: string;
-    color: string;
-}> = ({ title, description, items, icon, color }) => (
-    <motion.div
-        variants={fadeInUp}
-        className={`bg-white rounded-[2.5rem] p-10 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden`}
-    >
-        <div className={`absolute top-0 right-0 w-32 h-32 ${color} opacity-10 rounded-bl-[100%] transition-transform group-hover:scale-110`} />
-
-        <div className="text-5xl mb-6">{icon}</div>
-        <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">{title}</h3>
-        <p className="text-gray-600 mb-8 leading-relaxed font-medium">
-            {description}
-        </p>
-
-        <ul className="space-y-4">
-            {items.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-3 text-gray-700 font-bold group/item">
-                    <span className="w-2 h-2 rounded-full bg-blue-600 group-hover/item:scale-150 transition-transform" />
-                    {item}
-                </li>
-            ))}
-        </ul>
-    </motion.div>
-);
+import React from "react";
+import {
+  FiBarChart2,
+  FiCode,
+  FiHeadphones,
+  FiCloud,
+  FiCpu,
+  FiBriefcase,
+  FiTrendingUp,
+  FiClipboard,
+  FiShield,
+  FiUser,
+  FiMap,
+  FiCheckCircle,
+} from "react-icons/fi";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaInstagram,
+  FaPaperPlane,
+} from "react-icons/fa";
 
 export default function Services() {
-    return (
-        <div className="bg-slate-50 min-h-screen font-sans">
+  const services = [
+    { title: "Data Analytics", icon: FiBarChart2, bg: "bg-blue-100", color: "text-blue-600" },
+    { title: "Software Development", icon: FiCode, bg: "bg-green-100", color: "text-green-600" },
+    { title: "IT Consulting", icon: FiHeadphones, bg: "bg-purple-100", color: "text-purple-600" },
+    { title: "Cloud Services", icon: FiCloud, bg: "bg-sky-100", color: "text-sky-600" },
+    { title: "AI Agents", icon: FiCpu, bg: "bg-red-100", color: "text-red-600" },
+    { title: "BPO Services", icon: FiBriefcase, bg: "bg-yellow-100", color: "text-yellow-600" },
+    { title: "Marketing Services", icon: FiTrendingUp, bg: "bg-pink-100", color: "text-pink-600" },
+    { title: "Medical Coding", icon: FiClipboard, bg: "bg-cyan-100", color: "text-cyan-600" },
+    { title: "Content Moderation", icon: FiShield, bg: "bg-indigo-100", color: "text-indigo-600" },
+    { title: "Customer Support", icon: FiUser, bg: "bg-emerald-100", color: "text-emerald-600" },
+    { title: "Google Mapping", icon: FiMap, bg: "bg-lime-100", color: "text-lime-600" },
+    { title: "Software Testing", icon: FiCheckCircle, bg: "bg-orange-100", color: "text-orange-600" },
+  ];
 
-            {/* Hero Section */}
-            <section className="relative pt-32 pb-20 px-6 bg-[#1457AB] overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10">
-                    <div className="absolute top-0 left-0 w-96 h-96 bg-white blur-[150px] rounded-full -translate-x-1/2 -translate-y-1/2" />
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400 blur-[150px] rounded-full translate-x-1/2 translate-y-1/2" />
-                </div>
+  return (
+    <div className="bg-gray-50">
 
-                <div className="max-w-7xl mx-auto relative z-10 text-center text-white">
-                    <motion.h1
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="text-4xl md:text-7xl font-black mb-8 leading-tight tracking-tighter"
-                    >
-                        Our Technical <br />
-                        <span className="text-blue-300">Expertise</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg md:text-2xl text-blue-100 max-w-3xl mx-auto font-medium"
-                    >
-                        We provide end-to-end digital transformation solutions powered by Artificial Intelligence and Cloud computing to drive your business forward.
-                    </motion.p>
-                </div>
-            </section>
+      {/* ================= OUR SERVICES HEADING ================= */}
+      <section className="max-w-7xl mx-auto px-6 pt-16">
+        <h1 className="text-center text-4xl font-bold text-blue-700">
+          Our Services
+        </h1>
+      </section>
 
-            {/* Main Services Grid */}
-            <section className="max-w-7xl mx-auto px-6 py-24">
-                <motion.div
-                    variants={staggerContainer}
-                    initial="initial"
-                    whileInView="whileInView"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-10"
-                >
-                    <ServiceCard
-                        title="WZG-AI SOLUTIONS"
-                        icon="🤖"
-                        color="bg-blue-600"
-                        description="Harness the power of AI to automate complex processes and gain deeper insights into your business data."
-                        items={[
-                            "Artificial Intelligence Systems",
-                            "Advanced Software Development",
-                            "Business Intelligence Platforms",
-                            "Predictive Analytics & ML Models"
-                        ]}
-                    />
-                    <ServiceCard
-                        title="Digital Services"
-                        icon="🌐"
-                        color="bg-orange-500"
-                        description="Scale your digital presence with secure, robust infrastructure and strategic management."
-                        items={[
-                            "Cybersecurity Infrastructure",
-                            "Strategic IT Consulting",
-                            "HR & Payroll Solutions",
-                            "Professional Coaching & Training"
-                        ]}
-                    />
-                    <ServiceCard
-                        title="Business Intelligence"
-                        icon="📊"
-                        color="bg-pink-500"
-                        description="Data-driven strategies that optimize your performance and cloud infrastructure for maximum efficiency."
-                        items={[
-                            "Cloud Strategy & Migration",
-                            "Fullstack Application Ecosystems",
-                            "Real-time Data Reporting",
-                            "Performance Optimization"
-                        ]}
-                    />
-                    <ServiceCard
-                        title="Staffing Development"
-                        icon="👥"
-                        color="bg-cyan-500"
-                        description="Stable, expert support for your internal operations and specialized staffing to bridge the talent gap."
-                        items={[
-                            "Internal App Stability Support",
-                            "Managed Service Desk",
-                            "On-demand IT Staffing",
-                            "24/7 Technical Support"
-                        ]}
-                    />
-                </motion.div>
-            </section>
+      {/* ================= CONTENT SECTION ================= */}
+<section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-start">
+        <div>
+     <h2 className="text-2xl font-semibold mb-4 leading-snug">
+  <span className="text-blue-700">
+    Comprehensive Technology
+  </span>
+  <br />
+  <span className="text-black">
+    Solutions by WZG-AI
+  </span>
+</h2>
 
-            {/* Process Section */}
-            <section className="bg-white py-24 px-6 overflow-hidden">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-20">
-                        <h2 className="text-4xl font-black text-gray-900 mb-4">Our Roadmap to Success</h2>
-                        <div className="w-24 h-1.5 bg-blue-600 mx-auto rounded-full" />
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-[60px] left-0 w-full h-0.5 bg-blue-100 -z-0" />
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            We provide a comprehensive suite of intelligent digital solutions
+            designed to empower your business at every stage of growth.
+            From digital transformation and process optimization to scalable
+            platforms and innovative solutions, we help businesses adapt to
+            change, stay competitive, and unlock new opportunities.
+          </p>
 
-                        {[
-                            { step: '01', title: 'Consult', icon: '💬', desc: 'Understanding your unique business challenges.' },
-                            { step: '02', title: 'Strategize', icon: '📝', desc: 'Planning the perfect technical roadmap.' },
-                            { step: '03', title: 'Implement', icon: '⚙️', desc: 'Precise development/deployment of solutions.' },
-                            { step: '04', title: 'Support', icon: '🛠️', desc: 'Continuous optimization and maintenance.' }
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                {...fadeInUp}
-                                transition={{ delay: i * 0.15 }}
-                                className="relative z-10 text-center"
-                            >
-                                <div className="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg text-4xl group-hover:scale-110 transition-transform">
-                                    {item.icon}
-                                </div>
-                                <div className="text-blue-600 font-black text-xl mb-2">{item.step}</div>
-                                <h4 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h4>
-                                <p className="text-gray-500 font-medium px-4">
-                                    {item.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Bottom CTA */}
-            <section className="py-24 px-6">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    className="max-w-5xl mx-auto bg-gradient-to-br from-blue-700 to-blue-900 rounded-[3rem] p-12 md:p-20 text-center text-white shadow-2xl relative overflow-hidden"
-                >
-                    <h3 className="text-3xl md:text-5xl font-black mb-8">Ready to Elevate Your Business?</h3>
-                    <p className="text-xl text-blue-100 mb-12 opacity-90 max-w-2xl mx-auto font-medium">
-                        Our experts are ready to help you implement state of the art AI and cloud solutions.
-                    </p>
-                    <button className="bg-white text-blue-900 px-12 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 hover:scale-105 transition-all shadow-xl">
-                        Schedule a Consultation
-                    </button>
-                </motion.div>
-            </section>
-
+          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+            Explore Now
+          </button>
         </div>
-    );
+
+        <img
+          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+          alt="Services"
+          className="rounded-xl shadow-lg"
+        />
+      </section>
+
+      {/* ================= EXPLORE OUR EXPERTISE ================= */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <h2 className="text-center text-3xl font-bold mb-4">
+          Explore Our Expertise
+        </h2>
+
+        <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+          From data-driven insights to robust software solutions, we offer a wide
+          range of services to meet your business needs.
+        </p>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-gray-300"
+              >
+                {/* COLORED LOGO */}
+                <div
+                  className={`w-14 h-14 flex items-center justify-center rounded-xl mb-4 ${service.bg}`}
+                >
+                  <Icon size={26} className={service.color} />
+                </div>
+
+                <h3 className="font-semibold text-lg mb-2">
+                  {service.title}
+                </h3>
+
+                <p className="text-gray-600 text-sm">
+                  Unlock powerful insights from your data to make smarter,
+                  faster business decisions.
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      {/* ================= CTA SECTION ================= */}
+<section className="bg-blue-100 py-20">
+  <div className="max-w-4xl mx-auto text-center px-6">
+    <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
+      Ready to power your wealth with Intelligence?
+    </h2>
+
+    <p className="text-gray-700 mb-8 leading-relaxed">
+      Connect with our experts to discover how WZG-AI can help you
+      achieve sustainable growth through intelligent technology solutions.
+    </p>
+
+    <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
+      Contact Us
+    </button>
+  </div>
+</section>
+
+{/* ================= FOOTER ================= */}
+  <footer className="bg-[#263238] text-gray-300">
+      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
+
+        {/* LOGO & ABOUT */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
+              WZ
+            </div>
+            <div>
+              <h3 className="font-semibold text-white">
+                WEALTH ZONE GROUP AI
+              </h3>
+              <p className="text-xs text-gray-400">
+                International Private Limited
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-gray-400 mb-4">
+            Empowering businesses with intelligent, scalable, and future-ready
+            digital solutions.
+          </p>
+
+          {/* SOCIAL ICONS */}
+          <div className="flex gap-3">
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaFacebookF />
+            </a>
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaTwitter />
+            </a>
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaLinkedinIn />
+            </a>
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaInstagram />
+            </a>
+          </div>
+        </div>
+
+        {/* COMPANY */}
+        <div>
+          <h4 className="text-white font-semibold mb-4">Company</h4>
+          <ul className="space-y-2 text-sm">
+            <li>About Us</li>
+            <li>Services</li>
+            <li>Contact Us</li>
+            <li>Our Team</li>
+            <li>Testimonials</li>
+          </ul>
+        </div>
+
+        {/* SUPPORT */}
+        <div>
+          <h4 className="text-white font-semibold mb-4">Support</h4>
+          <ul className="space-y-2 text-sm">
+            <li>Help Center</li>
+            <li>Terms of Service</li>
+            <li>Legal</li>
+            <li>Privacy Policy</li>
+            <li>Status</li>
+          </ul>
+        </div>
+
+        {/* STAY UP TO DATE */}
+        <div>
+          <h4 className="text-white font-semibold mb-4">
+            Stay up to date
+          </h4>
+
+          <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="bg-transparent px-4 py-3 text-sm w-full outline-none text-white"
+            />
+            <button className="bg-blue-600 px-4 py-3 text-white">
+              <FaPaperPlane />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM BAR */}
+      <div className="border-t border-gray-700 py-4 text-center text-sm text-gray-400">
+        © 2026 Wealth Zone Group AI. All rights reserved.
+      </div>
+    </footer>
+    </div>
+    
+  );
 }
