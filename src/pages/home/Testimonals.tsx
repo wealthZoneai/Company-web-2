@@ -79,27 +79,26 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rotation, setRotation] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const active = testimonials[activeIndex];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!isHovered && !isModalOpen) {
+      if (!isModalOpen) {
         setRotation(prev => (prev + 0.2) % 360);
       }
     }, 30);
     return () => clearInterval(interval);
-  }, [isHovered, isModalOpen]);
+  }, [isModalOpen]);
 
   useEffect(() => {
-    if (isHovered || isModalOpen) return;
+    if (isModalOpen) return;
     const interval = setInterval(() => {
       handleNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [isHovered, isModalOpen, activeIndex]);
+  }, [isModalOpen, activeIndex]);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -126,8 +125,6 @@ export default function Testimonials() {
   return (
     <section
       className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex items-center justify-center"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <AnimatedBackground />
 
@@ -135,14 +132,38 @@ export default function Testimonials() {
         ref={containerRef}
         className="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center px-4"
       >
-        <div className="absolute w-[50%] h-[50%] border-2 border-blue-400/20 rounded-[100%] pointer-events-none" />
-        <div className="absolute w-[70%] h-[70%] border-2 border-blue-300/30 rounded-[100%] pointer-events-none" />
-        <div className="absolute w-[90%] h-[90%] border-2 border-blue-200/40 rounded-[100%] pointer-events-none" />
+        <div className="absolute w-[65%] h-[65%] border-2 border-blue-400/20 rounded-[100%] pointer-events-none" />
+        <div className="absolute w-[80%] h-[80%] border-2 border-blue-300/30 rounded-[100%] pointer-events-none" />
+        <div className="absolute w-[95%] h-[95%] border-2 border-blue-200/40 rounded-[100%] pointer-events-none" />
+
+        {/* Decorative dots on tracks */}
+        {[...Array(12)].map((_, i) => {
+          const angle = (i * 30) + rotation;
+          const angleRad = (angle * Math.PI) / 180;
+          const lineScale = [0.95, 0.80, 0.65][i % 3];
+          const rx = (dimensions.width * lineScale) / 2;
+          const ry = (dimensions.height * lineScale) / 2;
+          const x = rx * Math.cos(angleRad);
+          const y = ry * Math.sin(angleRad);
+
+          return (
+            <div
+              key={`dot-${i}`}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
+              }}
+              className="w-2.5 h-2.5 bg-blue-600 rounded-full z-10"
+            />
+          );
+        })}
 
         {testimonials.map((t, i) => {
           const angle = (i * 360) / testimonials.length + rotation;
           const angleRad = (angle * Math.PI) / 180;
-          const lineScale = [0.90, 0.70, 0.50][i % 3];
+          const lineScale = [0.95, 0.80, 0.65][i % 3];
           const rx = (dimensions.width * lineScale) / 2;
           const ry = (dimensions.height * lineScale) / 2;
           const x = rx * Math.cos(angleRad);
@@ -160,10 +181,8 @@ export default function Testimonials() {
               className="flex items-center justify-center z-20"
             >
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
                 onClick={() => setActiveIndex(i)}
-                className={`w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white shadow-xl overflow-hidden transition-all duration-500 ${activeIndex === i ? 'border-blue-500 z-10 shadow-blue-200 ring-4 ring-blue-100/50 scale-125' : 'scale-100 opacity-80'}`}
+                className={`w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white shadow-xl overflow-hidden transition-all duration-500 ${activeIndex === i ? 'border-blue-500 z-10 shadow-blue-200 ring-4 ring-blue-100/50 scale-105' : 'scale-100 opacity-80'}`}
               >
                 <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
               </motion.button>
@@ -190,7 +209,7 @@ export default function Testimonials() {
               </div>
 
               <div
-                className="w-16 h-16 md:w-15 md:h-15 rounded-full shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
                 onClick={() => setIsModalOpen(true)}
                 style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
               >
@@ -208,19 +227,7 @@ export default function Testimonials() {
           </AnimatePresence>
         </div>
 
-        <button
-          onClick={handlePrev}
-          className="absolute left-4 md:-left-12 lg:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl hover:bg-blue-600 hover:text-white transition-all duration-300 z-30 flex items-center justify-center font-bold text-xl"
-        >
-          ←
-        </button>
 
-        <button
-          onClick={handleNext}
-          className="absolute right-4 md:-right-12 lg:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl hover:bg-blue-600 hover:text-white transition-all duration-300 z-30 flex items-center justify-center font-bold text-xl"
-        >
-          →
-        </button>
       </div>
 
       <AnimatePresence>
