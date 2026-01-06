@@ -1,39 +1,66 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeading, fadeInUp } from './Shared';
+import { SectionHeading, fadeInUp, staggerContainer } from './Shared';
 
 export default function WhatWeDo() {
     const categories = [
-        { color: 'bg-blue-50', border: 'border-blue-100', title: 'WZG-AI SOLUTIONS', items: ['Artificial Intelligence System', 'Software development', 'Business Intelligence and development'] },
-        { color: 'bg-orange-50', border: 'border-orange-100', title: 'Digital Services', items: ['Comprehensive Cybersecurity Systems', 'Strategy, Professional coaching', 'Managed HR/Payroll solutions'] },
-        { color: 'bg-pink-50', border: 'border-pink-100', title: 'Business Intelligence', items: ['Cloud Strategy and Management', 'Fullstack Web Research App Ecosystem'] },
-        { color: 'bg-cyan-50', border: 'border-cyan-100', title: 'Staffing Development', items: ['Internal Applications Stability', 'Service desk Management'] }
+        {
+            title: 'Enterprise Solutions',
+            items: ['Advanced HRMS Systems', 'OTRS & Support Tools', 'Custom Software Development'],
+            bg: 'bg-[#edf2ff]',
+            border: 'border-[#d0dcfc]'
+        },
+        {
+            title: 'Digital Services',
+            items: ['Comprehensive Cybersecurity Services', 'Strategic Digital Marketing', 'Targeted Staffing Solutions'],
+            bg: 'bg-[#fff5f0]',
+            border: 'border-[#ffe4d6]'
+        },
+        {
+            title: 'Consumer Technology',
+            items: ['Food Delivery Application', 'Innovative STEM Learning Products'],
+            bg: 'bg-[#fff0f7]',
+            border: 'border-[#ffd6e9]'
+        },
+        {
+            title: 'Custom Development',
+            items: ['Bespoke Application Building', 'AI & ML Model Integration.'],
+            bg: 'bg-[#f0f9ff]',
+            border: 'border-[#d6efff]'
+        }
     ];
 
     return (
-        <section className="mb-24">
+        <section className="mb-4 px-6">
             <SectionHeading>What we do</SectionHeading>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <motion.div
+                variants={staggerContainer}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            >
                 {categories.map((cat, i) => (
                     <motion.div
                         key={i}
-                        {...fadeInUp}
-                        className={`${cat.color} ${cat.border} border p-8 rounded-3xl`}
+                        variants={fadeInUp}
+                        className={`${cat.bg} ${cat.border} border p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow min-h-[150px] flex flex-col justify-center`}
                     >
-                        <h4 className="font-black text-gray-900 mb-6 uppercase tracking-tight text-sm">
+                        <h4 className="text-xl font-bold text-[#1a1a1a] mb-4">
                             {cat.title}
                         </h4>
-                        <ul className="space-y-4">
+                        <ul className="space-y-3">
                             {cat.items.map((item, idx) => (
-                                <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm font-medium">
-                                    <span className="text-blue-500 mt-1">•</span>
+                                <li key={idx} className="flex items-start gap-3 text-gray-700 font-medium">
+                                    <span className="text-gray-400 mt-1.5 text-xs">•</span>
                                     {item}
                                 </li>
                             ))}
                         </ul>
                     </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 }
