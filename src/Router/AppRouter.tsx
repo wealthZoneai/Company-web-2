@@ -7,6 +7,7 @@ import About from "../pages/About/About";
 import Services from "../pages/Services/Services";
 import Contact from "../pages/contact/Contact";
 import Careers from "../pages/Careers/Careers";
+import AIChatWidget from "../components/AIChatWidget";
 
 const AppRouter: React.FC = () => {
     return (
@@ -23,6 +24,7 @@ const AppRouter: React.FC = () => {
                 </Routes>
             </div>
             <Footer />
+            <AIChatWidget />
         </>
     );
 }

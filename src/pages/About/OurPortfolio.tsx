@@ -80,7 +80,7 @@ const OurPortfolio: React.FC = () => {
                             </div>
 
                             {/* Content */}
-                            <div className=" flex flex-col flex-grow items-center text-center ">
+                            <div className=" flex flex-col flex-grow items-center text-center p-2 ">
                                 <h3 className="text-xl font-bold text-gray-900 leading-tight">
                                     {project.title}
                                 </h3>
