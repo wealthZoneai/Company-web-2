@@ -128,7 +128,7 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
 
 export default function OurServices() {
     return (
-        <section className="relative py-24 px-6 bg-white overflow-hidden">
+        <section className="relative py-2 px-6 bg-white overflow-hidden">
             <AnimatedBackground />
 
             <div className="max-w-7xl mx-auto relative z-10">
