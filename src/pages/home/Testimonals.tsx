@@ -80,6 +80,7 @@ export default function Testimonials() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [rotation, setRotation] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const active = testimonials[activeIndex];
@@ -87,10 +88,21 @@ export default function Testimonials() {
     // Smooth continuous rotation
     useEffect(() => {
         const interval = setInterval(() => {
-            setRotation(prev => (prev + 0.1) % 360);
-        }, 50);
+            setRotation(prev => (prev + 0.2) % 360);
+        }, 30); // ~30fps for smoother motion
         return () => clearInterval(interval);
     }, []);
+
+    // Auto-play logic
+    useEffect(() => {
+        if (isHovered || isModalOpen) return;
+
+        const interval = setInterval(() => {
+            handleNext();
+        }, 5000); // Change testimonial every 5 seconds
+
+        return () => clearInterval(interval);
+    }, [isHovered, isModalOpen, activeIndex]);
 
     // Update dimensions for precise path alignment
     useEffect(() => {
@@ -116,7 +128,11 @@ export default function Testimonials() {
     };
 
     return (
-        <section className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex items-center justify-center">
+        <section 
+            className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex items-center justify-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <AnimatedBackground />
 
             {/* Orbit System Area */}
@@ -156,12 +172,10 @@ export default function Testimonials() {
                         >
                             {/* Images orbit and also have a subtle "floating" rotation */}
                             <motion.button
-                                onClick={() => setActiveIndex(i)}
-                                animate={{
-                                    rotate: -rotation + (Math.sin(rotation * 0.05) * 10), // Mostly upright but with a subtle sway
-                                    scale: activeIndex === i ? 1.25 : 1
+                                transition={{ 
+                                    rotate: { type: "tween", ease: "linear", duration: 0 },
+                                    scale: { type: "spring", stiffness: 300, damping: 20 }
                                 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 className={`w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white shadow-xl overflow-hidden transition-all duration-500 hover:scale-110 active:scale-90 ${activeIndex === i ? 'border-blue-500 z-10 shadow-blue-200 ring-4 ring-blue-100/50' : 'scale-100'}`}
                             >
                                 <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
@@ -207,27 +221,27 @@ export default function Testimonials() {
                             className="flex flex-col items-center"
                         >
                             <div className="">
-                                <motion.h2 className="text-xl md:text-[22px] font-bold text-[#1457AB] mb-2 tracking-tight">
+                                <motion.h2 className="text-xl md:text-[15px] font-bold text-[#1457AB]  tracking-tight">
                                     Testimonials
                                 </motion.h2>
-                                <motion.h3 className="text-3xl md:text-[45px] font-black text-[#1A1A1A] leading-tight mb-8">
+                                <motion.h3 className="text-3xl md:text-[18px] font-black text-[#1A1A1A] leading-tight mb-8">
                                     Opinions of our Clients
                                 </motion.h3>
                             </div>
 
                             <div
-                                className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
+                                className="w-16 h-16 md:w-15 md:h-15 rounded-full  shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
                                 onClick={() => setIsModalOpen(true)}
                                 style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                             >
                                 <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
                             </div>
 
-                            <p className="text-[#475569] text-base md:text-lg font-medium leading-relaxed max-w-[600px] italic mb-6">
+                            <p className="text-[#475569] text-base   leading-relaxed max-w-[600px] italic ">
                                 “{active.comment}”
                             </p>
 
-                            <h4 className="text-lg md:text-xl font-bold text-[#1e293b]">
+                            <h4 className="text-lg md:text-l font-bold text-[#1e293b]">
                                 - {active.name}
                             </h4>
                         </motion.div>
