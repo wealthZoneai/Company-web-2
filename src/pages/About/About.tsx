@@ -7,6 +7,7 @@ import CoreValues from './CoreValues';
 import WhatWeDo from './WhatWeDo';
 import WhyChooseUs from './WhyChooseUs';
 import OurBranches from './OurBranches';
+import OurTeam from './OurTeam';
 import StatsBar from '../home/StatsBar';
 import FutureGoalCTA from './FutureGoalCTA';
 
@@ -22,6 +23,7 @@ export default function About() {
                 <CoreValues />
                 <WhatWeDo />
                 <WhyChooseUs />
+                <OurTeam />
                 <OurBranches />
             </div>
 

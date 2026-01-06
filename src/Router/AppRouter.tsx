@@ -4,7 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Home from "../pages/home/Home";
 import About from "../pages/About/About";
-import Services from "../pages/Services/Services";
+import Contact from "../pages/contact/Contact";
+// import Services from "../pages/Services/Services";
 
 const AppRouter: React.FC = () => {
     return (
@@ -15,7 +16,8 @@ const AppRouter: React.FC = () => {
                     <Route path="/" element={<Home />} />
 
                     <Route path="/about" element={<About />} />
-                    <Route path="/services" element={<Services />} />
+                    <Route path="/contact" element={<Contact />} />
+                    {/* <Route path="/services" element={<Services />} /> */}
                 </Routes>
             </div>
             <Footer />
