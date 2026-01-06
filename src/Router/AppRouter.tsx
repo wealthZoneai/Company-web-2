@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "../pages/home/Navbar";
 import Home from "../pages/home/Home";
 import About from "../pages/About/About";
-// import Services from "../pages/Services/Services";
+import Services from "../pages/Services/Services";
 
 const AppRouter: React.FC = () => {
     return (
@@ -13,7 +13,7 @@ const AppRouter: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
-                    {/* <Route path="/services" element={<Services />} /> */}
+                    <Route path="/services" element={< Services/>} />
                 </Routes>
             </div>
         </>
