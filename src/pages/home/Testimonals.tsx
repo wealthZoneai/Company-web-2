@@ -124,9 +124,19 @@ export default function Testimonials() {
 
   return (
     <section
-      className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex items-center justify-center"
+      className="relative min-h-[75vh] w-full py-16 bg-white overflow-hidden flex flex-col items-center justify-start"
     >
+      <div className="relative w-full z-20 mb-8 flex flex-col items-center text-center">
+        <h2 className="text-2xl md:text-2xl font-bold text-[#1457AB] tracking-tight">
+          Testimonials
+        </h2>
+        <h3 className="text-3xl md:text-2xl font-black text-[#1A1A1A] leading-tight">
+          Opinions of our Clients
+        </h3>
+      </div>
       <AnimatedBackground />
+
+
 
       <div
         ref={containerRef}
@@ -199,14 +209,7 @@ export default function Testimonials() {
               exit={{ opacity: 0, y: -15 }}
               className="flex flex-col items-center"
             >
-              <div className="">
-                <motion.h2 className="text-xl md:text-[15px] font-bold text-[#1457AB]  tracking-tight">
-                  Testimonials
-                </motion.h2>
-                <motion.h3 className="text-3xl md:text-[18px] font-black text-[#1A1A1A] leading-tight mb-8">
-                  Opinions of our Clients
-                </motion.h3>
-              </div>
+
 
               <div
                 className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-500 mb-6"
