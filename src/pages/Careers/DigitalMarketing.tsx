@@ -35,8 +35,11 @@ const DigitalMarketing: React.FC = () => {
 
                 <div className="absolute inset-0 flex flex-col p-6 text-left">
                     <div className="max-w-7xl mx-auto w-full">
-                        <Link to="/careers" className="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors mb-6 text-sm font-medium">
-                            <FaArrowLeft /> Back to Careers
+                        <Link
+                            to="/careers"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl transition-all duration-300 backdrop-blur-md mb-6 text-sm font-medium group"
+                        >
+                            <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" /> Back to Careers
                         </Link>
                     </div>
                     <div className="flex-grow flex items-center">

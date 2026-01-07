@@ -5,8 +5,30 @@ import Hero1 from '../../assets/viedos/Hero1.mp4';
 import Hero2 from '../../assets/viedos/Hero2.mp4';
 
 const slides = [
-    { video: Hero1 },
-    { video: Hero2 }
+    {
+        video: Hero1,
+        title: (
+            <>
+                {/* Wealth Zone <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                    Group AI
+                </span> */}
+            </>
+        ),
+        // description: "Empowering the future through intelligent digital transformation, secure infrastructures, and groundbreaking user experiences."
+    },
+    {
+        video: Hero2,
+        title: (
+            <>
+                {/* Innovate <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
+                    With Precision
+                </span> */}
+            </>
+        ),
+        // description: "Leading the charge in AI-driven solutions and enterprise-scale digital evolution for global businesses."
+    }
 ];
 
 const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
@@ -38,7 +60,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative min-h-screen flex items-end justify-center overflow-hidden bg-black pb-32">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
             {/* Video Background Layer */}
             <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="wait">
@@ -78,6 +100,13 @@ export default function Hero() {
                         exit={{ opacity: 0, y: -30 }}
                         transition={{ duration: 0.8 }}
                     >
+                        {/* <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tight">
+                            {slides[currentSlide].title}
+                        </h1>
+
+                        <p className="mt-8 text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
+                            {slides[currentSlide].description}
+                        </p> */}
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <Link
@@ -97,7 +126,7 @@ export default function Hero() {
                 </AnimatePresence>
 
                 {/* Slide Indicators */}
-                {/* <div className="absolute left-1/2 -translate-x-1/2 flex gap-3">
+                {/* <div className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 flex gap-3">
                     {slides.map((_, idx) => (
                         <button
                             key={idx}
