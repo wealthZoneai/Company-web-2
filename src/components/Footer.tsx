@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import logo from "../assets/images/blue_logo.png";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPaperPlane, FaTwitter } from 'react-icons/fa';
 
+
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
@@ -42,14 +43,12 @@ export default function Footer() {
     return (
        
        <footer className="bg-[#263238] text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto py-14 grid md:grid-cols-4 gap-10">
 
         {/* LOGO & ABOUT */}
         <div>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
-              WZ
-            </div>
+          <div className="flex items-center gap-2 mb-4  ">
+           <img src={logo} alt="" className="w-15 h-15 bg-white rounded-full" />
             <div>
               <h3 className="font-semibold text-white">
                 WEALTH ZONE GROUP AI

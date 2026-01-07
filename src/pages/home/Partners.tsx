@@ -1,12 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Local Logo Imports
+import WiproLogo from '../../assets/images/logo/wipro.png';
+import DeloitteLogo from '../../assets/images/logo/Delotie.png';
+import TeamleaseLogo from '../../assets/images/logo/Teamlease.png';
+import PeopleStrongLogo from '../../assets/images/logo/PeopleStrong.png';
+import QuessLogo from '../../assets/images/logo/Quess.png';
+
 const partners = [
-    { name: "Wipro", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" },
-    { name: "Deloitte", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Deloitte.svg" },
-    { name: "TeamLease Digital", logo: "https://digital.teamlease.com/wp-content/uploads/2022/03/TeamLease-Logo-Updated-1.png" },
-    { name: "People Media Factory", logo: "https://peoplemediafactory.com/wp-content/uploads/2021/04/pm-logo-1.png" },
-    { name: "Quess", logo: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Quess_Corp_Logo.png" },
+    { name: "Wipro", logo: WiproLogo },
+    { name: "Deloitte", logo: DeloitteLogo },
+    { name: "TeamLease Digital", logo: TeamleaseLogo },
+    { name: "People Media Factory", logo: PeopleStrongLogo },
+    { name: "Quess", logo: QuessLogo },
 ];
 
 export default function Partners() {

@@ -68,10 +68,10 @@ const OurPortfolio: React.FC = () => {
     };
 
     return (
-        <section className="bg-white py-8 px-6">
+        <section className="bg-white px-6">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
-                <div className="text-center space-y-6 mb-8">
+                <div className="text-center space-y-6 mb-4">
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
                         Innovating With <span className="text-blue-600">Purpose</span>
                     </h2>

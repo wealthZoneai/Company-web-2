@@ -18,7 +18,7 @@ export default function About() {
         <div className="bg-white min-h-screen font-sans overflow-x-hidden">
             <AboutHero />
 
-            <div className="py-24 space-y-32">
+            <div className="py-12 space-y-0">
                 <WhoWeAre />
                 <OurJourney />
                 <MissionVision />

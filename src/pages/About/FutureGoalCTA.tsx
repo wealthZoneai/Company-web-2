@@ -5,7 +5,7 @@ import { FaLightbulb, FaArrowRight } from 'react-icons/fa';
 export default function FutureGoalCTA() {
     return (
         <section className="px-6 py-12 md:py-20">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -18,8 +18,8 @@ export default function FutureGoalCTA() {
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -ml-20 -mb-20 pointer-events-none" />
 
                     <div className="relative z-10 flex flex-col items-center text-center">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-8 inline-flex">
-                            <FaLightbulb className="text-4xl text-yellow-300" />
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-flex">
+                            <FaLightbulb className="text-3xl text-yellow-300" />
                         </div>
 
                         <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">

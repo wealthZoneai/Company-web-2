@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -15,6 +15,14 @@ import OTRSProject from "../pages/About/project/OTRSProject";
 import WZGProject from "../pages/About/project/WZGProject";
 import MarketingProject from "../pages/About/project/MarketingProject";
 import CyberSecurityProject from "../pages/About/project/CyberSecurityProject";
+import InternshipProgram from "../pages/Programs/InternshipProgram";
+import JobDetails from "../pages/Careers/JobDetails";
+import JavaDeveloper from "../pages/Careers/JavaDeveloper";
+import ReactDeveloper from "../pages/Careers/ReactDeveloper";
+import DigitalMarketing from "../pages/Careers/DigitalMarketing";
+import AWSEngineer from "../pages/Careers/AWSEngineer";
+import PythonDeveloper from "../pages/Careers/PythonDeveloper";
+import CyberSecurity from "../pages/Careers/CyberSecurity";
 
 
 const AppRouter: React.FC = () => {
@@ -28,7 +36,15 @@ const AppRouter: React.FC = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/services/:id" element={<ServiceDetail />} />
+                    <Route path="/programs/internship" element={<InternshipProgram />} />
                     <Route path="/careers" element={<Careers />} />
+                    <Route path="/careers/job-details" element={<JobDetails />} />
+                    <Route path="/careers/java-developer" element={<JavaDeveloper />} />
+                    <Route path="/careers/react-developer" element={<ReactDeveloper />} />
+                    <Route path="/careers/digital-marketing" element={<DigitalMarketing />} />
+                    <Route path="/careers/aws-engineer" element={<AWSEngineer />} />
+                    <Route path="/careers/python-developer" element={<PythonDeveloper />} />
+                    <Route path="/careers/cyber-security" element={<CyberSecurity />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/projects/bonjour" element={<BonjourProject />} />
                     <Route path="/projects/hrms" element={<HRMSProject />} />

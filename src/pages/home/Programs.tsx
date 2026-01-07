@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import robotics from "../../assets/images/robotic.png";
 import corporate from "../../assets/images/cap.png";
 
@@ -28,7 +29,7 @@ const programs: Program[] = [
     },
 ];
 
-const ProgramCard: React.FC<{ program: Program; index: number }> = ({ program, index }) => {
+const ProgramCard: React.FC<{ program: Program; index: number; navigate: any }> = ({ program, index, navigate }) => {
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -68,12 +69,13 @@ const ProgramCard: React.FC<{ program: Program; index: number }> = ({ program, i
 
                 {/* Buttons Row */}
                 <div className="flex flex-col sm:flex-row gap-3 w-full justify-center mt-2">
-                    <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl transition-all duration-500 shadow-lg shadow-blue-600/40 text-[13px] active:scale-95">
-                        Read More
+                    <button
+                        onClick={() => program.title === "Internship Program" && navigate("/programs/internship")}
+                        className="px-8 py-3 bg-gradient-to-b from-[#468ef7] to-[#2258ef] hover:from-[#2258ef] hover:to-[#0b42cc] text-white font-black rounded-xl transition-all duration-500 shadow-lg shadow-blue-500/30 text-[13px] active:scale-95"
+                    >
+                        View Details
                     </button>
-                    <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-black rounded-xl transition-all duration-500 text-[13px] active:scale-95">
-                        Apply Now
-                    </button>
+
                 </div>
             </div>
         </motion.div>
@@ -81,12 +83,13 @@ const ProgramCard: React.FC<{ program: Program; index: number }> = ({ program, i
 };
 
 export default function Programs() {
+    const navigate = useNavigate();
     return (
         <section className="relative  bg-slate-50 my-8">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     {programs.map((program, index) => (
-                        <ProgramCard key={program.title} program={program} index={index} />
+                        <ProgramCard key={program.title} program={program} index={index} navigate={navigate} />
                     ))}
                 </div>
             </div>

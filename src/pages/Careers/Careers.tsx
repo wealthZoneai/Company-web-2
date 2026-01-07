@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     FaRobot,
     FaChartLine,
@@ -8,6 +9,15 @@ import {
     FaRocket,
     FaCheckCircle
 } from 'react-icons/fa';
+
+// Local Image Imports
+import AIImg from '../../assets/images/AI.png';
+import JavaImg from '../../assets/images/Java.jpg';
+import MernImg from '../../assets/images/Mern.jpg';
+import PythonImg from '../../assets/images/Python.jpg';
+import CyberImg from '../../assets/images/cybersecurity.png';
+import CloudImg from '../../assets/images/Cloud.jpg';
+import MarketingImg from '../../assets/images/Ourserves/Marketing.avif';
 
 // --- Types ---
 interface Benefit {
@@ -83,47 +93,48 @@ const jobs: Job[] = [
         id: 1,
         title: "UI/UX Designer",
         description: "Craft intuitive, user-centric interfaces and visually appealing designs that enhance usability and engagement.",
-        image: "https://images.unsplash.com/photo-1586717791821-3f44a5638d4f?q=80&w=2070&auto=format&fit=crop"
+        image: AIImg
     },
     {
         id: 2,
         title: "Java Developer",
         description: "Build robust backend architectures and applications using Java with a focus on performance to scalability.",
-        image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop"
+        image: JavaImg
     },
     {
         id: 3,
         title: "React JS Developer",
         description: "Develop fast, responsive and dynamic web interfaces using React and modern frontend technologies.",
-        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop"
+        image: MernImg
     },
     {
         id: 4,
         title: "Digital Marketing",
         description: "Create and execute online marketing strategies to drive brand visibility, engagement and conversions.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
+        image: MarketingImg
     },
     {
         id: 5,
         title: "AWS Engineer",
         description: "Design, deploy and manage cloud solutions on AWS, ensuring availability, security and efficiency.",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+        image: CloudImg
     },
     {
         id: 6,
         title: "Python Developer",
         description: "Build automation scripts, backend systems and data-driven applications using Python and its frameworks.",
-        image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=2064&auto=format&fit=crop"
+        image: PythonImg
     },
     {
         id: 7,
         title: "Cyber Security Analyst",
         description: "Protect systems and networks from cyber threats by monitoring, detecting and resolving security incidents.",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"
+        image: CyberImg
     }
 ];
 
 const Careers: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <div className="bg-white min-h-screen font-sans">
 
@@ -144,14 +155,20 @@ const Careers: React.FC = () => {
                     <p className="text-gray-200 max-w-2xl text-lg font-medium">
                         From data-driven insights to robust software solutions, we offer a wide range of visions to meet your business needs
                     </p>
-                    <button className="bg-[#0B52A0] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors shadow-lg">
+                    <button
+                        onClick={() => {
+                            const element = document.getElementById('open-positions');
+                            element?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="bg-[#0B52A0] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors shadow-lg"
+                    >
                         View Open Positions
                     </button>
                 </div>
             </section>
 
             {/* --- Why Work With Us --- */}
-            <section className="py-2 px-6 ">
+            <section className="py-16 px-6 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-blue-800">Why Work With Us</h2>
                 </div>
@@ -171,7 +188,7 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Our Culture --- */}
-            <section className="bg-white py-16 px-2 mb-20">
+            <section className="bg-white py-16 px-6 max-w-7xl mx-auto mb-20">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <div className="space-y-8">
                         <div>
@@ -222,35 +239,48 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Open Positions --- */}
-            <section className=" px-6  bg-gray-50/50 rounded-3xl">
-                <div className="text-center mb-16 space-y-2">
-                    <span className="text-blue-600 font-bold">Join Us</span>
-                    <h2 className="text-3xl font-bold text-gray-900">Current Open Positions</h2>
-                </div>
+            <section id="open-positions" className="py-24 px-6 bg-gray-50/50">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16 space-y-2">
+                        <span className="text-blue-600 font-bold">Join Us</span>
+                        <h2 className="text-3xl font-bold text-gray-900">Current Open Positions</h2>
+                    </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {jobs.map((job) => (
-                        <div key={job.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
-                            <div className="h-48 overflow-hidden">
-                                <img
-                                    src={job.image}
-                                    alt={job.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                                />
-                            </div>
-                            <div className="p-6 flex flex-col flex-grow space-y-4">
-                                <h3 className="text-lg font-bold text-gray-900">{job.title}</h3>
-                                <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
-                                    {job.description}
-                                </p>
-                                <div className="pt-4 mt-auto">
-                                    <button className="w-full bg-[#0B52A0] text-white py-2.5 rounded-md font-bold text-sm hover:bg-blue-800 transition-colors">
-                                        Apply Now
-                                    </button>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {jobs.map((job) => (
+                            <div key={job.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                                <div className="h-48 overflow-hidden">
+                                    <img
+                                        src={job.image}
+                                        alt={job.title}
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                </div>
+                                <div className="p-6 flex flex-col flex-grow space-y-4">
+                                    <h3 className="text-lg font-bold text-gray-900">{job.title}</h3>
+                                    <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+                                        {job.description}
+                                    </p>
+                                    <div className="pt-4 mt-auto">
+                                        <button
+                                            onClick={() => {
+                                                if (job.title === "UI/UX Designer") navigate('/careers/job-details');
+                                                if (job.title === "Java Developer") navigate('/careers/java-developer');
+                                                if (job.title === "React JS Developer") navigate('/careers/react-developer');
+                                                if (job.title === "Digital Marketing") navigate('/careers/digital-marketing');
+                                                if (job.title === "AWS Engineer") navigate('/careers/aws-engineer');
+                                                if (job.title === "Python Developer") navigate('/careers/python-developer');
+                                                if (job.title === "Cyber Security Analyst") navigate('/careers/cyber-security');
+                                            }}
+                                            className="w-full bg-[#0B52A0] text-white py-2.5 rounded-md font-bold text-sm hover:bg-blue-800 transition-colors"
+                                        >
+                                            Apply Now
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -264,10 +294,16 @@ const Careers: React.FC = () => {
                         Connect with our team to discuss how WZG-AI can help you achieve your Financial Ambitions
                     </p>
                     <div className="flex gap-4 justify-center pt-4">
-                        <button className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm">
+                        <button
+                            onClick={() => navigate('/contact')}
+                            className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm"
+                        >
                             Contact Us
                         </button>
-                        <button className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm">
+                        <button
+                            onClick={() => navigate('/services')}
+                            className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm"
+                        >
                             Our Services
                         </button>
                     </div>

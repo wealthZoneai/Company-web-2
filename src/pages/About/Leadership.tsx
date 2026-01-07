@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLightbulb, FaUsers, FaBookmark, FaUserFriends, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+// Local Asset Imports
+import medamLogo from '../../assets/images/logo/medam.png';
+
 interface TeamMember {
     id: number;
     name: string;
@@ -58,9 +61,9 @@ const Leadership: React.FC = () => {
 
     return (
         <section className="bg-white px-6">
-            <div className=" space-y-20">
+            <div className=" space-y-6">
                 {/* --- Our Leadership Section --- */}
-                <div className="space-y-12">
+                <div className="space-y-6">
                     <div className="text-center space-y-2">
                         <h2 className="text-3xl md:text-4xl font-bold text-blue-700">
                             Our Leadership
@@ -72,34 +75,25 @@ const Leadership: React.FC = () => {
 
                     <div className="flex justify-center gap-8 max-w-5xl mx-auto">
                         {/* Leader 1 */}
-                        <div className="bg-white border border-blue-100 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row gap-6 items-start">
-                            <div className="w-16 h-16 bg-[#0B52A0] rounded-md flex items-center justify-center shrink-0 text-white text-2xl font-bold">
-                                B
+                        <div className="bg-white border border-blue-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-300 flex flex-col items-center text-center max-w-sm">
+                            <div className="w-40 h-40 mb-6 relative group">
+                                <div className="absolute inset-0 bg-blue-600 rounded-full blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
+                                <img
+                                    src={medamLogo}
+                                    alt="B.Sri Lakshmi"
+                                    className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl relative z-10"
+                                />
                             </div>
                             <div className="space-y-2">
-                                <h3 className="text-[#0B52A0] font-bold text-xl">B.Sri Lakshmi</h3>
-                                <p className="text-[#0B52A0] font-bold">Founder & CEO</p>
-                                <p className="text-gray-700 text-sm">MBA(Finance & IT)</p>
-                                <p className="text-gray-600 text-sm leading-relaxed mt-2">
+                                <h3 className="text-[#0B52A0] font-bold text-2xl tracking-tight">B.Sri Lakshmi</h3>
+                                <p className="text-blue-600 font-bold uppercase text-sm tracking-widest">Founder & CEO</p>
+                                <p className="text-gray-500 text-sm font-medium">MBA (Finance & IT)</p>
+                                <div className="w-12 h-1 bg-blue-600 mx-auto my-4 rounded-full" />
+                                <p className="text-gray-600 text-sm leading-relaxed px-4">
                                     Visionary Leader with 12 Years of experience in technology and business innovation
                                 </p>
                             </div>
                         </div>
-
-                        {/* Leader 2
-                        <div className="bg-white border border-blue-100 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row gap-6 items-start">
-                            <div className="w-16 h-16 bg-[#0B52A0] rounded-md flex items-center justify-center flex-shrink-0 text-white text-2xl font-bold">
-                                B
-                            </div>
-                            <div className="space-y-2">
-                                <h3 className="text-[#0B52A0] font-bold text-xl">B.Chakravarthy</h3>
-                                <p className="text-[#0B52A0] font-bold">Operation Manager</p>
-                                <p className="text-gray-700 text-sm">MBA(Finance & IT)</p>
-                                <p className="text-gray-600 text-sm leading-relaxed mt-2">
-                                    Strategic operations expert driving organizational excellence and growth.
-                                </p>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
 
@@ -155,20 +149,25 @@ const Leadership: React.FC = () => {
                     <h2 className="text-2xl md:text-3xl font-bold text-blue-700 text-center">
                         Life at a Wealth zone ai
                     </h2>
-                    <div className="w-full h-80 bg-gray-300 rounded-none">
-                        {/* Placeholder for video/image as per visual */}
+                    <div className="w-full h-80 bg-gray-300 rounded-none overflow-hidden relative group">
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-500 z-10" />
+                        <img
+                            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
+                            alt="Life at Wealth zone ai"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
                     </div>
                 </div>
 
                 {/* --- Our Team Section (Carousel) --- */}
-                <div className="space-y-12 ">
+                <div className="space-y-4">
                     <div className="text-center space-y-2">
                         <h2 className="text-3xl md:text-3xl font-bold text-blue-700">
                             Our Team
                         </h2>
                     </div>
 
-                    <div className="relative max-w-7xl mx-auto px-4 md:px-8">
+                    <div className="relative max-w-7xl mx-auto px-4 md:px-8 pb-2">
 
                         {/* Left Arrow */}
                         <button
@@ -198,13 +197,14 @@ const Leadership: React.FC = () => {
                                         style={{ width: `${100 / itemsPerPage}%` }}
                                         className="shrink-0 px-4"
                                     >
-                                        <div className="bg-white border border-gray-100 rounded-xl p-8 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center space-y-4 hover:-translate-y-1 h-full shadow-sm">
-                                            <div className="w-16 h-16 bg-[#0B52A0] rounded-full flex items-center justify-center text-white text-xl font-bold shadow-md">
+                                        <div className="bg-white border border-gray-100 rounded-xl p-8 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center space-y-4 hover:-translate-y-1 h-full shadow-sm group">
+                                            <div className="w-20 h-20 bg-[#0B52A0] rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-md group-hover:scale-110 transition-transform duration-300 ring-4 ring-blue-50">
                                                 {member.image}
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
-                                                <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mt-1">{member.role}</p>
+                                                <p className="text-xs font-bold text-blue-600 uppercase tracking-wide mt-1">{member.role}</p>
+                                                <p className="text-xs text-gray-500 mt-3 line-clamp-2">{member.description}</p>
                                             </div>
                                         </div>
                                     </div>

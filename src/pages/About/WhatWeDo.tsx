@@ -31,7 +31,7 @@ export default function WhatWeDo() {
     ];
 
     return (
-        <section className="mb-4 px-6">
+        <section className=" px-6">
             <SectionHeading>What we do</SectionHeading>
 
             <motion.div
