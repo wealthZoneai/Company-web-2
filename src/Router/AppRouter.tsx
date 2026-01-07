@@ -9,6 +9,13 @@ import ServiceDetail from "../pages/Services/ServiceDetail";
 import Contact from "../pages/contact/Contact";
 import Careers from "../pages/Careers/Careers";
 import AIChatWidget from "../components/AIChatWidget";
+import BonjourProject from "../pages/About/project/BonjourProject";
+import HRMSProject from "../pages/About/project/HRMSProject";
+import OTRSProject from "../pages/About/project/OTRSProject";
+import WZGProject from "../pages/About/project/WZGProject";
+import MarketingProject from "../pages/About/project/MarketingProject";
+import CyberSecurityProject from "../pages/About/project/CyberSecurityProject";
+
 
 const AppRouter: React.FC = () => {
     return (
@@ -23,6 +30,13 @@ const AppRouter: React.FC = () => {
                     <Route path="/services/:id" element={<ServiceDetail />} />
                     <Route path="/careers" element={<Careers />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/projects/bonjour" element={<BonjourProject />} />
+                    <Route path="/projects/hrms" element={<HRMSProject />} />
+                    <Route path="/projects/otrs" element={<OTRSProject />} />
+                    <Route path="/projects/wzg" element={<WZGProject />} />
+                    <Route path="/projects/marketing" element={<MarketingProject />} />
+                    <Route path="/projects/cybersecurity" element={<CyberSecurityProject />} />
+
                 </Routes>
             </div>
             <Footer />
