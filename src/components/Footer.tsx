@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logo from "../assets/images/blue_logo.png";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPaperPlane, FaTwitter } from 'react-icons/fa';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -39,114 +40,95 @@ export default function Footer() {
     };
 
     return (
-        <footer className="relative bg-[#0F172A] pt-24 pb-12 overflow-hidden border-t border-slate-800">
-            {/* Ambient Background Glows */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2" />
+       
+       <footer className="bg-[#263238] text-gray-300">
+      <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20 text-white">
-                    {/* Brand Section */}
-                    <div className="lg:col-span-1">
-                        <NavLink to="/" className="inline-block mb-8">
-                            <motion.img
-                                whileHover={{ scale: 1.05 }}
-                                src={logo}
-                                alt="Wealth Zone Group AI"
-                                className="h-12 w-auto brightness-0 invert"
-                            />
-                        </NavLink>
-                        <p className="text-slate-400 leading-relaxed mb-8 text-base">
-                            Empowering the next generation of digital excellence through
-                            intelligent AI solutions and scalable technology infrastructures.
-                        </p>
-                        <div className="flex gap-4">
-                            {footerLinks.social.map(social => (
-                                <motion.a
-                                    key={social.name}
-                                    href="#"
-                                    whileHover={{ y: -5, backgroundColor: 'rgba(59, 130, 246, 0.1)', borderColor: 'rgba(59, 130, 246, 0.5)' }}
-                                    className="w-11 h-11 rounded-full bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-blue-400 transition-all duration-300"
-                                >
-                                    <span className="sr-only">{social.name}</span>
-                                    {social.icon}
-                                </motion.a>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Platform Links */}
-                    <div>
-                        <h4 className="text-white font-bold mb-8 text-lg flex items-center gap-2">
-                            Platform
-                        </h4>
-                        <ul className="space-y-4">
-                            {footerLinks.platform.map(link => (
-                                <li key={link.name}>
-                                    <NavLink
-                                        to={link.href}
-                                        className="text-slate-400 hover:text-blue-400 transition-all duration-300 flex items-center group gap-2"
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-all" />
-                                        {link.name}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Company Links */}
-                    <div>
-                        <h4 className="text-white font-bold mb-8 text-lg flex items-center gap-2">
-                            Company
-                        </h4>
-                        <ul className="space-y-4">
-                            {footerLinks.company.map(link => (
-                                <li key={link.name}>
-                                    <NavLink
-                                        to={link.href}
-                                        className="text-slate-400 hover:text-blue-400 transition-all duration-300 flex items-center group gap-2"
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-all" />
-                                        {link.name}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Newsletter Section */}
-                    <div>
-                        <h4 className="text-white font-bold mb-8 text-lg flex items-center gap-2">
-                            Newsletter
-                        </h4>
-                        <p className="text-slate-400 mb-6 text-sm leading-relaxed font-medium">
-                            Join our community to receive the latest updates on AI, wealth intelligence, and industry insights.
-                        </p>
-                        <div className="relative group">
-                            <input
-                                type="email"
-                                placeholder="Email address"
-                                className="w-full bg-slate-800/50 border border-slate-700 rounded-2xl py-4 pl-6 pr-24 text-white focus:outline-none focus:border-blue-500/50 transition-all duration-300 placeholder:text-slate-600"
-                            />
-                            <button className="absolute right-2 top-2 bottom-2 px-5 bg-blue-600 rounded-xl text-white font-bold text-sm hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-600/20 active:scale-95">
-                                Join
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
-                    <p className="text-slate-500 text-sm font-medium order-2 md:order-1">
-                        © {currentYear} <span className="text-slate-300">Wealth Zone Group AI</span>. All rights reserved.
-                    </p>
-                    <div className="flex gap-10 order-1 md:order-2">
-                        <a href="#" className="text-slate-500 hover:text-slate-300 text-sm transition-all duration-300 font-medium">Privacy Policy</a>
-                        <a href="#" className="text-slate-500 hover:text-slate-300 text-sm transition-all duration-300 font-medium">Terms of Service</a>
-                    </div>
-                </div>
+        {/* LOGO & ABOUT */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
+              WZ
             </div>
-        </footer>
+            <div>
+              <h3 className="font-semibold text-white">
+                WEALTH ZONE GROUP AI
+              </h3>
+              <p className="text-xs text-gray-400">
+                International Private Limited
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-gray-400 mb-4">
+            Empowering businesses with intelligent, scalable, and future-ready
+            digital solutions.
+          </p>
+
+          {/* SOCIAL ICONS */}
+          <div className="flex gap-3">
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaFacebookF />
+            </a>
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaTwitter />
+            </a>
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaLinkedinIn />
+            </a>
+            <a className="p-2 bg-gray-700 rounded hover:bg-blue-600">
+              <FaInstagram />
+            </a>
+          </div>
+        </div>
+
+        {/* COMPANY */}
+        <div>
+          <h4 className="text-white font-semibold mb-4">Company</h4>
+          <ul className="space-y-2 text-sm">
+            <li>About Us</li>
+            <li>Services</li>
+            <li>Contact Us</li>
+            <li>Our Team</li>
+            <li>Testimonials</li>
+          </ul>
+        </div>
+
+        {/* SUPPORT */}
+        <div>
+          <h4 className="text-white font-semibold mb-4">Support</h4>
+          <ul className="space-y-2 text-sm">
+            <li>Help Center</li>
+            <li>Terms of Service</li>
+            <li>Legal</li>
+            <li>Privacy Policy</li>
+            <li>Status</li>
+          </ul>
+        </div>
+
+        {/* STAY UP TO DATE */}
+        <div>
+          <h4 className="text-white font-semibold mb-4">
+            Stay up to date
+          </h4>
+
+          <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="bg-transparent px-4 py-3 text-sm w-full outline-none text-white"
+            />
+            <button className="bg-blue-600 px-4 py-3 text-white">
+              <FaPaperPlane />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM BAR */}
+      <div className="border-t border-gray-700 py-4 text-center text-sm text-gray-400">
+        © 2026 Wealth Zone Group AI. All rights reserved.
+      </div>
+    </footer>
     );
 }
