@@ -18,16 +18,16 @@ export default function About() {
         <div className="bg-white min-h-screen font-sans overflow-x-hidden">
             <AboutHero />
 
-            <div className="pt-24 pb-0 space-y-24">
+            <div className="py-24 space-y-32">
                 <WhoWeAre />
                 <OurJourney />
                 <MissionVision />
                 <CoreValues />
                 <WhatWeDo />
                 <WhyChooseUs />
-                <OurBranches />
                 <Leadership />
                 <OurPortfolio />
+                <OurBranches />
             </div>
             <FutureGoalCTA />
         </div>
