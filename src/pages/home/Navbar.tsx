@@ -55,10 +55,12 @@ export default function Navbar() {
         <motion.header
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-3 shadow-sm"
-                    : "bg-transparent py-5"
-                }`}
+           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+  ${isScrolled
+    ? "bg-white/25 backdrop-blur-[22px] border-b border-white/30 shadow-[0_8px_30px_rgba(0,0,0,0.12)] py-3"
+    : "bg-white/10 backdrop-blur-[14px] py-5"
+  }`}
+
         >
             <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}

@@ -5,6 +5,8 @@ import Home from "../pages/home/Home";
 import About from "../pages/About/About";
 import Services from "../pages/Services/Services";
 import DataAnalytics from "../pages/Services/DataAnalytics";
+// import SoftwareDevelopment from "../pages/Services/SoftwareDevelopment";
+
 const AppRouter: React.FC = () => {
     return (
         <>
@@ -15,6 +17,7 @@ const AppRouter: React.FC = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/services/data-analytics" element={<DataAnalytics />} />
+                    {/* <Route path="/services/software-development" element={<SoftwareDevelopment />} /> */}
                 </Routes>
             </div>
         </>
