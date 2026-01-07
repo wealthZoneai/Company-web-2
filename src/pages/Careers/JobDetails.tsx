@@ -15,11 +15,17 @@ import UIUXImg from '../../assets/images/Ourserves/Graphic.avif';
 const JobDetails: React.FC = () => {
     const navigate = useNavigate();
     const [fileName, setFileName] = useState<string>('');
+    const [phone, setPhone] = useState<string>('');
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             setFileName(e.target.files[0].name);
         }
+    };
+
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value.replace(/\D/g, '');
+        setPhone(value);
     };
 
     return (
@@ -132,6 +138,8 @@ const JobDetails: React.FC = () => {
                                     <label className="block font-bold text-gray-700">Phone Number</label>
                                     <input
                                         type="tel"
+                                        value={phone}
+                                        onChange={handlePhoneChange}
                                         placeholder="Enter mobile number"
                                         className="w-full px-4 py-3 bg-blue-50/50 border border-blue-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-sans"
                                     />
