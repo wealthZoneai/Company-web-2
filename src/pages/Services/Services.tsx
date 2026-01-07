@@ -1,146 +1,264 @@
-import React from "react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import Service from '../../assets/viedos/Service.mp4';
 import {
-  FiBarChart2,
-  FiCode,
-  FiHeadphones,
-  FiCloud,
-  FiCpu,
-  FiBriefcase,
-  FiTrendingUp,
-  FiClipboard,
-  FiShield,
-  FiUser,
-  FiMap,
-  FiCheckCircle,
-} from "react-icons/fi";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-  FaPaperPlane,
-} from "react-icons/fa";
+    FaChartLine,
+    FaCode,
+    FaHeadset,
+    FaCloud,
+    FaRobot,
+    FaBriefcase,
+    FaBullhorn,
+    FaFileMedicalAlt,
+    FaChartBar,
+    FaMapMarkedAlt,
+    FaBug
+} from 'react-icons/fa';
 
-export default function Services() {
-  const services = [
-    { title: "Data Analytics", icon: FiBarChart2, bg: "bg-blue-100", color: "text-blue-600" },
-    { title: "Software Development", icon: FiCode, bg: "bg-green-100", color: "text-green-600" },
-    { title: "IT Consulting", icon: FiHeadphones, bg: "bg-purple-100", color: "text-purple-600" },
-    { title: "Cloud Services", icon: FiCloud, bg: "bg-sky-100", color: "text-sky-600" },
-    { title: "AI Agents", icon: FiCpu, bg: "bg-red-100", color: "text-red-600" },
-    { title: "BPO Services", icon: FiBriefcase, bg: "bg-yellow-100", color: "text-yellow-600" },
-    { title: "Marketing Services", icon: FiTrendingUp, bg: "bg-pink-100", color: "text-pink-600" },
-    { title: "Medical Coding", icon: FiClipboard, bg: "bg-cyan-100", color: "text-cyan-600" },
-    { title: "Content Moderation", icon: FiShield, bg: "bg-indigo-100", color: "text-indigo-600" },
-    { title: "Customer Support", icon: FiUser, bg: "bg-emerald-100", color: "text-emerald-600" },
-    { title: "Google Mapping", icon: FiMap, bg: "bg-lime-100", color: "text-lime-600" },
-    { title: "Software Testing", icon: FiCheckCircle, bg: "bg-orange-100", color: "text-orange-600" },
-  ];
+// --- Types ---
+interface ServiceItem {
+    id: string;
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+    iconColorClass: string;
+    iconBgClass: string;
+}
 
-  return (
-    <div className="bg-gray-50">
+// --- Data ---
+const servicesData: ServiceItem[] = [
+    {
+        id: 'data-analytics',
+        title: 'Data Analytics',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaChartLine />,
+        iconColorClass: 'text-blue-600',
+        iconBgClass: 'bg-blue-100'
+    },
+    {
+        id: 'software-dev',
+        title: 'Software Development',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaCode />,
+        iconColorClass: 'text-green-600',
+        iconBgClass: 'bg-green-100'
+    },
+    {
+        id: 'it-consulting',
+        title: 'IT Consulting',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaHeadset />,
+        iconColorClass: 'text-purple-600',
+        iconBgClass: 'bg-purple-100'
+    },
+    {
+        id: 'cloud-services',
+        title: 'Cloud Services',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaCloud />,
+        iconColorClass: 'text-sky-500',
+        iconBgClass: 'bg-sky-100'
+    },
+    {
+        id: 'ai-agents',
+        title: 'AI Agents',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaRobot />,
+        iconColorClass: 'text-red-500',
+        iconBgClass: 'bg-red-100'
+    },
+    {
+        id: 'bpo-services',
+        title: 'BPO Services',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaBriefcase />,
+        iconColorClass: 'text-yellow-600',
+        iconBgClass: 'bg-yellow-100'
+    },
+    {
+        id: 'marketing',
+        title: 'Marketing Services',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaBullhorn />,
+        iconColorClass: 'text-pink-500',
+        iconBgClass: 'bg-pink-100'
+    },
+    {
+        id: 'medical-coding',
+        title: 'Medical Coding',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaFileMedicalAlt />,
+        iconColorClass: 'text-cyan-600',
+        iconBgClass: 'bg-cyan-100'
+    },
+    {
+        id: 'content-moderation',
+        title: 'Content Moderation',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaChartBar />,
+        iconColorClass: 'text-orange-500',
+        iconBgClass: 'bg-orange-100'
+    },
+    {
+        id: 'customer-support',
+        title: 'Customer Support',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaHeadset />,
+        iconColorClass: 'text-teal-600',
+        iconBgClass: 'bg-teal-100'
+    },
+    {
+        id: 'google-mapping',
+        title: 'Google Mapping',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaMapMarkedAlt />,
+        iconColorClass: 'text-lime-600',
+        iconBgClass: 'bg-lime-100'
+    },
+    {
+        id: 'software-testing',
+        title: 'Software Testing',
+        description: 'Unlock Powerful insights from your data to make smarter, Faster business decisions',
+        icon: <FaBug />,
+        iconColorClass: 'text-rose-500',
+        iconBgClass: 'bg-rose-100'
+    },
+];
 
-      {/* ================= OUR SERVICES HEADING ================= */}
-      <section className="max-w-7xl mx-auto px-6 pt-16">
-        <h1 className="text-center text-4xl font-bold text-blue-700">
-          Our Services
-        </h1>
-      </section>
+// --- Components ---
 
-      {/* ================= CONTENT SECTION ================= */}
-<section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-start">
-        <div>
-     <h2 className="text-2xl font-semibold mb-4 leading-snug">
-  <span className="text-blue-700">
-    Comprehensive Technology
-  </span>
-  <br />
-  <span className="text-black">
-    Solutions by WZG-AI
-  </span>
-</h2>
+const ServiceHero: React.FC = () => {
+    return (
+        <section className="relative w-full h-[80vh] min-h-[450px] flex items-center justify-center overflow-hidden">
+            {/* Background Video */}
+            <div className="absolute top-0 left-0 w-full h-full z-0">
+                <video
+                    src={Service}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-fill"
+                />
+                {/* Dark Overlay */}
+                <div className="absolute top-0 left-0 w-full h-full bg-black/60" />
+            </div>
+
+            {/* Content Overlay */}
+            <div className="relative z-10    text-center text-white space-y-8">
 
 
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            We provide a comprehensive suite of intelligent digital solutions
-            designed to empower your business at every stage of growth.
-            From digital transformation and process optimization to scalable
-            platforms and innovative solutions, we help businesses adapt to
-            change, stay competitive, and unlock new opportunities.
-          </p>
-
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-            Explore Now
-          </button>
-        </div>
-
-        <img
-          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-          alt="Services"
-          className="rounded-xl shadow-lg"
-        />
-      </section>
-
-      {/* ================= EXPLORE OUR EXPERTISE ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <h2 className="text-center text-3xl font-bold mb-4">
-          Explore Our Expertise
-        </h2>
-
-        <p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
-          From data-driven insights to robust software solutions, we offer a wide
-          range of services to meet your business needs.
-        </p>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-gray-300"
-              >
-                {/* COLORED LOGO */}
-                <div
-                  className={`w-14 h-14 flex items-center justify-center rounded-xl mb-4 ${service.bg}`}
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="text-5xl md:text-5xl font-black leading-tight tracking-tight"
                 >
-                  <Icon size={26} className={service.color} />
-                </div>
+                    Comprehensive Technology <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
+                        Solutions by WZG-AI
+                    </span>
+                </motion.h1>
 
-                <h3 className="font-semibold text-lg mb-2">
-                  {service.title}
-                </h3>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.8 }}
+                    className=" space-y-6 text-lg md:text-xl text-gray-200 leading-relaxed font-medium"
+                >
+                    <p>
+                        We provide a comprehensive suite of intelligent digital solutions designed to empower your business at every stage of growth.
+                    </p>
+                    <p>
+                        From digital transformation and process optimization to scalable platforms and innovative solutions, we help businesses adapt to change, stay competitive, and unlock new opportunities.
+                    </p>
+                </motion.div>
 
-                <p className="text-gray-600 text-sm">
-                  Unlock powerful insights from your data to make smarter,
-                  faster business decisions.
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="pt-4"
+                >
+                    <button className="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all hover:scale-105 shadow-2xl hover:shadow-white/20">
+                        Explore Now
+                    </button>
+                </motion.div>
+            </div>
+        </section>
+    );
+};
+
+const ServiceCardItem: React.FC<{ item: ServiceItem }> = ({ item }) => {
+    return (
+        <motion.div
+            whileHover={{ y: -5 }}
+            className="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 md:min-h-[200px] flex flex-col items-start"
+        >
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 ${item.iconBgClass} ${item.iconColorClass}`}>
+                {item.icon}
+            </div>
+
+            <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {item.title}
+            </h3>
+
+            <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                {item.description}
+            </p>
+        </motion.div>
+    );
+};
+
+const ServicesGrid: React.FC = () => {
+    return (
+        <section className=" px-6 mb-4">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Explore Our Expertise
+                </h2>
+                <p className="text-gray-600 max-w-2xl mx-auto font-medium">
+                    From data-driven insights to robust software solutions, we offer a wide range of services to meet your business needs.
                 </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-      {/* ================= CTA SECTION ================= */}
-<section className="bg-blue-100 py-20">
-  <div className="max-w-4xl mx-auto text-center px-6">
-    <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
-      Ready to power your wealth with Intelligence?
-    </h2>
+            </div>
 
-    <p className="text-gray-700 mb-8 leading-relaxed">
-      Connect with our experts to discover how WZG-AI can help you
-      achieve sustainable growth through intelligent technology solutions.
-    </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                {servicesData.map((item) => (
+                    <ServiceCardItem key={item.id} item={item} />
+                ))}
+            </div>
+        </section>
+    );
+};
 
-    <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
-      Contact Us
-    </button>
-  </div>
-</section>
+const CTASection: React.FC = () => {
+    return (
+        <section className="bg-blue-50 py-16 px-6">
+            <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-blue-600 mb-4">
+                    Ready to power your wealth with Intelligence?
+                </h2>
+                <p className="text-gray-600 mb-8 font-medium">
+                    Connect with our team to discover how WZG-AI can help you achieve your Financial Ambitions
+                </p>
+                <button className="bg-[#1877F2] text-white px-10 py-3 rounded-lg font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-blue-200">
+                    Contact Us
+                </button>
+            </div>
+        </section>
+    );
+};
 
-{/* ================= FOOTER ================= */}
-  
-    </div>
-    
-  );
+import StaffingSolutions from './StaffingSolutions';
+
+// --- Main Page Component ---
+export default function Services() {
+    return (
+        <main className="bg-white min-h-screen font-sans overflow-x-hidden">
+            <ServiceHero />
+            <ServicesGrid />
+            <StaffingSolutions />
+            <CTASection />
+        </main>
+    );
 }

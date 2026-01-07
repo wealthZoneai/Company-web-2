@@ -1,12 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeading, fadeInUp } from './Shared';
+import { fadeInUp } from './Shared';
 
 export default function WhoWeAre() {
     return (
-        <motion.section {...fadeInUp} className="mb-24">
-            <SectionHeading>Who We Are</SectionHeading>
-            <div className="space-y-6 text-gray-700 leading-relaxed text-lg max-w-5xl">
+        <motion.section {...fadeInUp} className="mb-2 px-6">
+            <div className="flex items-center gap-3 mb-4">
+                <div className="w-[3px] h-10 bg-blue-700 rounded-full"></div>
+                <h2 className="text-blue-800 font-bold text-4xl">
+                    Who We Are
+                </h2>
+            </div>
+            <div className="space-y-2 text-gray-700 leading-relaxed">
                 <p>
                     Wealth Zone Group AI is a team of dedicated professionals who are committed to providing the best possible IT services to our clients.
                     We specialize in Artificial Intelligence, Big Data, and Cloud Computing.

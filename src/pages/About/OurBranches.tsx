@@ -1,36 +1,56 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeading, fadeInUp } from './Shared';
+import { SectionHeading, fadeInUp, staggerContainer } from './Shared';
+
+// Local Assets
+import hydImg from '../../assets/images/places/hyd.png';
+import vijaImg from '../../assets/images/places/vija.png';
+import bnglrImg from '../../assets/images/places/bnglr.png';
+import vizImg from '../../assets/images/places/viz.png';
 
 export default function OurBranches() {
     const branches = [
-        { name: 'Hyderabad', img: 'https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?q=80&w=800&auto=format&fit=crop' },
-        { name: 'Vijayawada', img: 'https://images.unsplash.com/photo-1623862660001-c88f1181827b?q=80&w=800&auto=format&fit=crop' },
-        { name: 'Bengaluru', img: 'https://images.unsplash.com/photo-1596422846543-b5c64483eb93?q=80&w=800&auto=format&fit=crop' },
-        { name: 'Vizag', img: 'https://images.unsplash.com/photo-1624026676760-50608544d673?q=80&w=800&auto=format&fit=crop' }
+        { name: 'Hyderabad', img: hydImg },
+        { name: 'Vijayawada', img: vijaImg },
+        { name: 'Bengaluru', img: bnglrImg },
+        { name: 'Vizag', img: vizImg }
     ];
 
     return (
-        <section className="mb-24">
+        <section className=" px-6 ">
             <SectionHeading>Our Branches</SectionHeading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <motion.div
+                variants={staggerContainer}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            >
                 {branches.map((branch, i) => (
                     <motion.div
                         key={i}
-                        {...fadeInUp}
-                        className="relative group overflow-hidden rounded-[2rem] shadow-lg aspect-video cursor-pointer"
+                        variants={fadeInUp}
+                        className="relative rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer h-40"
                     >
+                        {/* Image with Name Overlay */}
                         <img
                             src={branch.img}
                             alt={branch.name}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-bottom p-8">
-                            <h4 className="text-2xl font-black text-white self-end">{branch.name}</h4>
+
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                        {/* Name at Bottom */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4 text-center z-10 group-hover:-translate-y-2 transition-transform duration-300">
+                            <h4 className="text-lg font-bold text-white">
+                                {branch.name}
+                            </h4>
                         </div>
                     </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 }

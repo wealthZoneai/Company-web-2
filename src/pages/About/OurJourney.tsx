@@ -1,36 +1,86 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeading, fadeInUp } from './Shared';
+import { fadeInUp } from './Shared';
+import ladyImage from '../../assets/images/Advertisement_women.png';
 
 export default function OurJourney() {
+    const tags = [
+        "AI & ML",
+        "Cloud Computing",
+        "Software Development",
+        "Digital Marketing",
+        "Cyber security",
+        "App Development"
+    ];
+
     return (
-        <motion.section {...fadeInUp} className="mb-24">
-            <SectionHeading>Our Journey</SectionHeading>
-            <div className="border-[3px] border-blue-500/30 rounded-[2rem] p-8 md:p-12 relative overflow-hidden bg-white shadow-2xl shadow-blue-50/50">
-                <div className="flex flex-col lg:flex-row gap-12 items-center">
-                    <div className="flex-1 space-y-6">
-                        <p className="text-gray-600 text-lg italic leading-relaxed">
-                            "Founded in 2023, Wealth Zone Group AI provides a range of information technology services, including AI and machine learning.
-                            With a focus on innovation and excellence, our company is committed to helping businesses and organizations thrive in the digital age.
-                            Our mission is to empower individuals and organizations to achieve more through the intelligent application of technology."
+        <section className="mx-auto mb-4 font-sans px-6">
+            <div className="flex items-center gap-3 mb-8">
+                <div className="w-[3px] h-10 bg-blue-700 rounded-full"></div>
+                <h2 className="text-blue-800 font-bold text-4xl">
+                    Our Journey
+                </h2>
+            </div>
+
+            {/* Main Journey Container */}
+            <div className="relative bg-[#3b82f6] rounded-2xl overflow-hidden min-h-[40vh] flex items-stretch">
+                {/* White Card with curved top-left */}
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white m-4 flex-1 rounded-tl-[120px] rounded-br-[40px] rounded-tr-[5px] rounded-bl-[5px] p-8 md:p-16 flex flex-col justify-between"
+                >
+                    <div className="relative z-10">
+                        <p className="text-[#1a1a1a] text-[15px] md:text-[16px] leading-relaxed font-medium mb-10 text-justify ">
+                            Founded in 2008 as Oyster Technologies and later rebranded to WealthZone Group AI,
+                            our company has grown into a leading product and service-based IT organization specializing
+                            in Artificial Intelligence (AI). Advanced Digital Solutions, Software Development,
+                            and Digital Marketing Services. At WealthZone Group AI, we combine Innovation, Intelligence,
+                            and Technology to empower Businesses with Transformative Digital Solutions.
+                            From custom Software and Web Applications to AI-Driven Automation, Data Analytics,
+                            and Enterprise Systems, we help Organizations Enhance Efficiency, Scalability, and Customer Engagement.
+                            Over the years, we've built a Strong Reputation for Delivering Cutting-edge Products,
+                            Strategic Consulting, and Full-Cycle IT Services that Drive Measurable Business Growth.
+                            Our Diverse Team of Experts works relentlessly to create Smarter, Faster, and Future-Ready Solutions —
+                            Enabling Businesses to stay ahead in today's Competitive Digital Landscape.
+                            Founded in 2008 as Oyster Technologies, we embarked on a journey to revolutionize the digital landscape.
+                            In 2019, we evolved into WealthZone Group AI, marking our commitment to cutting-edge artificial intelligence and innovation.
                         </p>
-                        <div className="flex flex-wrap gap-3">
-                            {['AI-ML', 'Cloud Computing', 'Software Development', 'Digital Marketing', 'Cyber security', 'App Development'].map((tag) => (
-                                <span key={tag} className="px-5 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-bold border border-blue-100 uppercase tracking-wider">
+
+                        {/* Tags Section */}
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 auto-rows-fr w-full lg:w-[70%]">
+                            {tags.map((tag, index) => (
+                                <motion.span
+                                    key={tag}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="bg-[#eef2ff] text-[#2563eb] px-6 py-2 rounded-full font-bold text-center border border-blue-100 flex items-center justify-center whitespace-nowrap shadow-sm hover:shadow-md transition-shadow text-[14px]"
+                                >
                                     {tag}
-                                </span>
+                                </motion.span>
                             ))}
                         </div>
                     </div>
-                    <div className="flex-1 relative">
-                        <img
-                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop"
-                            alt="Journey Representation"
-                            className="rounded-3xl shadow-xl w-full h-[400px] object-cover"
-                        />
-                    </div>
-                </div>
+                </motion.div>
+
+                {/* Professional Woman Image */}
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="hidden lg:block absolute right-[-9%] bottom-[-5%] w-[42%] h-[70%] pointer-events-none z-20"
+                >
+                    <img
+                        src={ladyImage}
+                        alt="Professional Woman"
+                        className="w-full h-full object-contain filter drop-shadow-[-20px_20px_40px_rgba(0,0,0,0.15)]"
+                    />
+                </motion.div>
             </div>
-        </motion.section>
+        </section>
     );
 }

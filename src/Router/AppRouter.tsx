@@ -6,6 +6,8 @@ import Home from "../pages/home/Home";
 import About from "../pages/About/About";
 import Services from "../pages/Services/Services";
 import Contact from "../pages/contact/Contact";
+import Careers from "../pages/Careers/Careers";
+import AIChatWidget from "../components/AIChatWidget";
 
 const AppRouter: React.FC = () => {
     return (
@@ -17,10 +19,12 @@ const AppRouter: React.FC = () => {
 
                     <Route path="/about" element={<About />} />
                     <Route path="/services" element={<Services />} />
+                    <Route path="/careers" element={<Careers />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
             </div>
             <Footer />
+            <AIChatWidget />
         </>
     );
 }
