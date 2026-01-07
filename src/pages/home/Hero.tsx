@@ -97,7 +97,7 @@ export default function Hero() {
                 </AnimatePresence>
 
                 {/* Slide Indicators */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+                {/* <div className="absolute left-1/2 -translate-x-1/2 flex gap-3">
                     {slides.map((_, idx) => (
                         <button
                             key={idx}
@@ -106,7 +106,7 @@ export default function Hero() {
                                 }`}
                         />
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );
