@@ -9,6 +9,9 @@ import {
     FaCheckCircle
 } from 'react-icons/fa';
 
+import { Link } from 'react-router-dom';
+import { jobs } from './careersData';
+
 // --- Types ---
 interface Benefit {
     id: number;
@@ -17,13 +20,6 @@ interface Benefit {
     icon: React.ReactNode;
     iconColor: string;
     bgColor: string;
-}
-
-interface Job {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
 }
 
 // --- Data ---
@@ -78,51 +74,6 @@ const benefits: Benefit[] = [
     }
 ];
 
-const jobs: Job[] = [
-    {
-        id: 1,
-        title: "UI/UX Designer",
-        description: "Craft intuitive, user-centric interfaces and visually appealing designs that enhance usability and engagement.",
-        image: "https://images.unsplash.com/photo-1586717791821-3f44a5638d4f?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 2,
-        title: "Java Developer",
-        description: "Build robust backend architectures and applications using Java with a focus on performance to scalability.",
-        image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 3,
-        title: "React JS Developer",
-        description: "Develop fast, responsive and dynamic web interfaces using React and modern frontend technologies.",
-        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        id: 4,
-        title: "Digital Marketing",
-        description: "Create and execute online marketing strategies to drive brand visibility, engagement and conversions.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
-    },
-    {
-        id: 5,
-        title: "AWS Engineer",
-        description: "Design, deploy and manage cloud solutions on AWS, ensuring availability, security and efficiency.",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
-    },
-    {
-        id: 6,
-        title: "Python Developer",
-        description: "Build automation scripts, backend systems and data-driven applications using Python and its frameworks.",
-        image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=2064&auto=format&fit=crop"
-    },
-    {
-        id: 7,
-        title: "Cyber Security Analyst",
-        description: "Protect systems and networks from cyber threats by monitoring, detecting and resolving security incidents.",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop"
-    }
-];
-
 const Careers: React.FC = () => {
     return (
         <div className="bg-white min-h-screen font-sans">
@@ -137,21 +88,24 @@ const Careers: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-blue-900/60"></div>
                 </div>
-                <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 space-y-6">
+                <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 space-y-6 max-w-7xl mx-auto">
                     <h1 className="text-4xl md:text-5xl font-bold text-white">
                         Explore Our Expertise
                     </h1>
                     <p className="text-gray-200 max-w-2xl text-lg font-medium">
                         From data-driven insights to robust software solutions, we offer a wide range of visions to meet your business needs
                     </p>
-                    <button className="bg-[#0B52A0] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors shadow-lg">
+                    <button
+                        onClick={() => document.getElementById('open-positions')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="bg-[#0B52A0] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors shadow-lg"
+                    >
                         View Open Positions
                     </button>
                 </div>
             </section>
 
             {/* --- Why Work With Us --- */}
-            <section className="py-2 px-6 ">
+            <section className="py-20 px-6 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-blue-800">Why Work With Us</h2>
                 </div>
@@ -171,8 +125,8 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Our Culture --- */}
-            <section className="bg-white py-16 px-2 mb-20">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <section className="bg-white py-20 px-6 mb-20 overflow-hidden">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                     <div className="space-y-8">
                         <div>
                             <span className="text-blue-600 font-bold mb-2 block">Our Culture</span>
@@ -222,35 +176,41 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Open Positions --- */}
-            <section className=" px-6  bg-gray-50/50 rounded-3xl">
-                <div className="text-center mb-16 space-y-2">
-                    <span className="text-blue-600 font-bold">Join Us</span>
-                    <h2 className="text-3xl font-bold text-gray-900">Current Open Positions</h2>
-                </div>
+            {/* --- Open Positions --- */}
+            <section id="open-positions" className="py-20 px-6 bg-gray-50/50">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16 space-y-2">
+                        <span className="text-blue-600 font-bold">Join Us</span>
+                        <h2 className="text-3xl font-bold text-gray-900">Current Open Positions</h2>
+                    </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {jobs.map((job) => (
-                        <div key={job.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
-                            <div className="h-48 overflow-hidden">
-                                <img
-                                    src={job.image}
-                                    alt={job.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                                />
-                            </div>
-                            <div className="p-6 flex flex-col flex-grow space-y-4">
-                                <h3 className="text-lg font-bold text-gray-900">{job.title}</h3>
-                                <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
-                                    {job.description}
-                                </p>
-                                <div className="pt-4 mt-auto">
-                                    <button className="w-full bg-[#0B52A0] text-white py-2.5 rounded-md font-bold text-sm hover:bg-blue-800 transition-colors">
-                                        Apply Now
-                                    </button>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {jobs.map((job) => (
+                            <div key={job.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                                <div className="h-48 overflow-hidden">
+                                    <img
+                                        src={job.image}
+                                        alt={job.title}
+                                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                </div>
+                                <div className="p-6 flex flex-col flex-grow space-y-4">
+                                    <h3 className="text-lg font-bold text-gray-900">{job.title}</h3>
+                                    <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+                                        {job.description}
+                                    </p>
+                                    <div className="pt-4 mt-auto">
+                                        <Link
+                                            to={`/careers/${job.id}`}
+                                            className="w-full bg-[#0B52A0] text-white py-2.5 rounded-md font-bold text-sm hover:bg-blue-800 transition-colors block text-center"
+                                        >
+                                            Apply Now
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -264,12 +224,12 @@ const Careers: React.FC = () => {
                         Connect with our team to discuss how WZG-AI can help you achieve your Financial Ambitions
                     </p>
                     <div className="flex gap-4 justify-center pt-4">
-                        <button className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm">
+                        <Link to="/contact" className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm">
                             Contact Us
-                        </button>
-                        <button className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm">
+                        </Link>
+                        <Link to="/services" className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm">
                             Our Services
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </section>

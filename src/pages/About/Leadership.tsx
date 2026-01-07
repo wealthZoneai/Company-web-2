@@ -10,13 +10,107 @@ interface TeamMember {
     image: string; // Using 'R' placeholder for now
 }
 
-const teamMembers: TeamMember[] = [
-    { id: 1, name: "Ravi Teja", role: "UI/UX DESIGNER", description: "Creative designer focused on user-centric digital experiences.", image: "R" },
-    { id: 2, name: "Ravi Teja", role: "Frontend Developer", description: "Expert in building responsive and performant web applications.", image: "R" },
-    { id: 3, name: "Ravi Teja", role: "UI/UX DESIGNER", description: "Specialist in accessible design and interactive prototypes.", image: "R" },
-    { id: 4, name: "Ravi Teja", role: "UI/UX DESIGNER", description: "Passionate about crafting intuitive and beautiful interfaces.", image: "R" },
-    { id: 5, name: "Ravi Teja", role: "Backend Developer", description: "Architecting robust server-side solutions.", image: "R" }, // Added to demonstrate scrolling
+const teamMembers = [
+  {
+    id: 1,
+    name: "Henry Paul",
+    role: "Legal Advisor [High Court]",
+    description: "Provides legal guidance and compliance support for the organization.",
+    image: "H",
+  },
+  {
+    id: 2,
+    name: "Sunil",
+    role: "Cyber Security Manager",
+    description: "Oversees cybersecurity strategy, risk management, and data protection.",
+    image: "S",
+  },
+  {
+    id: 3,
+    name: "Venkata Jagadish",
+    role: "Project Manager [Testing]",
+    description: "Manages testing projects, timelines, and quality assurance processes.",
+    image: "V",
+  },
+  {
+    id: 4,
+    name: "K. Ram Prasad",
+    role: "Network Engineer",
+    description: "Designs, maintains, and secures enterprise network infrastructure.",
+    image: "K",
+  },
+  {
+    id: 5,
+    name: "G. Revanth",
+    role: "Senior Developer",
+    description: "Builds scalable applications and mentors junior developers.",
+    image: "G",
+  },
+  {
+    id: 6,
+    name: "G. Rama Mohan",
+    role: "Senior Developer",
+    description: "Experienced in backend systems and application architecture.",
+    image: "G",
+  },
+  {
+    id: 8,
+    name: "Sk. Pervez",
+    role: "Senior Developer",
+    description: "Focuses on full-stack development and system optimization.",
+    image: "P",
+  },
+  {
+    id: 9,
+    name: "B. Raviteja",
+    role: "Senior Developer",
+    description: "Delivers robust features and ensures code quality standards.",
+    image: "R",
+  },
+  {
+    id: 10,
+    name: "Y. Sravani",
+    role: "Senior Developer",
+    description: "Contributes to core development and performance improvements.",
+    image: "Y",
+  },
+  {
+    id: 11,
+    name: "Ch. Nikhil",
+    role: "UI/UX Designer",
+    description: "Designs intuitive, user-centered interfaces and experiences.",
+    image: "N",
+  },
+  {
+    id: 12,
+    name: "K. Sai Preethi",
+    role: "DevOps Engineer",
+    description: "Automates deployments and maintains CI/CD pipelines.",
+    image: "K",
+  },
+  {
+    id: 13,
+    name: "M. Pradeep",
+    role: "System Engineer",
+    description: "Manages servers, system reliability, and infrastructure health.",
+    image: "M",
+  },
+  {
+    id: 14,
+    name: "Ch. Sri Ram",
+    role: "QA Tester",
+    description: "Ensures software quality through manual and automated testing.",
+    image: "S",
+  },
+  {
+    id: 15,
+    name: "M. Uma Maheshwari",
+    role: "Accountant",
+    description: "Handles financial records, reporting, and compliance.",
+    image: "U",
+  },
 ];
+
 
 const Leadership: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

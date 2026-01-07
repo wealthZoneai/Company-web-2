@@ -8,6 +8,7 @@ import Services from "../pages/Services/Services";
 import ServiceDetail from "../pages/Services/ServiceDetail";
 import Contact from "../pages/contact/Contact";
 import Careers from "../pages/Careers/Careers";
+import JobDetail from "../pages/Careers/JobDetail";
 import AIChatWidget from "../components/AIChatWidget";
 
 const AppRouter: React.FC = () => {
@@ -22,6 +23,7 @@ const AppRouter: React.FC = () => {
                     <Route path="/services" element={<Services />} />
                     <Route path="/services/:id" element={<ServiceDetail />} />
                     <Route path="/careers" element={<Careers />} />
+                    <Route path="/careers/:id" element={<JobDetail />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
             </div>
