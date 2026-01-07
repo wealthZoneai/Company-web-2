@@ -1,45 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLightbulb } from 'react-icons/fa';
+import { FaLightbulb, FaArrowRight } from 'react-icons/fa';
 
 export default function FutureGoalCTA() {
     return (
-        <section className="px-6">
-            <div className="flex items-center gap-3 mb-4">
-                <div className="w-[3px] h-10 bg-blue-700 rounded-full"></div>
-                <h2 className="text-blue-800 font-bold text-4xl">
-                    Our Future Goal
-                </h2>
-            </div>
-            <p className="text-xl text-gray-700 leading-relaxed font-medium">
-                Wealth Zone Group AI is focused on providing our clients with the best and most innovative technical solutions that will help them succeed in today's digital landscape.
-            </p>
+        <section className="px-6 py-12 md:py-20">
+            <div className="max-w-7xl mx-auto">
 
-            <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-[#1457AB] rounded-[1rem] p-12 md:p-20  mb-4 text-white relative overflow-hidden"
-            >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24" />
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-[#1457AB] rounded-3xl p-8 md:p-16 relative overflow-hidden shadow-2xl"
+                >
+                    {/* Abstract Backgrounds */}
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-2xl -ml-20 -mb-20 pointer-events-none" />
 
-                <div className="relative z-10 flex flex-col items-center">
-                    <div className="flex flex-row items-center gap-4 mb-8">
-                        <div className="bg-white rounded-xl p-1 shadow-lg">
-                            <FaLightbulb className="text-3xl text-[#1457AB]" />
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-8 inline-flex">
+                            <FaLightbulb className="text-4xl text-yellow-300" />
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-black text-white"> Let's Build the Future Together</h3>
+
+                        <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                            Let's Build the Future Together
+                        </h3>
+
+                        <p className="text-lg md:text-xl text-blue-100 max-w-2xl mb-10 leading-relaxed font-light">
+                            Ready to transform your business with intelligent technology?
+                            Connect with us to see how our solutions can drive your success.
+                        </p>
+
+                        <button className="bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all hover:scale-105 hover:shadow-xl flex items-center gap-3 active:scale-95 duration-200">
+                            Contact Us <FaArrowRight />
+                        </button>
                     </div>
-                    <p className="text-lg md:text-xl text-blue-100 max-w-2xl mb-12 opacity-90 font-medium ">
-                        Ready to transform your business with intelligent technology? <br className="hidden md:block" />
-                        Connect with us to see how our solutions can drive your success.
-                    </p>
-                    <button className="bg-white text-blue-900 px-12 py-2 rounded-xl font-black text-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-2xl">
-                        Contact Us
-                    </button>
-                </div>
-            </motion.div>
+                </motion.div>
+            </div>
         </section>
     );
 }

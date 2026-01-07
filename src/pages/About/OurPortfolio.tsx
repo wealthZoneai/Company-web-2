@@ -49,48 +49,47 @@ const projects: Project[] = [
 
 const OurPortfolio: React.FC = () => {
     return (
-        <section className="bg-white px-6">
-            <div className=" ">
+        <section className="bg-white py-8 px-6">
+            <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
-                <div className="text-center space-y-4">
-                    <div className="inline-block bg-blue-100 text-blue-700 font-bold px-4 py-1.5 rounded-full text-sm uppercase tracking-wide">
-                        OUR PORTFOLIO
-                    </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                <div className="text-center space-y-6 mb-8">
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
                         Innovating With <span className="text-blue-600">Purpose</span>
                     </h2>
-                    <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-                        Explore our diverse ranges of projects where we combine strategy, creativity and technology to deliver world-class digital experience
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Explore our diverse range of projects where we combine strategy, creativity, and technology to deliver world-class digital experiences.
                     </p>
                 </div>
 
                 {/* Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                     {projects.map((project) => (
-                        <div key={project.id} className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col">
+                        <div key={project.id} className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
                             {/* Image Container */}
-                            <div className="relative h-54 overflow-hidden">
+                            <div className="relative h-64 overflow-hidden bg-gray-100">
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                                 />
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
 
                             {/* Content */}
-                            <div className=" flex flex-col flex-grow items-center text-center p-2 ">
-                                <h3 className="text-xl font-bold text-gray-900 leading-tight">
+                            <div className="flex flex-col flex-grow p-8">
+                                <h3 className="text-xl font-bold text-gray-900 leading-tight mb-3 group-hover:text-blue-600 transition-colors">
                                     {project.title}
                                 </h3>
-                                <p className="text-gray-500 text-sm leading-relaxed flex-grow">
+                                <p className="text-gray-500 text-base leading-relaxed mb-6 line-clamp-3">
                                     {project.description}
                                 </p>
 
-                                <button className="bg-[#0B52A0] text-white font-semibold py-3 px-8 rounded-lg flex items-center gap-2 hover:bg-blue-800 transition-colors w-full justify-center md:w-auto">
-                                    View Project <FaArrowRight className="text-sm" />
-                                </button>
+                                <div className="mt-auto pt-4 border-t border-gray-50">
+                                    <button className="text-[#0B52A0] font-semibold flex items-center gap-2 hover:gap-3 transition-all duration-300 group-hover:text-blue-700">
+                                        View Project <FaArrowRight className="text-sm" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}

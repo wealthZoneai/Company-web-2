@@ -18,7 +18,7 @@ export default function About() {
         <div className="bg-white min-h-screen font-sans overflow-x-hidden">
             <AboutHero />
 
-            <div className="py-16 space-y-16">
+            <div className="pt-24 pb-0 space-y-24">
                 <WhoWeAre />
                 <OurJourney />
                 <MissionVision />
@@ -29,8 +29,6 @@ export default function About() {
                 <Leadership />
                 <OurPortfolio />
             </div>
-
-            <StatsBar />
             <FutureGoalCTA />
         </div>
     );

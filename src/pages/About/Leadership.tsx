@@ -70,10 +70,10 @@ const Leadership: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div className="flex justify-center gap-8 max-w-5xl mx-auto">
                         {/* Leader 1 */}
                         <div className="bg-white border border-blue-100 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row gap-6 items-start">
-                            <div className="w-16 h-16 bg-[#0B52A0] rounded-md flex items-center justify-center flex-shrink-0 text-white text-2xl font-bold">
+                            <div className="w-16 h-16 bg-[#0B52A0] rounded-md flex items-center justify-center shrink-0 text-white text-2xl font-bold">
                                 B
                             </div>
                             <div className="space-y-2">
@@ -86,7 +86,7 @@ const Leadership: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Leader 2 */}
+                        {/* Leader 2
                         <div className="bg-white border border-blue-100 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row gap-6 items-start">
                             <div className="w-16 h-16 bg-[#0B52A0] rounded-md flex items-center justify-center flex-shrink-0 text-white text-2xl font-bold">
                                 B
@@ -99,7 +99,7 @@ const Leadership: React.FC = () => {
                                     Strategic operations expert driving organizational excellence and growth.
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -196,7 +196,7 @@ const Leadership: React.FC = () => {
                                     <div
                                         key={member.id}
                                         style={{ width: `${100 / itemsPerPage}%` }}
-                                        className="flex-shrink-0 px-4"
+                                        className="shrink-0 px-4"
                                     >
                                         <div className="bg-white border border-gray-100 rounded-xl p-8 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center space-y-4 hover:-translate-y-1 h-full shadow-sm">
                                             <div className="w-16 h-16 bg-[#0B52A0] rounded-full flex items-center justify-center text-white text-xl font-bold shadow-md">
