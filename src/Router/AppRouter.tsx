@@ -23,11 +23,12 @@ import DigitalMarketing from "../pages/Careers/DigitalMarketing";
 import AWSEngineer from "../pages/Careers/AWSEngineer";
 import PythonDeveloper from "../pages/Careers/PythonDeveloper";
 import CyberSecurity from "../pages/Careers/CyberSecurity";
-
+import ScrollToTop from "../components/ScrollToTop";
 
 const AppRouter: React.FC = () => {
     return (
         <>
+            <ScrollToTop />
             <Navbar />
             <div className="pt-20"> {/* Add padding top to account for sticky navbar */}
                 <Routes>

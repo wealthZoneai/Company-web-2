@@ -60,7 +60,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        <section className="relative h-[95vh] flex items-end justify-center overflow-hidden bg-black pb-24">
             {/* Video Background Layer */}
             <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="wait">
@@ -108,7 +108,7 @@ export default function Hero() {
                             {slides[currentSlide].description}
                         </p> */}
 
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 ">
                             <Link
                                 to="/contact"
                                 className="w-full sm:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/40 hover:scale-105 active:scale-95 text-center"
