@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     FaRobot,
     FaChartLine,
@@ -8,6 +9,15 @@ import {
     FaRocket,
     FaCheckCircle
 } from 'react-icons/fa';
+
+// Local Image Imports
+import AIImg from '../../assets/images/AI.png';
+import JavaImg from '../../assets/images/Java.jpg';
+import MernImg from '../../assets/images/Mern.jpg';
+import PythonImg from '../../assets/images/Python.jpg';
+import CyberImg from '../../assets/images/cybersecurity.png';
+import CloudImg from '../../assets/images/Cloud.jpg';
+import MarketingImg from '../../assets/images/Ourserves/Marketing.avif';
 
 import { Link } from 'react-router-dom';
 import { jobs } from './careersData';
@@ -74,7 +84,53 @@ const benefits: Benefit[] = [
     }
 ];
 
+const jobs: Job[] = [
+    {
+        id: 1,
+        title: "UI/UX Designer",
+        description: "Craft intuitive, user-centric interfaces and visually appealing designs that enhance usability and engagement.",
+        image: AIImg
+    },
+    {
+        id: 2,
+        title: "Java Developer",
+        description: "Build robust backend architectures and applications using Java with a focus on performance to scalability.",
+        image: JavaImg
+    },
+    {
+        id: 3,
+        title: "React JS Developer",
+        description: "Develop fast, responsive and dynamic web interfaces using React and modern frontend technologies.",
+        image: MernImg
+    },
+    {
+        id: 4,
+        title: "Digital Marketing",
+        description: "Create and execute online marketing strategies to drive brand visibility, engagement and conversions.",
+        image: MarketingImg
+    },
+    {
+        id: 5,
+        title: "AWS Engineer",
+        description: "Design, deploy and manage cloud solutions on AWS, ensuring availability, security and efficiency.",
+        image: CloudImg
+    },
+    {
+        id: 6,
+        title: "Python Developer",
+        description: "Build automation scripts, backend systems and data-driven applications using Python and its frameworks.",
+        image: PythonImg
+    },
+    {
+        id: 7,
+        title: "Cyber Security Analyst",
+        description: "Protect systems and networks from cyber threats by monitoring, detecting and resolving security incidents.",
+        image: CyberImg
+    }
+];
+
 const Careers: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <div className="bg-white min-h-screen font-sans">
 
@@ -96,7 +152,10 @@ const Careers: React.FC = () => {
                         From data-driven insights to robust software solutions, we offer a wide range of visions to meet your business needs
                     </p>
                     <button
-                        onClick={() => document.getElementById('open-positions')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => {
+                            const element = document.getElementById('open-positions');
+                            element?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                         className="bg-[#0B52A0] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors shadow-lg"
                     >
                         View Open Positions
@@ -105,6 +164,7 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Why Work With Us --- */}
+            <section className="py-16 px-6 max-w-7xl mx-auto">
             <section className="py-20 px-6 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-blue-800">Why Work With Us</h2>
@@ -200,12 +260,20 @@ const Careers: React.FC = () => {
                                         {job.description}
                                     </p>
                                     <div className="pt-4 mt-auto">
-                                        <Link
-                                            to={`/careers/${job.id}`}
-                                            className="w-full bg-[#0B52A0] text-white py-2.5 rounded-md font-bold text-sm hover:bg-blue-800 transition-colors block text-center"
+                                        <button
+                                            onClick={() => {
+                                                if (job.title === "UI/UX Designer") navigate('/careers/job-details');
+                                                if (job.title === "Java Developer") navigate('/careers/java-developer');
+                                                if (job.title === "React JS Developer") navigate('/careers/react-developer');
+                                                if (job.title === "Digital Marketing") navigate('/careers/digital-marketing');
+                                                if (job.title === "AWS Engineer") navigate('/careers/aws-engineer');
+                                                if (job.title === "Python Developer") navigate('/careers/python-developer');
+                                                if (job.title === "Cyber Security Analyst") navigate('/careers/cyber-security');
+                                            }}
+                                            className="w-full bg-[#0B52A0] text-white py-2.5 rounded-md font-bold text-sm hover:bg-blue-800 transition-colors"
                                         >
                                             Apply Now
-                                        </Link>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -224,10 +292,16 @@ const Careers: React.FC = () => {
                         Connect with our team to discuss how WZG-AI can help you achieve your Financial Ambitions
                     </p>
                     <div className="flex gap-4 justify-center pt-4">
-                        <Link to="/contact" className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm">
+                        <button
+                            onClick={() => navigate('/contact')}
+                            className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm"
+                        >
                             Contact Us
-                        </Link>
-                        <Link to="/services" className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm">
+                        </button>
+                        <button
+                            onClick={() => navigate('/services')}
+                            className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm"
+                        >
                             Our Services
                         </Link>
                     </div>

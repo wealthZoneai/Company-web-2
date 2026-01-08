@@ -1,6 +1,35 @@
-import { motion } from "framer-motion";
-import React from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Hero1 from '../../assets/viedos/Hero1.mp4';
+import Hero2 from '../../assets/viedos/Hero2.mp4';
+
+const slides = [
+    {
+        video: Hero1,
+        title: (
+            <>
+                {/* Wealth Zone <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                    Group AI
+                </span> */}
+            </>
+        ),
+        // description: "Empowering the future through intelligent digital transformation, secure infrastructures, and groundbreaking user experiences."
+    },
+    {
+        video: Hero2,
+        title: (
+            <>
+                {/* Innovate <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
+                    With Precision
+                </span> */}
+            </>
+        ),
+        // description: "Leading the charge in AI-driven solutions and enterprise-scale digital evolution for global businesses."
+    }
+];
 
 const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
     return (
@@ -20,85 +49,93 @@ const FloatBlob: React.FC<{ className: string; duration: number }> = ({ classNam
     );
 };
 
-const VideoBackground: React.FC = () => {
-    const videoId = "-P6Qr3gdlxw";
-    return (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-            <iframe
-                className="absolute inset-0 w-full h-[120%] -top-[10%] pointer-events-none scale-150"
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`}
-                title="Background Video"
-                frameBorder="0"
-                allow="autoplay; fullscreen"
-            />
-            {/* Subtle Overlay for Legibility */}
-            <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white"></div>
-        </div>
-    );
-};
-
-const AnimatedBackground: React.FC = () => {
-    return (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-            <VideoBackground />
-            <FloatBlob className="bg-blue-200/20 w-[40rem] h-[40rem] -top-40 -left-40" duration={15} />
-            <FloatBlob className="bg-purple-200/20 w-[45rem] h-[45rem] -bottom-40 -right-40" duration={18} />
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
-        </div>
-    );
-};
-
 export default function Hero() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+        }, 8000); // Change slide every 8 seconds
+        return () => clearInterval(timer);
+    }, []);
+
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <AnimatedBackground />
-
-            <div className="relative z-10 text-center px-6 max-w-6xl">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 leading-[1.1] tracking-tight">
-                        Wealth Zone <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-                            Group AI
-                        </span>
-                    </h1>
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="mt-8 text-xl md:text-2xl text-gray-600 font-medium max-w-3xl mx-auto leading-relaxed"
-                >
-                    Empowering the future through intelligent digital transformation,
-                    secure infrastructures, and groundbreaking user experiences.
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-12 flex flex-row items-center justify-center gap-6"
-                >
-                    <Link
-                        to="/contact"
-                        className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/25 hover:scale-105 active:scale-95 inline-block"
+        <section className="relative h-[95vh] flex items-end justify-center overflow-hidden bg-black pb-24">
+            {/* Video Background Layer */}
+            <div className="absolute inset-0 z-0">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={`video-${currentSlide}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 1.5 }}
+                        className="absolute inset-0"
                     >
-                        Contact Us
-                    </Link>
-                    <Link
-                        to="/services"
-                        className="px-8 py-4 bg-gray-50 hover:bg-gray-100 text-gray-900 border border-gray-200 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 inline-block"
+                        <video
+                            src={slides[currentSlide].video}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
+                        {/* Overlays */}
+                        <div className="absolute inset-0 bg-black/40" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+            {/* Decorative Blobs */}
+            <FloatBlob className="bg-blue-600/20 w-[40rem] h-[40rem] -top-40 -left-40 z-10" duration={15} />
+            <FloatBlob className="bg-purple-600/20 w-[45rem] h-[45rem] -bottom-40 -right-40 z-10" duration={18} />
+
+            <div className="relative z-20 text-center px-6 max-w-6xl">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={`content-${currentSlide}`}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -30 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        Our Services
-                    </Link>
-                </motion.div>
+                        {/* <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tight">
+                            {slides[currentSlide].title}
+                        </h1>
+
+                        <p className="mt-8 text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
+                            {slides[currentSlide].description}
+                        </p> */}
+
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 ">
+                            <Link
+                                to="/contact"
+                                className="w-full sm:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/40 hover:scale-105 active:scale-95 text-center"
+                            >
+                                Get Started
+                            </Link>
+                            <Link
+                                to="/services"
+                                className="w-full sm:w-auto px-10 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-2xl font-bold text-lg transition-all duration-300 backdrop-blur-md hover:scale-105 active:scale-95 text-center"
+                            >
+                                Our Expertise
+                            </Link>
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
+
+                {/* Slide Indicators */}
+                {/* <div className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 flex gap-3">
+                    {slides.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setCurrentSlide(idx)}
+                            className={`h-2.5 rounded-full transition-all duration-500 ${currentSlide === idx ? "w-12 bg-blue-500" : "w-2.5 bg-white/30"
+                                }`}
+                        />
+                    ))}
+                </div> */}
             </div>
         </section>
     );

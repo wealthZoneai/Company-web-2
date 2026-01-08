@@ -32,6 +32,14 @@ const AnimatedBackground: React.FC = () => {
     );
 };
 
+// Local Service Image Imports
+import WebDevImg from '../../assets/images/Ourserves/WebDevlopment.avif';
+import MobileImg from '../../assets/images/Ourserves/Mobile.avif';
+import EcomersImg from '../../assets/images/Ourserves/Ecomers.avif';
+import MarketingImg from '../../assets/images/Ourserves/Marketing.avif';
+import CmsImg from '../../assets/images/Ourserves/Cms.webp';
+import GraphicImg from '../../assets/images/Ourserves/Graphic.avif';
+
 interface Service {
     id: string;
     title: string;
@@ -44,37 +52,37 @@ const services: Service[] = [
         id: "web-dev",
         title: "Web Design & Development",
         videoUrl: "https://www.youtube.com/watch?v=g7xkVEWrX8E",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
+        image: WebDevImg
     },
     {
         id: "mobile-app",
         title: "Mobile App Development",
         videoUrl: "https://www.youtube.com/watch?v=J4xNhYeaGkI",
-        image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop"
+        image: MobileImg
     },
     {
         id: "e-commerce",
         title: "E-Commerce Website Design",
         videoUrl: "https://www.youtube.com/watch?v=sJGVcb5fn2c",
-        image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1200&auto=format&fit=crop"
+        image: EcomersImg
     },
     {
         id: "marketing",
         title: "Digital Marketing & SEO",
         videoUrl: "https://www.youtube.com/watch?v=GGf1JjSAKP4",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+        image: MarketingImg
     },
     {
         id: "cms",
         title: "CMS Websites & Integration",
         videoUrl: "https://www.youtube.com/watch?v=Q3oItpVa9fs",
-        image: "https://whitebunnie.com/wp-content/uploads/2024/07/Content-management-system.webp"
+        image: CmsImg
     },
     {
         id: "graphic",
         title: "Graphic & Creative Designs",
         videoUrl: "https://www.youtube.com/watch?v=kPahWDoJ2cg",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop"
+        image: GraphicImg
     }
 ];
 

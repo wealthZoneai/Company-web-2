@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/images/blue_logo.png";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 interface NavItemProps {
     to: string;
     children: React.ReactNode;
+    onClick?: () => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ to, children }) => {
+const NavItem: React.FC<NavItemProps> = ({ to, children, onClick }) => {
     return (
         <motion.li
             whileHover={{ y: -2 }}
@@ -16,6 +18,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, children }) => {
         >
             <NavLink
                 to={to}
+                onClick={onClick}
                 className={({ isActive }) =>
                     `relative px-1 py-2 text-sm font-semibold transition-colors duration-300 ${isActive
                         ? "text-blue-600"
@@ -42,6 +45,13 @@ const NavItem: React.FC<NavItemProps> = ({ to, children }) => {
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const location = useLocation();
+
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+    }, [location]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -51,56 +61,112 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const navLinks = [
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+        { name: "Services", path: "/services" },
+        { name: "Careers", path: "/careers" },
+    ];
+
     return (
         <motion.header
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-3 shadow-sm"
+                ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-3 shadow-md"
                 : "bg-transparent py-5"
                 }`}
         >
-            <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <nav className="max-w-7xl mx-auto px-4 md:px-0 flex items-center justify-between">
                 {/* Logo */}
                 <NavLink to="/" className="flex items-center group">
                     <motion.img
                         whileHover={{ scale: 1.05 }}
                         src={logo}
                         alt="Wealth Zone Group AI"
-                        className="h-10 w-auto"
+                        className="h-10 md:h-13 w-auto transition-all"
                     />
                 </NavLink>
 
                 {/* Desktop Nav Items */}
-                <ul className="hidden md:flex items-center gap-8">
-                    <NavItem to="/">Home</NavItem>
-                    <NavItem to="/about">About</NavItem>
-                    <NavItem to="/services">Services</NavItem>
-                    <NavItem to="/careers">Careers</NavItem>
-
+                <ul className="hidden md:flex items-center gap-10">
+                    {navLinks.map((link) => (
+                        <NavItem key={link.path} to={link.path}>
+                            {link.name}
+                        </NavItem>
+                    ))}
                 </ul>
 
-                {/* CTA Button */}
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="hidden md:block"
-                >
-                    <NavLink
-                        to="/contact"
-                        className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg shadow-blue-600/20"
+                {/* Desktop CTA Button */}
+                <div className="hidden md:flex items-center gap-4">
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        Get Started
-                    </NavLink>
-                </motion.div>
+                        <NavLink
+                            to="/contact"
+                            className="px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg shadow-blue-600/20"
+                        >
+                            Get Started
+                        </NavLink>
+                    </motion.div>
+                </div>
 
                 {/* Mobile Menu Toggle */}
-                <div className="md:hidden text-gray-900">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </div>
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
+                    aria-label="Toggle Menu"
+                >
+                    {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                </button>
             </nav>
+
+            {/* Mobile Menu Drawer */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden bg-white border-b border-gray-100 overflow-hidden shadow-xl"
+                    >
+                        <ul className="flex flex-col gap-1 p-6">
+                            {navLinks.map((link) => (
+                                <motion.li key={link.path}
+                                    initial={{ x: -20, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                >
+                                    <NavLink
+                                        to={link.path}
+                                        className={({ isActive }) =>
+                                            `block px-4 py-3 text-base font-bold rounded-xl transition-all ${isActive
+                                                ? "bg-blue-50 text-blue-600"
+                                                : "text-gray-600 hover:bg-gray-50 hover:text-blue-600"
+                                            }`
+                                        }
+                                    >
+                                        {link.name}
+                                    </NavLink>
+                                </motion.li>
+                            ))}
+                            <motion.li
+                                initial={{ x: -20, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ delay: 0.2 }}
+                                className="mt-4"
+                            >
+                                <NavLink
+                                    to="/contact"
+                                    className="block w-full py-4 bg-blue-600 text-white text-center font-bold rounded-2xl shadow-lg shadow-blue-600/20"
+                                >
+                                    Get Started
+                                </NavLink>
+                            </motion.li>
+                        </ul>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.header>
     );
 }
