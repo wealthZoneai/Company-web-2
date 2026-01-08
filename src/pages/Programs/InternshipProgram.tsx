@@ -268,10 +268,12 @@ export default function InternshipProgram() {
                                 transition={{ delay: index * 0.1 }}
                                 className={`${benefit.color} p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-300`}
                             >
-                                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 text-xl">
-                                    {benefit.icon}
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm text-xl shrink-0">
+                                        {benefit.icon}
+                                    </div>
+                                    <h3 className="text-l font-bold text-gray-900">{benefit.title}</h3>
                                 </div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-3">{benefit.title}</h3>
                                 <p className="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
                             </motion.div>
                         ))}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Service from '../../assets/viedos/Service.mp4';
 import { servicesData, ServiceDetailItem } from './servicesData';
+import StaffingSolutions from './StaffingSolutions';
 
 // --- Types ---
 
@@ -136,6 +137,8 @@ export default function Services() {
         <main className="bg-white min-h-screen font-sans overflow-x-hidden">
             <ServiceHero />
             <ServicesGrid />
+                        <StaffingSolutions />
+
             <CTASection />
         </main>
     );

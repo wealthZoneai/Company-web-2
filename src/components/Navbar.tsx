@@ -107,7 +107,7 @@ export default function Navbar() {
                             to="/contact"
                             className="px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg shadow-blue-600/20"
                         >
-                            Get Started
+                            Contact Us
                         </NavLink>
                     </motion.div>
                 </div>

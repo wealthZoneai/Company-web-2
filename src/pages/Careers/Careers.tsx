@@ -20,7 +20,7 @@ import CloudImg from '../../assets/images/Cloud.jpg';
 import MarketingImg from '../../assets/images/Ourserves/Marketing.avif';
 
 import { Link } from 'react-router-dom';
-import { jobs } from './careersData';
+import { jobs as dataJobs, Job } from './careersData';
 
 // --- Types ---
 interface Benefit {
@@ -84,48 +84,76 @@ const benefits: Benefit[] = [
     }
 ];
 
-const jobs: Job[] = [
+const localJobs: Job[] = [
     {
         id: 1,
         title: "UI/UX Designer",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Craft intuitive, user-centric interfaces and visually appealing designs that enhance usability and engagement.",
-        image: AIImg
+        image: AIImg,
+        responsibilities: [],
+        qualifications: []
     },
     {
         id: 2,
         title: "Java Developer",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Build robust backend architectures and applications using Java with a focus on performance to scalability.",
-        image: JavaImg
+        image: JavaImg,
+        responsibilities: [],
+        qualifications: []
     },
     {
         id: 3,
         title: "React JS Developer",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Develop fast, responsive and dynamic web interfaces using React and modern frontend technologies.",
-        image: MernImg
+        image: MernImg,
+        responsibilities: [],
+        qualifications: []
     },
     {
         id: 4,
         title: "Digital Marketing",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Create and execute online marketing strategies to drive brand visibility, engagement and conversions.",
-        image: MarketingImg
+        image: MarketingImg,
+        responsibilities: [],
+        qualifications: []
     },
     {
         id: 5,
         title: "AWS Engineer",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Design, deploy and manage cloud solutions on AWS, ensuring availability, security and efficiency.",
-        image: CloudImg
+        image: CloudImg,
+        responsibilities: [],
+        qualifications: []
     },
     {
         id: 6,
         title: "Python Developer",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Build automation scripts, backend systems and data-driven applications using Python and its frameworks.",
-        image: PythonImg
+        image: PythonImg,
+        responsibilities: [],
+        qualifications: []
     },
     {
         id: 7,
         title: "Cyber Security Analyst",
+        location: "Hyderabad",
+        type: "Full Time",
         description: "Protect systems and networks from cyber threats by monitoring, detecting and resolving security incidents.",
-        image: CyberImg
+        image: CyberImg,
+        responsibilities: [],
+        qualifications: []
     }
 ];
 
@@ -164,7 +192,6 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Why Work With Us --- */}
-            <section className="py-16 px-6 max-w-7xl mx-auto">
             <section className="py-20 px-6 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-blue-800">Why Work With Us</h2>
@@ -245,7 +272,7 @@ const Careers: React.FC = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {jobs.map((job) => (
+                        {localJobs.map((job) => (
                             <div key={job.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
                                 <div className="h-48 overflow-hidden">
                                     <img
@@ -303,7 +330,7 @@ const Careers: React.FC = () => {
                             className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm"
                         >
                             Our Services
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </section>
