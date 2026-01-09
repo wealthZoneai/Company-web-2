@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Service from '../../assets/viedos/Service.mp4';
 import { servicesData, ServiceDetailItem } from './servicesData';
 import StaffingSolutions from './StaffingSolutions';
@@ -108,22 +108,28 @@ const ServicesGrid: React.FC = () => {
 };
 
 const CTASection: React.FC = () => {
+    const navigate = useNavigate();
     return (
-        <section className="bg-white py-24 px-6">
-            <div className="max-w-5xl mx-auto text-center bg-blue-600 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl">
-                {/* Background Decoration */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full -ml-20 -mb-20 blur-2xl pointer-events-none"></div>
-
-                <div className="relative z-10">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Ready to power your wealth with Intelligence?
-                    </h2>
-                    <p className="text-blue-100 text-lg md:text-xl mb-10 font-medium max-w-3xl mx-auto">
-                        Connect with our team to discover how WZG-AI can help you achieve your Financial Ambitions
-                    </p>
-                    <button className="bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl active:scale-95 duration-200">
+        <section className="bg-blue-50 py-16 px-6 mt-20">
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-blue-600">
+                    Ready to power your wealth with intelligence?
+                </h2>
+                <p className="text-gray-600 font-medium text-sm">
+                    Connect with our team to discuss how WZG-AI can help you achieve your Financial Ambitions
+                </p>
+                <div className="flex gap-4 justify-center pt-4">
+                    <button
+                        onClick={() => navigate('/contact')}
+                        className="bg-[#1877F2] text-white px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition-colors text-sm"
+                    >
                         Contact Us
+                    </button>
+                    <button
+                        onClick={() => navigate('/careers')}
+                        className="bg-white text-blue-600 border border-blue-200 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition-colors text-sm"
+                    >
+                        Join Our Team
                     </button>
                 </div>
             </div>
@@ -137,7 +143,7 @@ export default function Services() {
         <main className="bg-white min-h-screen font-sans overflow-x-hidden">
             <ServiceHero />
             <ServicesGrid />
-                        <StaffingSolutions />
+            <StaffingSolutions />
 
             <CTASection />
         </main>

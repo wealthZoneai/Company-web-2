@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Hero1 from '../../assets/viedos/Hero1.mp4';
 import Hero2 from '../../assets/viedos/Hero2.mp4';
 
+
 const slides = [
     {
         video: Hero1,

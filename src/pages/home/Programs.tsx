@@ -3,12 +3,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import robotics from "../../assets/images/robotic.png";
 import corporate from "../../assets/images/cap.png";
+import InternshipVideo from "../../assets/viedos/internship.mp4";
+import RoboticsVideo from "../../assets/viedos/stem robotics.mp4";
 
 interface Program {
     title: string;
     description: string;
     icon: React.ReactNode;
-    videoId: string;
+    video: string;
 }
 
 const programs: Program[] = [
@@ -16,16 +18,15 @@ const programs: Program[] = [
         title: "Stem & Robotics Education",
         description:
             "Our STEM & Robotics Education Internship Program provides students with hands-on experience in robotics, coding, electronics, and innovative technology. Interns learn by building real projects, exploring STEM concepts, and working with modern tools used in the industry. With expert mentorship and practical training, this program helps students develop problem-solving skills, creativity, and confidence for future tech careers.",
-        videoId: "KJAeg3MWMHg", // Robotics focus
+        video: RoboticsVideo,
         icon: <img src={robotics} alt="robotics" className="w-10 h-10 object-contain" />,
     },
     {
         title: "Internship Program",
         description:
             "Our Internship Program is designed to provide students and young professionals with a comprehensive learning experience that bridges the gap between academic knowledge and real-world industry requirements. Through a structured curriculum, interns gain exposure to practical projects, professional workflows, and essential tools used across the industry.",
-        videoId: "KJAeg3MWMHg", // Corporate focus
+        video: InternshipVideo,
         icon: <img src={corporate} alt="corporate" className="w-10 h-10 object-contain" />,
-
     },
 ];
 
@@ -40,12 +41,13 @@ const ProgramCard: React.FC<{ program: Program; index: number; navigate: any }> 
         >
             {/* Video Background */}
             <div className="absolute inset-0">
-                <iframe
-                    className="absolute inset-0 w-full h-full pointer-events-none opacity-50 group-hover:opacity-70 transition-all duration-700 scale-[1.3]"
-                    src={`https://www.youtube.com/embed/${program.videoId}?autoplay=1&mute=1&loop=1&playlist=${program.videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
-                    title={program.title}
-                    frameBorder="0"
-                    allow="autoplay; fullscreen"
+                <video
+                    src={program.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
             </div>

@@ -86,7 +86,7 @@ export default function WhyWZG() {
                     >
                         {/* Video Column */}
                         <div className="lg:col-span-5">
-                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] lg:aspect-square bg-black">
+                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[300px] md:h-[300px] w-full bg-black">
                                 <iframe
                                     className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none opacity-80"
                                     src={`https://www.youtube.com/embed/${activeTab.videoId}?autoplay=1&mute=1&loop=1&playlist=${activeTab.videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
@@ -99,11 +99,11 @@ export default function WhyWZG() {
                         </div>
 
                         {/* Text Column */}
-                        <div className="lg:col-span-7 space-y-8">
-                            <p className="text-gray-600 text-lg md:text-xl leading-relaxed font-semibold">
+                        <div className="lg:col-span-7 space-y-6">
+                            <p className="text-gray-600 text-lg md:text-l leading-relaxed font-semibold">
                                 {activeTab.description}
                             </p>
-                            <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
+                            <p className="text-gray-600 text-lg md:text-l leading-relaxed">
                                 {activeTab.secondaryText}
                             </p>
                         </div>

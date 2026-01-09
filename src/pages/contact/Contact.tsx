@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Mail,
   Phone,
@@ -12,9 +12,69 @@ import {
   PhoneCall,
   ChevronDown,
   Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    company: "",
+    phone: "",
+    service: "",
+    subject: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setResponseMessage("");
+
+    try {
+      const response = await fetch("http://localhost:8080/api/contact/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setResponseMessage("Your message has been sent successfully! We'll get back to you soon.");
+        setFormData({
+          fullName: "",
+          email: "",
+          company: "",
+          phone: "",
+          service: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setStatus('error');
+        setResponseMessage(data.message || "Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Contact submission error:", error);
+      setStatus('error');
+      setResponseMessage("Network error. Please check your connection and try again.");
+    }
+  };
+
   return (
     <section className="w-full bg-white py-16">
       <div className="mx-auto max-w-7xl px-6">
@@ -88,16 +148,26 @@ const Contact = () => {
           <div className="lg:col-span-8">
             <div className="bg-white rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
               <h3 className="text-2xl font-bold text-blue-900 mb-10">Send Us a Message</h3>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Input
                     icon={<User size={18} className="text-gray-400" />}
                     placeholder="Full Name *"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    required
+                    disabled={status === 'loading'}
                   />
                   <Input
                     icon={<Mail size={18} className="text-gray-400" />}
                     type="email"
                     placeholder="Email Address *"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    disabled={status === 'loading'}
                   />
                 </div>
 
@@ -105,37 +175,99 @@ const Contact = () => {
                   <Input
                     icon={<Building2 size={18} className="text-gray-400" />}
                     placeholder="Company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    disabled={status === 'loading'}
                   />
                   <Input
                     icon={<Phone size={18} className="text-gray-400" />}
                     placeholder="Phone Number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    disabled={status === 'loading'}
                   />
                 </div>
 
                 <div className="relative">
-                  <select className="appearance-none w-full rounded-2xl border border-gray-200 bg-white px-5 py-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all">
-                    <option>Select a Service *</option>
-                    <option>IT Internship Program</option>
-                    <option>IT Training Services</option>
-                    <option>Staffing Solutions</option>
-                    <option>Strategic Consulting</option>
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleInputChange}
+                    required
+                    disabled={status === 'loading'}
+                    className="appearance-none w-full rounded-2xl border border-gray-200 bg-white px-5 py-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all disabled:bg-gray-50 disabled:text-gray-400"
+                  >
+                    <option value="" disabled>Select a Service *</option>
+                    <option value="IT Internship Program">IT Internship Program</option>
+                    <option value="IT Training Services">IT Training Services</option>
+                    <option value="Staffing Solutions">Staffing Solutions</option>
+                    <option value="Strategic Consulting">Strategic Consulting</option>
                   </select>
                   <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={20} />
                 </div>
 
-                <Input placeholder="Subject *" />
+                <Input
+                  placeholder="Subject *"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  disabled={status === 'loading'}
+                />
 
                 <textarea
                   rows={4}
                   placeholder="Message *"
-                  className="w-full rounded-2xl border border-gray-200 bg-white px-5 py-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all resize-none"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  disabled={status === 'loading'}
+                  className="w-full rounded-2xl border border-gray-200 bg-white px-5 py-4 text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all resize-none disabled:bg-gray-50 disabled:text-gray-400"
                 />
+
+                <AnimatePresence>
+                  {status === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="bg-green-50 text-green-700 p-4 rounded-xl flex items-center gap-3 text-sm border border-green-100"
+                    >
+                      <CheckCircle2 size={20} />
+                      {responseMessage}
+                    </motion.div>
+                  )}
+                  {status === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="bg-red-50 text-red-700 p-4 rounded-xl flex items-center gap-3 text-sm border border-red-100"
+                    >
+                      <AlertCircle size={20} />
+                      {responseMessage}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <button
                   type="submit"
-                  className="w-full rounded-2xl bg-blue-600 py-4 font-bold text-white transition hover:bg-blue-700 shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2"
+                  disabled={status === 'loading'}
+                  className="w-full rounded-2xl bg-blue-600 py-4 font-bold text-white transition hover:bg-blue-700 shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group"
                 >
-                  Send Message <Send size={18} />
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </>
+                  )}
                 </button>
               </form>
             </div>
@@ -166,24 +298,20 @@ const Contact = () => {
 
 const Input = ({
   icon,
-  type = "text",
-  placeholder,
-}: {
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: React.ReactNode;
-  type?: string;
-  placeholder: string;
 }) => (
-  <div className="relative">
+  <div className="relative group">
     {icon && (
-      <div className="absolute left-5 top-1/2 -translate-y-1/2">
+      <div className="absolute left-5 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-blue-600">
         {icon}
       </div>
     )}
     <input
-      type={type}
-      placeholder={placeholder}
+      {...props}
       className={`w-full rounded-2xl border border-gray-200 bg-white py-4 ${icon ? "pl-12 pr-5" : "px-5"
-        } focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-gray-600 placeholder:text-gray-400`}
+        } focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all text-gray-600 placeholder:text-gray-400 disabled:bg-gray-50 disabled:text-gray-400`}
     />
   </div>
 );
@@ -218,3 +346,4 @@ const SocialIcon = ({ icon }: { icon: React.ReactNode }) => (
 );
 
 export default Contact;
+
