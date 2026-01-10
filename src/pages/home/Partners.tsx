@@ -18,7 +18,7 @@ const partners = [
 
 export default function Partners() {
     return (
-        <section className="relative py-2 bg-white overflow-hidden my-8">
+        <section className="relative py-2 bg-white overflow-hidden ">
             {/* Header Section */}
             <div className="max-w-7xl mx-auto px-6  gap-4 text-center">
                 <motion.h2

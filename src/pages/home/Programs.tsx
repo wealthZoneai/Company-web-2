@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 import robotics from "../../assets/images/robotic.png";
 import corporate from "../../assets/images/cap.png";
 import InternshipVideo from "../../assets/viedos/internship.mp4";
@@ -8,7 +9,6 @@ import RoboticsVideo from "../../assets/viedos/stem robotics.mp4";
 
 interface Program {
     title: string;
-    description: string;
     icon: React.ReactNode;
     video: string;
 }
@@ -16,15 +16,11 @@ interface Program {
 const programs: Program[] = [
     {
         title: "Stem & Robotics Education",
-        description:
-            "Our STEM & Robotics Education Internship Program provides students with hands-on experience in robotics, coding, electronics, and innovative technology. Interns learn by building real projects, exploring STEM concepts, and working with modern tools used in the industry. With expert mentorship and practical training, this program helps students develop problem-solving skills, creativity, and confidence for future tech careers.",
         video: RoboticsVideo,
         icon: <img src={robotics} alt="robotics" className="w-10 h-10 object-contain" />,
     },
     {
         title: "Internship Program",
-        description:
-            "Our Internship Program is designed to provide students and young professionals with a comprehensive learning experience that bridges the gap between academic knowledge and real-world industry requirements. Through a structured curriculum, interns gain exposure to practical projects, professional workflows, and essential tools used across the industry.",
         video: InternshipVideo,
         icon: <img src={corporate} alt="corporate" className="w-10 h-10 object-contain" />,
     },
@@ -37,7 +33,7 @@ const ProgramCard: React.FC<{ program: Program; index: number; navigate: any }> 
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="group relative h-95 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-black"
+            className="group relative h-80 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-black"
         >
             {/* Video Background */}
             <div className="absolute inset-0">
@@ -47,37 +43,31 @@ const ProgramCard: React.FC<{ program: Program; index: number; navigate: any }> 
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-700"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-700"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                <div className="absolute inset-0  duration-500" />
             </div>
 
-            {/* Content Layer (Centered) */}
-            <div className="relative z-10 h-full  md:p-10 flex flex-col items-center justify-center text-center">
+            {/* Content Layer (Space Between) */}
+            <div className="relative z-10 h-full p-6 md:p-8 flex flex-col justify-between items-start">
                 {/* Header Row: Icon + Title */}
-                <div className="flex flex-col md:flex-row items-center gap-4 mb-6 w-full justify-center">
-                    <div className="w-14 h-15 bg-white rounded-2xl flex items-center justify-center text-gray-900 shadow-2xl animate-pulse-slow overflow-hidden p-2">
+                <div className="flex flex-row items-center gap-4 w-full justify-start -mt-2 md:-mt-4">
+                    <div className="w-12 h-12 bg-white rounded-2xl flex-shrink-0 flex items-center justify-center text-gray-900 shadow-2xl animate-pulse-slow overflow-hidden p-2.5">
                         {program.icon}
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-black text-white leading-tight">
+                    <h3 className="text-xl md:text-2xl font-black text-white leading-tight text-left">
                         {program.title}
                     </h3>
                 </div>
 
-                {/* Description */}
-                <p className="text-white/90 text-[12px] md:text-sm leading-relaxed mb-6 max-w-125 font-medium line-clamp-3 group-hover:line-clamp-none transition-all duration-500">
-                    {program.description}
-                </p>
-
-                {/* Buttons Row */}
-                <div className="flex flex-col sm:flex-row gap-3 w-full justify-center mt-2">
+                {/* Buttons Row (Bottom Corner) */}
+                <div className="flex flex-row gap-3 w-full justify-end items-center">
                     <button
                         onClick={() => program.title === "Internship Program" && navigate("/programs/internship")}
-                        className="px-8 py-3 bg-gradient-to-b from-[#468ef7] to-[#2258ef] hover:from-[#2258ef] hover:to-[#0b42cc] text-white font-black rounded-xl transition-all duration-500 shadow-lg shadow-blue-500/30 text-[13px] active:scale-95"
+                        className="flex items-center gap-2 bg-white/20 hover:bg-white/30 border border-white/20 p-2 rounded-2xl text-white font-bold text-sm group/btn hover:gap-3 transition-all duration-300"
                     >
-                        View Details
+                        View Details <FaArrowRight className="text-xs" />
                     </button>
-
                 </div>
             </div>
         </motion.div>

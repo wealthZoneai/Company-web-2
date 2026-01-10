@@ -192,7 +192,7 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Why Work With Us --- */}
-            <section className="py-20 px-6 max-w-7xl mx-auto">
+            <section className="py-2 px-6 max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold text-blue-800">Why Work With Us</h2>
                 </div>
@@ -212,7 +212,7 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- Our Culture --- */}
-            <section className="bg-white py-20 px-6 mb-20 overflow-hidden">
+            <section className="bg-white py-4 px-6  overflow-hidden">
                 <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                     <div className="space-y-8">
                         <div>
@@ -264,7 +264,7 @@ const Careers: React.FC = () => {
 
             {/* --- Open Positions --- */}
             {/* --- Open Positions --- */}
-            <section id="open-positions" className="py-20 px-6 bg-gray-50/50">
+            <section id="open-positions" className="py-4 px-6 bg-gray-50/50">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16 space-y-2">
                         <span className="text-blue-600 font-bold">Join Us</span>
@@ -310,7 +310,7 @@ const Careers: React.FC = () => {
             </section>
 
             {/* --- CTA Footer --- */}
-            <section className="bg-blue-50 py-16 px-6 mt-20">
+            <section className="bg-blue-50 py-4 px-6 ">
                 <div className="max-w-4xl mx-auto text-center space-y-6">
                     <h2 className="text-2xl md:text-3xl font-bold text-blue-600">
                         Ready to power your wealth with intelligence?

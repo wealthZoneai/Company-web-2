@@ -31,7 +31,7 @@ export default function WhatWeDo() {
     ];
 
     return (
-        <section className=" px-6">
+        <section className=" px-6 py-2">
             <SectionHeading>What we do</SectionHeading>
 
             <motion.div

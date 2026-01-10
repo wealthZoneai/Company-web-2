@@ -17,7 +17,7 @@ export default function OurBranches() {
     ];
 
     return (
-        <section className=" px-6 ">
+        <section className=" px-6 py-2 ">
             <SectionHeading>Our Branches</SectionHeading>
             <motion.div
                 variants={staggerContainer}

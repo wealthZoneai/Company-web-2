@@ -17,6 +17,8 @@ import WZGProject from "../pages/About/project/WZGProject";
 import MarketingProject from "../pages/About/project/MarketingProject";
 import CyberSecurityProject from "../pages/About/project/CyberSecurityProject";
 import InternshipProgram from "../pages/Programs/InternshipProgram";
+// import DataAnalytics from "../pages/Programs/Details/DataAnalytics";
+
 import JobDetails from "../pages/Careers/JobDetails";
 import JavaDeveloper from "../pages/Careers/JavaDeveloper";
 import ReactDeveloper from "../pages/Careers/ReactDeveloper";
@@ -25,6 +27,8 @@ import AWSEngineer from "../pages/Careers/AWSEngineer";
 import PythonDeveloper from "../pages/Careers/PythonDeveloper";
 import CyberSecurity from "../pages/Careers/CyberSecurity";
 import ScrollToTop from "../components/ScrollToTop";
+import DataAnalytics from "../pages/Programs/Details/DataAnalytics";
+// import DataAnalytics from "../pages/Programs/DataAnalytics";
 
 const AppRouter: React.FC = () => {
     return (
@@ -39,6 +43,7 @@ const AppRouter: React.FC = () => {
                     <Route path="/services" element={<Services />} />
                     <Route path="/services/:id" element={<ServiceDetail />} />
                     <Route path="/programs/internship" element={<InternshipProgram />} />
+                    <Route path="/programs/internship/data-analytics" element={<DataAnalytics/>} />
                     <Route path="/careers" element={<Careers />} />
                     <Route path="/careers/job-details" element={<JobDetails />} />
                     <Route path="/careers/java-developer" element={<JavaDeveloper />} />

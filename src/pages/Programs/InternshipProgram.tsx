@@ -1,6 +1,6 @@
-import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaCheckCircle, FaUserTie, FaRocket, FaCertificate, FaArrowRight } from 'react-icons/fa';
+import { FaCalendarAlt, FaCheckCircle, FaUserTie, FaRocket, FaCertificate, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import heroVideo from '../../assets/viedos/hero.mp4';
 
 // Local Image Imports
@@ -119,6 +119,7 @@ const benefits = [
 ];
 
 export default function InternshipProgram() {
+    const navigate = useNavigate();
     return (
         <div className="bg-white min-h-screen ">
             {/* Hero Section */}
@@ -204,7 +205,14 @@ export default function InternshipProgram() {
                                 <div className="p-6">
                                     <h3 className="text-lg font-bold text-gray-900 mb-2">{track.title}</h3>
                                     <p className="text-gray-500 text-sm mb-6 line-clamp-3 leading-relaxed">{track.description}</p>
-                                    <button className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-3 transition-all duration-300">
+                                    <button
+                                        onClick={() => {
+                                            if (track.title === "Data Analytics") {
+                                                navigate("/programs/internship/data-analytics");
+                                            }
+                                        }}
+                                        className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-3 transition-all duration-300"
+                                    >
                                         View Details <FaArrowRight className="text-xs" />
                                     </button>
                                 </div>

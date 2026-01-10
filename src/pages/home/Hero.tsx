@@ -61,7 +61,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative h-[95vh] flex items-end justify-center overflow-hidden bg-black pb-24">
+        <section className="relative h-[80vh] flex items-end justify-center overflow-hidden bg-black pb-24">
             {/* Video Background Layer */}
             <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="wait">

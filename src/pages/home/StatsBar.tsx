@@ -36,7 +36,7 @@ const StatItem: React.FC<StatItemProps> = ({ label, value, suffix = "" }) => {
 
     return (
         <div ref={ref} className="text-center py-2">
-            <div className="text-3xl md:text-5xl font-black text-white leading-none">
+            <div className="text-3xl md:text-4xl font-black text-white leading-none">
                 {count}
                 {suffix}
             </div>
@@ -56,18 +56,18 @@ export default function StatsBar() {
     ];
 
     return (
-        <section className="bg-white  my-8">
-            <div className="max-w-9xl mx-auto ">
+        <section className="bg-white  ">
+            <div className="max-w-9xl  ">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="relative overflow-hidden bg-gradient-to-r from-[#0052D4] via-[#4364F7] to-[#6FB1FC] "
+                    className="relative overflow-hidden bg-gradient-to-r from-[#0052D4] via-[#4364F7] to-[#6FB1FC] rounded-xl mx-4 md:mx-0"
                 >
                     {/* Subtle decoration */}
                     <div className="absolute inset-0 bg-[#000]/5 pointer-events-none" />
 
-                    <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-8 px-6 py-2 md:py-10">
+                    <div className="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-8 px-4 py-2 md:py-4 rounded-xl  ">
                         {stats.map((stat, index) => (
                             <StatItem key={index} {...stat} />
                         ))}

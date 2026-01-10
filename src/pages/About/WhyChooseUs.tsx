@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function WhyChooseUs() {
     return (
-        <section className=" px-6 ">
+        <section className=" px-6 py-2 ">
             {/* Heading with blue vertical line */}
             <div className="flex items-center gap-3 mb-10">
                 <div className="w-[3px] h-8 bg-blue-600 rounded-full"></div>

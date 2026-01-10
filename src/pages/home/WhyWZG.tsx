@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import impactVideo from '../../assets/viedos/impact.mp4';
+import devVideo from '../../assets/viedos/Devlopment.mp4';
 
 interface TabContent {
     id: string;
     label: string;
-    videoId: string;
+    videoId?: string;
+    videoSrc?: string;
     description: string;
     secondaryText: string;
 }
@@ -13,14 +16,14 @@ const tabData: TabContent[] = [
     {
         id: 'impact',
         label: 'Impact',
-        videoId: 'KJAeg3MWMHg', // Robotics/Innovation
+        videoSrc: impactVideo,
         description: 'At Wealth Zone Group AI, impact is at the core of every solution we build. We aim to transform businesses by combining advance advanced technologies with strategic thinking. Our work goes beyond delivering software — we deliver results.',
         secondaryText: 'We help organizations automate routine tasks, improve decision-making using AI insights, and enhance customer experiences through smart digital platforms. Over the years, our solutions have helped companies reduce operational costs, increase productivity, and scale their business operations globally.'
     },
     {
         id: 'development',
         label: 'Development',
-        videoId: 'l4TfH1A_o78', // Business/Consulting context
+        videoSrc: devVideo,
         description: 'Our development process is rooted in innovation and precision. We leverage the latest AI frameworks and cloud-native architectures to build scalable, high-performance applications that meet the demands of tomorrow.',
         secondaryText: 'From initial prototyping to full-scale deployment, our engineering team ensures that every line of code contributes to a robust and secure ecosystem. We prioritize agile methodologies and continuous integration to maintain the highest standards of quality.'
     },
@@ -87,13 +90,28 @@ export default function WhyWZG() {
                         {/* Video Column */}
                         <div className="lg:col-span-5">
                             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[300px] md:h-[300px] w-full bg-black">
-                                <iframe
-                                    className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none opacity-80"
-                                    src={`https://www.youtube.com/embed/${activeTab.videoId}?autoplay=1&mute=1&loop=1&playlist=${activeTab.videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
-                                    title={activeTab.label}
-                                    frameBorder="0"
-                                    allow="autoplay; fullscreen"
-                                />
+                                {activeTab.videoSrc ? (
+                                    <video
+                                        key={activeTab.id}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        preload="auto"
+                                        className="absolute inset-0 w-full h-full object-cover opacity-80"
+                                    >
+                                        <source src={activeTab.videoSrc} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                ) : (
+                                    <iframe
+                                        className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none opacity-80"
+                                        src={`https://www.youtube.com/embed/${activeTab.videoId}?autoplay=1&mute=1&loop=1&playlist=${activeTab.videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}
+                                        title={activeTab.label}
+                                        frameBorder="0"
+                                        allow="autoplay; fullscreen"
+                                    />
+                                )}
                                 <div className="absolute inset-0 bg-blue-700/20 mix-blend-multiply" />
                             </div>
                         </div>
