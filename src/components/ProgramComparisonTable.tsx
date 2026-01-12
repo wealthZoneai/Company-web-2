@@ -34,18 +34,15 @@ const ProgramComparisonTable: React.FC = () => {
                             <th className="p-4 border-b border-gray-200 min-w-[200px]">Features</th>
                             <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Training</th>
                             <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Internship</th>
-                            <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Internship & Placement</th>
+                            <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Internship & Placement Assistance</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                        <TableRow label="6 week work integration Program" t={false} i={true} ip={true} />
-                        <TableRow label="Program Duration" textT="45 Days" textI="3 Months" textIP="6 Months" />
+                        <TableRow label="Program Duration" textT="30-45 Days" textI="6 Months" textIP="6 Months & 1 Year" />
                         <TableRow label="Hours of Learning" textT="100+" textI="200+" textIP="400+" />
-                        <TableRow label="Projects" textT="2 Major" textI="4 Major" textIP="8 Major + Live" />
-                        <TableRow label="Certifications" textT="Course Completion" textI="Internship + Course" textIP="Govt + Internship + Course" />
+                        <TableRow label="Projects" textT="Mulitiple Live projects" textI="Mulitiple Live projects" textIP=" Mulitiple Live projects" />
                         <TableRow label="Resume Optimization" t={false} i={true} ip={true} />
                         <TableRow label="Portfolio Optimization" t={false} i={true} ip={true} />
-                        <TableRow label="Placement Assistance" t={false} i={false} ip={true} />
                         <TableRow label="Mock Interviews" t={false} i={false} ip={true} />
                         <TableRow label="Price" textT="₹ 5000" textI="₹ 10000" textIP="₹ 25000" highlight />
                     </tbody>

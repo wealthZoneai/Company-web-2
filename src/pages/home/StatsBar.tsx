@@ -49,10 +49,10 @@ const StatItem: React.FC<StatItemProps> = ({ label, value, suffix = "" }) => {
 
 export default function StatsBar() {
     const stats = [
-        { label: "Happy Clients", value: 500, suffix: "+" },
+        { label: "Happy Clients", value: 100, suffix: "+" },
         { label: "Years Experience", value: 20, suffix: "+" },
-        { label: "Projects completed", value: 500, suffix: "+" },
-        { label: "Success Rate", value: 98, suffix: "%" },
+        { label: "Projects completed", value: 108, suffix: "+" },
+        { label: "Success Rate", value: 85, suffix: "%" },
     ];
 
     return (

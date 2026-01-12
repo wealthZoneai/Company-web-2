@@ -101,10 +101,10 @@ const tracks = [
 ];
 
 const timeline = [
-    { week: "Week 1-2", title: "Onboarding & Orientation", description: "Introduction to company culture and tools." },
-    { week: "Week 3-6", title: "Core Training", description: "Learn technical skill development modules." },
-    { week: "Week 7-10", title: "Project Work", description: "Real-world project assignment." },
-    { week: "Week 11-12", title: "Final Presentation", description: "Showcase your achievements." }
+    { week: "Week 1-2", title: "Onboarding & Orientation", description: "Get familiar with company workflow, tools, and team coordination.." },
+    { week: "Week 3-6", title: "Core Training", description: "Work on assigned tasks and support ongoing projects." },
+    { week: "Week 7-10", title: "Project Work", description: "Contribute directly to real-time project development." },
+    { week: "Week 11-12", title: "Final Presentation", description: "Final submissions, feedback, and internship completion." }
 ];
 
 const benefits = [
@@ -209,6 +209,26 @@ export default function InternshipProgram() {
                                         onClick={() => {
                                             if (track.title === "Data Analytics") {
                                                 navigate("/programs/internship/data-analytics");
+                                            } else if (track.title === "Robotic Engineer") {
+                                                navigate("/programs/internship/robotic-engineer");
+                                            } else if (track.title === "Microsoft Technologies") {
+                                                navigate("/programs/internship/microsoft-technologies");
+                                            } else if (track.title === "Python Full-Stack Development") {
+                                                navigate("/programs/internship/python-fullstack");
+                                            } else if (track.title === "MERN Stack (React JS, Node JS)") {
+                                                navigate("/programs/internship/mern-stack");
+                                            } else if (track.title === "Sales Force") {
+                                                navigate("/programs/internship/salesforce");
+                                            } else if (track.title === "Quality Assurance") {
+                                                navigate("/programs/internship/quality-assurance");
+                                            } else if (track.title === "Cloud Technologies") {
+                                                navigate("/programs/internship/cloud-technologies");
+                                            } else if (track.title === "Cyber Security") {
+                                                navigate("/programs/internship/cyber-security");
+                                            } else if (track.title === "AI & ML") {
+                                                navigate("/programs/internship/ai-ml");
+                                            } else if (track.title === "Java Full Stack Development") {
+                                                navigate("/programs/internship/java-fullstack");
                                             }
                                         }}
                                         className="flex items-center gap-2 text-blue-600 font-bold text-sm group-hover:gap-3 transition-all duration-300"

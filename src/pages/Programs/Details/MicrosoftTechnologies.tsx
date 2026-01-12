@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaCheckCircle, FaClock, FaCertificate, FaLaptop, FaDownload, FaArrowLeft } from 'react-icons/fa';
+import { FaCheckCircle, FaClock, FaCertificate, FaLaptop, FaDownload, FaArrowLeft, FaWindows } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import ProgramComparisonTable from '../../../components/ProgramComparisonTable';
 import ApplicationModal from '../../../components/ApplicationModal';
-import DataAnalyticsImg from '../../assets/images/Data Analytics.png'; // Reusing existing asset if available, or placeholder
+import MicrosoftImg from '../../../assets/images/Microsoft Technologies.png';
 
-const DataAnalytics: React.FC = () => {
+const MicrosoftTechnologies: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className="bg-white min-h-screen font-sans">
@@ -17,13 +16,12 @@ const DataAnalytics: React.FC = () => {
                         <FaArrowLeft />
                     </Link>
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center p-2">
-                            {/* Placeholder Icon or Image */}
-                            <span className="text-2xl">📊</span>
+                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center p-2 text-blue-600">
+                            <FaWindows className="text-2xl" />
                         </div>
                         <div>
-                            <h1 className="text-xl font-bold text-gray-900">Data Analytics</h1>
-                            <p className="text-xs text-gray-500">Master the art of turning data into actionable insights.</p>
+                            <h1 className="text-xl font-bold text-gray-900">Microsoft Technologies</h1>
+                            <p className="text-xs text-gray-500">Build enterprise solutions using Microsoft tools.</p>
                         </div>
                     </div>
                     <div className="ml-auto">
@@ -41,9 +39,9 @@ const DataAnalytics: React.FC = () => {
 
                 {/* Intro Section */}
                 <section className="space-y-4">
-                    <h2 className="text-2xl font-bold text-gray-900">What is Data Analytics?</h2>
+                    <h2 className="text-2xl font-bold text-gray-900">What is Microsoft Technologies?</h2>
                     <p className="text-gray-600 leading-relaxed max-w-4xl text-sm">
-                        Data Analytics is the science of analyzing raw data to make conclusions about that information. Many of the techniques and processes of data analytics have been automated into mechanical processes and algorithms that work over raw data for human consumption. Data Analytics is the science of analyzing raw data to make conclusions about that information. Many of the techniques and processes of data analytics have been automated into mechanical processes and algorithms that work over raw data for human consumption.
+                        Microsoft Technologies form a comprehensive ecosystem of tools, frameworks, and platforms that enable developers and organizations to build secure, scalable, and high-performance applications for modern business needs. They are widely used in enterprise software development, cloud computing, and digital transformation.
                     </p>
                 </section>
 
@@ -120,7 +118,7 @@ const DataAnalytics: React.FC = () => {
                         <div className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100">
                             <h3 className="text-blue-700 font-bold mb-4">Careers Opportunities</h3>
                             <ul className="space-y-2">
-                                {['Data Analyst', 'Business Intelligence Analyst', 'Marketing Analyst', 'Operations Analyst'].map((job) => (
+                                {['.NET Developer', 'Software Engineer', 'Full Stack Developer', 'Cloud Solutions Architect'].map((job) => (
                                     <li key={job} className="flex items-center gap-2 text-sm text-gray-700">
                                         <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                                         {job}
@@ -133,7 +131,7 @@ const DataAnalytics: React.FC = () => {
                         <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
                             <h3 className="text-blue-700 font-bold mb-4">Skills You'll Gain</h3>
                             <div className="flex flex-wrap gap-2">
-                                {['Python', 'SQL', 'Tableau', 'Power BI', 'Statistical Analysis', 'Data Cleaning', 'Predictive Modeling'].map((skill) => (
+                                {['C#', '.NET Core', 'Azure', 'SQL Server', 'ASP.NET MVC', 'Web API', 'DevOps'].map((skill) => (
                                     <span key={skill} className="bg-white border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 shadow-sm">
                                         {skill}
                                     </span>
@@ -149,59 +147,11 @@ const DataAnalytics: React.FC = () => {
                 </div>
 
                 {/* Comparison Table */}
-                <section className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-sm text-left">
-                            <thead className="bg-gray-50 text-gray-900 font-bold">
-                                <tr>
-                                    <th className="p-4 border-b border-gray-200 min-w-[200px]">Features</th>
-                                    <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Training</th>
-                                    <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Internship</th>
-                                    <th className="p-4 border-b border-gray-200 text-center min-w-[150px]">Internship & Placement</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-100">
-                                <TableRow label="6 week work integration Program" t={false} i={true} ip={true} />
-                                <TableRow label="Program Duration" textT="45 Days" textI="3 Months" textIP="6 Months" />
-                                <TableRow label="Hours of Learning" textT="100+" textI="200+" textIP="400+" />
-                                <TableRow label="Projects" textT="2 Major" textI="4 Major" textIP="8 Major + Live" />
-                                <TableRow label="Certifications" textT="Course Completion" textI="Internship + Course" textIP="Govt + Internship + Course" />
-                                <TableRow label="Resume Optimization" t={false} i={true} ip={true} />
-                                <TableRow label="Portfolio Optimization" t={false} i={true} ip={true} />
-                                <TableRow label="Placement Assistance" t={false} i={false} ip={true} />
-                                <TableRow label="Mock Interviews" t={false} i={false} ip={true} />
-                                <TableRow label="Price" textT="₹ 5000" textI="₹ 10000" textIP="₹ 25000" highlight />
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-                <ApplicationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} courseName="Data Analytics" />
+                <ProgramComparisonTable />
+                <ApplicationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} courseName="Microsoft Technologies" />
             </div>
         </div>
     );
 };
 
-// Helper for Table Rows
-const TableRow: React.FC<{
-    label: string;
-    t?: boolean; i?: boolean; ip?: boolean;
-    textT?: string; textI?: string; textIP?: string;
-    highlight?: boolean;
-}> = ({ label, t, i, ip, textT, textI, textIP, highlight }) => {
-
-    const renderCell = (bool?: boolean, text?: string) => {
-        if (text) return <span className="font-semibold">{text}</span>;
-        return bool ? <FaCheckCircle className="text-green-500 mx-auto text-lg" /> : <span className="text-gray-300">-</span>;
-    };
-
-    return (
-        <tr className={`hover:bg-gray-50/50 transition-colors ${highlight ? 'bg-blue-50/30' : ''}`}>
-            <td className="p-4 border-r border-gray-100 font-semibold text-gray-700">{label}</td>
-            <td className="p-4 border-r border-gray-100 text-center text-gray-600">{renderCell(t, textT)}</td>
-            <td className="p-4 border-r border-gray-100 text-center text-gray-600">{renderCell(i, textI)}</td>
-            <td className="p-4 text-center text-gray-900 font-bold">{renderCell(ip, textIP)}</td>
-        </tr>
-    );
-}
-
-export default DataAnalytics;
+export default MicrosoftTechnologies;

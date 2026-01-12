@@ -28,6 +28,16 @@ import PythonDeveloper from "../pages/Careers/PythonDeveloper";
 import CyberSecurity from "../pages/Careers/CyberSecurity";
 import ScrollToTop from "../components/ScrollToTop";
 import DataAnalytics from "../pages/Programs/Details/DataAnalytics";
+import RoboticEngineer from "../pages/Programs/Details/RoboticEngineer";
+import MicrosoftTechnologies from "../pages/Programs/Details/MicrosoftTechnologies";
+import PythonFullStack from "../pages/Programs/Details/PythonFullStack";
+import MernStack from "../pages/Programs/Details/MernStack";
+import Salesforce from "../pages/Programs/Details/Salesforce";
+import QualityAssurance from "../pages/Programs/Details/QualityAssurance";
+import CloudTechnologies from "../pages/Programs/Details/CloudTechnologies";
+import CyberSecurityInternship from "../pages/Programs/Details/CyberSecuritydetails";
+import AIML from "../pages/Programs/Details/AIMLdetails";
+import JavaFullStack from "../pages/Programs/Details/JavaFullStackDetails";
 // import DataAnalytics from "../pages/Programs/DataAnalytics";
 
 const AppRouter: React.FC = () => {
@@ -43,7 +53,17 @@ const AppRouter: React.FC = () => {
                     <Route path="/services" element={<Services />} />
                     <Route path="/services/:id" element={<ServiceDetail />} />
                     <Route path="/programs/internship" element={<InternshipProgram />} />
-                    <Route path="/programs/internship/data-analytics" element={<DataAnalytics/>} />
+                    <Route path="/programs/internship/data-analytics" element={<DataAnalytics />} />
+                    <Route path="/programs/internship/robotic-engineer" element={<RoboticEngineer />} />
+                    <Route path="/programs/internship/microsoft-technologies" element={<MicrosoftTechnologies />} />
+                    <Route path="/programs/internship/python-fullstack" element={<PythonFullStack />} />
+                    <Route path="/programs/internship/mern-stack" element={<MernStack />} />
+                    <Route path="/programs/internship/salesforce" element={<Salesforce />} />
+                    <Route path="/programs/internship/quality-assurance" element={<QualityAssurance />} />
+                    <Route path="/programs/internship/cloud-technologies" element={<CloudTechnologies />} />
+                    <Route path="/programs/internship/cyber-security" element={<CyberSecurityInternship />} />
+                    <Route path="/programs/internship/ai-ml" element={<AIML />} />
+                    <Route path="/programs/internship/java-fullstack" element={<JavaFullStack />} />
                     <Route path="/careers" element={<Careers />} />
                     <Route path="/careers/job-details" element={<JobDetails />} />
                     <Route path="/careers/java-developer" element={<JavaDeveloper />} />
