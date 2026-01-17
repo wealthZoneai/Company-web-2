@@ -21,7 +21,7 @@ const tabData: TabContent[] = [
         id: 'development',
         label: 'Development',
         videoId: 'l4TfH1A_o78', // Business/Consulting context
-        description: ' We believe in continuous growth—for our clients, our team, and every project we take on. Growth is the foundation of our approach, driving us to constantly improve, adapt, and deliver greater value. By combining innovative strategies with modern technologies, we transform ideas into meaningful digital experiences that are intuitive, engaging, and results-driven.',
+        description: ' We build powerful, scalable, and future-ready digital products that help businesses grow and compete in today’s fast-moving world. Our development team combines clean code, modern frameworks, and proven engineering practices to deliver reliable, high-performance applications tailored to your needs.',
         secondaryText: 'Our forward-thinking mindset allows us to stay ahead of industry trends, emerging technologies, and evolving user expectations. This enables us to design solutions that are scalable, future-ready, and impactful—built not only for today’s needs but also for tomorrow’s opportunities. We work closely with our clients as true partners, taking the time to understand their goals, challenges, and long-term vision.'
     },
     {
@@ -45,7 +45,7 @@ export default function WhyWZG() {
  
     return (
         <section className="relative  bg-white overflow-hidden py-6">
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className=" px-6 relative z-10">
                 {/* Header */}
                 <div className="mb-12">
                     <h2 className="text-2xl md:text-3xl font-black text-blue-800 mb-8">
@@ -86,7 +86,7 @@ export default function WhyWZG() {
                     >
                         {/* Video Column */}
                         <div className="lg:col-span-5">
-                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[300px] md:h-[300px] w-full bg-black">
+                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[350px] md:h-[300px] w-full bg-black">
                                 <iframe
                                     className="absolute inset-0 w-full h-full scale-[1.5] pointer-events-none opacity-80"
                                     src={`https://www.youtube.com/embed/${activeTab.videoId}?autoplay=1&mute=1&loop=1&playlist=${activeTab.videoId}&controls=0&modestbranding=1&rel=0&playsinline=1`}

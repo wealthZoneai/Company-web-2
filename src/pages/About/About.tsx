@@ -14,6 +14,7 @@ import Leadership from './Leadership';
 import OurTeam from './OurTeam';
 import OurPortfolio from './OurPortfolio';
 
+
 export default function About() {
     return (
         <div className="bg-white min-h-screen font-sans overflow-x-hidden">
@@ -28,11 +29,12 @@ export default function About() {
                 <WhyChooseUs />
                 <Leadership />
                 <OurPortfolio />
-              <OurTeam />
+                <OurTeam />
 
                 <OurBranches />
             </div>
             <FutureGoalCTA />
+
         </div>
     );
 }

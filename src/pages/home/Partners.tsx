@@ -7,13 +7,18 @@ import DeloitteLogo from '../../assets/images/logo/Delotie.png';
 import TeamleaseLogo from '../../assets/images/logo/Teamlease.png';
 import PeopleStrongLogo from '../../assets/images/logo/PeopleStrong.png';
 import QuessLogo from '../../assets/images/logo/Quess.png';
+import TechMahindraLogo from '../../assets/images/logo/Tech Mahendra.png';
+import RahejaLogo from '../../assets/images/logo/Raheja.jpg';
 
 const partners = [
     { name: "Wipro", logo: WiproLogo },
     { name: "Deloitte", logo: DeloitteLogo },
+     { name: "Tech Mahindra", logo: TechMahindraLogo },
+    { name: "Raheja", logo: RahejaLogo },
     { name: "TeamLease Digital", logo: TeamleaseLogo },
     { name: "People Media Factory", logo: PeopleStrongLogo },
     { name: "Quess", logo: QuessLogo },
+   
 ];
 
 export default function Partners() {

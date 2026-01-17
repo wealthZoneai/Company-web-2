@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/images/blue_logo.png";
+import logo from "../assets/images/logo/oyster_techologies_logo.jpg";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 interface NavItemProps {
@@ -63,37 +63,29 @@ export default function Navbar() {
 
     const navLinks = [
         { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
-        { name: "Services", path: "/services" },
-        { name: "Careers", path: "/careers" },
+                { name: "Courses", path: "/internship" },
+
+        { name: "Reviews", path: "/reviews" },
+
+
+        
     ];
 
     return (
         <motion.header
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-2 shadow-md"
-                : "bg-transparent py-4"
-                }`}
+            className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-md py-4`}
         >
-            <nav className=" px-4 md:px-0 flex items-center justify-around">
+            <nav className="max-w-7xl mx-auto px-4 md:px-0 flex items-center justify-between">
                 {/* Logo */}
-                <NavLink to="/" className="flex items-center gap-2 group">
+                <NavLink to="/internship" className="flex items-center group">
                     <motion.img
                         whileHover={{ scale: 1.05 }}
                         src={logo}
                         alt="Wealth Zone Group AI"
-                        className="h-10 md:h-14 w-auto transition-all object-contain"
+                        className="h-10 md:h-13 w-auto transition-all"
                     />
-                    <div className="flex flex-col justify-center h-10 md:h-14">
-                        <span className="font-extrabold text-lg md:text-xl text-blue-900 leading-none tracking-tight">
-                            WEALTH ZONE GROUP AI
-                        </span>
-                        <span className="text-[10px] md:text-xs text-gray-600 font-bold tracking-wide">
-                            International Private Limited
-                        </span>
-                    </div>
                 </NavLink>
 
                 {/* Desktop Nav Items */}

@@ -181,7 +181,10 @@ export default function Testimonials() {
               className="flex items-center justify-center z-20"
             >
               <motion.button
-                onClick={() => setActiveIndex(i)}
+                onClick={() => {
+                  setActiveIndex(i);
+                  setIsModalOpen(true);
+                }}
                 className={`w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white shadow-xl overflow-hidden transition-all duration-500 ${activeIndex === i ? 'border-blue-500 z-10 shadow-blue-200 ring-4 ring-blue-100/50 scale-105' : 'scale-100 opacity-80'}`}
               >
                 <img src={t.image} alt={t.name} className="w-full h-full object-cover" />

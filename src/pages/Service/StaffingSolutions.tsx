@@ -99,7 +99,7 @@ const StaffingSolutions: React.FC = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-gray-900">Contact us</h4>
-                                    <p className="text-gray-600">0000000000</p>
+                                    <p className="text-gray-600">+91 789456122</p>
                                 </div>
                             </div>
 
@@ -110,7 +110,9 @@ const StaffingSolutions: React.FC = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-gray-900">Email us</h4>
-                                    <p className="text-gray-600">contact@staffpro.com</p>
+                                    <p className="text-gray-600">info@wealthzonegroupai.com</p>
+
+                                    <p className="text-gray-600">hr@wealthzonegroupai.com</p>
                                 </div>
                             </div>
 
@@ -121,7 +123,7 @@ const StaffingSolutions: React.FC = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-gray-900">Visit us</h4>
-                                    <p className="text-gray-600">123 Business Ave, Suite 100, NY 10001</p>
+                                    <p className="text-gray-600">2nd floor, A2 Square, Jai Hind Gandhi Rd, Cyber Hills Colony, VIP Hills, Silicon Valley, Madhapur, Hyderabad, Telangana 500081</p>
                                 </div>
                             </div>
                         </div>

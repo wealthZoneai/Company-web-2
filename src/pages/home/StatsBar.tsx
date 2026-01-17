@@ -51,7 +51,7 @@ export default function StatsBar() {
     const stats = [
         { label: "Happy Clients", value: 100, suffix: "+" },
         { label: "Years Experience", value: 20, suffix: "+" },
-        { label: "Projects completed", value: 108, suffix: "+" },
+        { label: "Projects completed", value: 180, suffix: "+" },
         { label: "Success Rate", value: 85, suffix: "%" },
     ];
 

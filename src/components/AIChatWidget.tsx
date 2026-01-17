@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaHeadset, FaPaperPlane, FaTimes, FaCommentDots } from 'react-icons/fa';
+import { FaHeadset, FaPaperPlane, FaTimes, FaCommentDots, FaQuestionCircle } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Message {
@@ -12,7 +12,7 @@ interface Message {
 const AIChatWidget: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
-        { id: 1, text: "Hello! I'm your Support Assistant. How can I help you today?", sender: 'bot', timestamp: new Date() }
+        { id: 1, text: "Hello! Welcome to the Wealth Zone Help Center. How can we support you today?", sender: 'bot', timestamp: new Date() }
     ]);
     const [inputValue, setInputValue] = useState("");
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -44,11 +44,11 @@ const AIChatWidget: React.FC = () => {
         // Simulate AI response
         setTimeout(() => {
             const botResponses = [
-                "That's interesting! Tell me more.",
-                "I can help you with our services, careers, or general inquiries.",
-                "Our team will get back to you shortly regarding this request.",
-                "You can explore our 'Services' page for more details.",
-                "Thanks for reaching out to Support!"
+                "I understand. Let me check our knowledge base for that.",
+                "You can find more information about our services on the 'Services' page.",
+                "Our support team has been notified of your query.",
+                "Could you please provide more details so I can assist you better?",
+                "Thank you for contacting Wealth Zone Support."
             ];
             const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
 
@@ -82,10 +82,10 @@ const AIChatWidget: React.FC = () => {
                                     <FaHeadset className="text-xl" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-sm">Support</h3>
+                                    <h3 className="font-bold text-sm">Help Center</h3>
                                     <p className="text-xs text-blue-100 flex items-center gap-1">
                                         <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                                        Online
+                                        Online Support
                                     </p>
                                 </div>
                             </div>
@@ -106,8 +106,8 @@ const AIChatWidget: React.FC = () => {
                                 >
                                     <div
                                         className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm ${msg.sender === 'user'
-                                                ? 'bg-[#0B52A0] text-white rounded-br-none'
-                                                : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
+                                            ? 'bg-[#0B52A0] text-white rounded-br-none'
+                                            : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
                                             }`}
                                     >
                                         {msg.text}
@@ -148,7 +148,7 @@ const AIChatWidget: React.FC = () => {
                 {/* Visual Label */}
                 {!isOpen && (
                     <span className="text-xs font-bold text-gray-600 bg-white px-2 py-1 rounded-md shadow-sm border border-gray-100">
-                        Support
+                        Help
                     </span>
                 )}
 

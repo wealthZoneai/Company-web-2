@@ -63,7 +63,11 @@ const ProgramCard: React.FC<{ program: Program; index: number; navigate: any }> 
                 {/* Buttons Row (Bottom Corner) */}
                 <div className="flex flex-row gap-3 w-full justify-end items-center">
                     <button
-                        onClick={() => program.title === "Internship Program" && navigate("/programs/internship")}
+                        onClick={() => {
+                            if (program.title === "Internship Program") {
+                                navigate("/internship");
+                            }
+                        }}
                         className="flex items-center gap-2 bg-white/20 hover:bg-white/30 border border-white/20 p-2 rounded-2xl text-white font-bold text-sm group/btn hover:gap-3 transition-all duration-300"
                     >
                         View Details <FaArrowRight className="text-xs" />
