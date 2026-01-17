@@ -1,3 +1,4 @@
+// ... (imports remain same)
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,9 +21,9 @@ const NavItem: React.FC<NavItemProps> = ({ to, children, onClick }) => {
                 to={to}
                 onClick={onClick}
                 className={({ isActive }) =>
-                    `relative px-1 py-2 text-sm font-semibold transition-colors duration-300 ${isActive
+                    `relative px-1 py-2 text-sm font-bold transition-colors duration-300 ${isActive
                         ? "text-blue-600"
-                        : "text-gray-600 hover:text-blue-600"
+                        : "text-gray-700 hover:text-blue-600"
                     }`
                 }
             >
@@ -44,7 +45,6 @@ const NavItem: React.FC<NavItemProps> = ({ to, children, onClick }) => {
 };
 
 export default function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
 
@@ -52,14 +52,6 @@ export default function Navbar() {
     useEffect(() => {
         setIsMobileMenuOpen(false);
     }, [location]);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     const navLinks = [
         { name: "Home", path: "/" },
@@ -72,25 +64,22 @@ export default function Navbar() {
         <motion.header
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/80 backdrop-blur-xl border-b border-gray-100 py-2 shadow-md"
-                : "bg-transparent py-4"
-                }`}
+            className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 py-3 shadow-sm"
         >
-            <nav className=" px-4 md:px-0 flex items-center justify-around">
+            <nav className=" px-6 md:px-0 flex items-center justify-between md:justify-around text-sm">
                 {/* Logo */}
                 <NavLink to="/" className="flex items-center gap-2 group">
                     <motion.img
                         whileHover={{ scale: 1.05 }}
                         src={logo}
                         alt="Wealth Zone Group AI"
-                        className="h-10 md:h-14 w-auto transition-all object-contain"
+                        className="h-10 md:h-12 w-auto transition-all object-contain"
                     />
-                    <div className="flex flex-col justify-center h-10 md:h-14">
-                        <span className="font-extrabold text-lg md:text-xl text-blue-900 leading-none tracking-tight">
+                    <div className="flex flex-col justify-center">
+                        <span className="font-black text-lg md:text-xl text-blue-900 leading-none tracking-tight">
                             WEALTH ZONE GROUP AI
                         </span>
-                        <span className="text-[10px] md:text-xs text-gray-600 font-bold tracking-wide">
+                        <span className="text-[10px] md:text-xs text-gray-500 font-bold tracking-wide uppercase">
                             International Private Limited
                         </span>
                     </div>
@@ -113,7 +102,7 @@ export default function Navbar() {
                     >
                         <NavLink
                             to="/contact"
-                            className="px-8 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg shadow-blue-600/20"
+                            className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg shadow-blue-600/20"
                         >
                             Contact Us
                         </NavLink>
@@ -137,7 +126,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-b border-gray-100 overflow-hidden shadow-xl"
+                        className="md:hidden bg-white border-t border-gray-100 overflow-hidden shadow-xl"
                     >
                         <ul className="flex flex-col gap-1 p-6">
                             {navLinks.map((link) => (

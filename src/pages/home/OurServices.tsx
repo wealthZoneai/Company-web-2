@@ -1,36 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
-    return (
-        <motion.div
-            className={`absolute rounded-full blur-[120px] ${className}`}
-            animate={{
-                x: [0, 50, -50, 0],
-                y: [0, -50, 50, 0],
-                scale: [1, 1.1, 0.9, 1],
-            }}
-            transition={{
-                duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-            }}
-        />
-    );
-};
-
-const AnimatedBackground: React.FC = () => {
-    return (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-            <FloatBlob className="bg-blue-200/40 w-[40rem] h-[40rem] -top-40 -left-40" duration={15} />
-            <FloatBlob className="bg-purple-200/40 w-[45rem] h-[45rem] -bottom-40 -right-40" duration={18} />
-            <FloatBlob className="bg-cyan-100/30 w-96 h-96 top-1/4 right-1/4" duration={12} />
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
-        </div>
-    );
-};
+import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // Local Service Image Imports
 import WebDevImg from '../../assets/images/Ourserves/WebDevlopment.avif';
@@ -43,92 +14,88 @@ import GraphicImg from '../../assets/images/Ourserves/Graphic.avif';
 interface Service {
     id: string;
     title: string;
-    videoUrl: string;
+    description: string; // Added brief description for corporate look
     image: string;
+    link: string;
 }
 
 const services: Service[] = [
     {
         id: "web-dev",
         title: "Web Design & Development",
-        videoUrl: "https://www.youtube.com/watch?v=g7xkVEWrX8E",
-        image: WebDevImg
+        description: "Create stunning, responsive websites that drive business growth.",
+        image: WebDevImg,
+        link: "/services/web-dev"
     },
     {
         id: "mobile-app",
         title: "Mobile App Development",
-        videoUrl: "https://www.youtube.com/watch?v=J4xNhYeaGkI",
-        image: MobileImg
+        description: "Native and cross-platform mobile solutions for modern enterprises.",
+        image: MobileImg,
+        link: "/services/mobile-app"
     },
     {
         id: "e-commerce",
-        title: "E-Commerce Website Design",
-        videoUrl: "https://www.youtube.com/watch?v=sJGVcb5fn2c",
-        image: EcomersImg
+        title: "E-Commerce Solutions",
+        description: "Scalable online stores built for maximum conversion and performance.",
+        image: EcomersImg,
+        link: "/services/e-commerce"
     },
     {
         id: "marketing",
         title: "Digital Marketing & SEO",
-        videoUrl: "https://www.youtube.com/watch?v=GGf1JjSAKP4",
-        image: MarketingImg
+        description: "Data-driven strategies to boost your online presence and reach.",
+        image: MarketingImg,
+        link: "/services/marketing"
     },
     {
         id: "cms",
-        title: "CMS Websites & Integration",
-        videoUrl: "https://www.youtube.com/watch?v=Q3oItpVa9fs",
-        image: CmsImg
+        title: "CMS Integration",
+        description: "Flexible content management systems tailored to your workflow.",
+        image: CmsImg,
+        link: "/services/cms"
     },
     {
         id: "graphic",
-        title: "Graphic & Creative Designs",
-        videoUrl: "https://www.youtube.com/watch?v=kPahWDoJ2cg",
-        image: GraphicImg
+        title: "Creative Design",
+        description: "Impactful visual identities that tell your brand story.",
+        image: GraphicImg,
+        link: "/services/graphic"
     }
 ];
 
 const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, index }) => {
-    // Extract video ID from URL (handles multiple formats)
-    const videoId = service.videoUrl.split('v=')[1]?.split('&')[0];
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.6 }}
-            className="group relative rounded-2xl overflow-hidden border border-gray-100 shadow-lg bg-white flex flex-col h-full cursor-pointer hover:shadow-2xl hover:shadow-blue-600/10 hover:-translate-y-1 transition-all duration-300"
+            className="group bg-white border-b-4 border-transparent hover:border-blue-600 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full"
         >
-            {/* Header Content Area (Media) */}
-            <div className="relative aspect-[4/3] overflow-hidden bg-black">
-                {/* Initial Static Image */}
+            <div className="relative h-48 overflow-hidden">
                 <img
                     src={service.image}
                     alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-
-                {/* Hover Video Background */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out pointer-events-none">
-                    <iframe
-                        className="absolute inset-0 w-full h-full scale-[1.25] pointer-events-none"
-                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`}
-                        title={service.title}
-                        frameBorder="0"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        style={{ filter: 'grayscale(0.2) contrast(1.1)' }}
-                    />
-                </div>
-
-                {/* Visual Polish Layer */}
-                <div className="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </div>
 
-            {/* Footer Area (Titles) */}
-            <div className="p-5 text-center bg-white border-t border-gray-50 flex-grow flex flex-col items-center justify-center">
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-all duration-300 tracking-tight leading-snug">
+            <div className="p-8 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {service.title}
                 </h3>
-                <div className="w-12 h-1 bg-blue-600 mt-4 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                    {service.description}
+                </p>
+
+                <Link
+                    to={service.link}
+                    className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 uppercase tracking-wider group-hover:gap-3 transition-all"
+                >
+                    Read More <FaArrowRight />
+                </Link>
             </div>
         </motion.div>
     );
@@ -136,23 +103,18 @@ const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, i
 
 export default function OurServices() {
     return (
-        <section className="relative py-8 px-6 bg-white overflow-hidden">
-            <AnimatedBackground />
-
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-2xl md:text-3xl font-black text-blue-900 tracking-tight mb-4"
-                    >
-                        Our Services
-                    </motion.h2>
-                    <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full" />
+        <section className="py-20 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="mb-12">
+                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+                        What We Do
+                    </h2>
+                    <p className="text-xl text-gray-600 max-w-2xl">
+                        Transforming businesses through technology, innovation, and collective knowledge.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
                         <ServiceCard key={service.id} service={service} index={index} />
                     ))}

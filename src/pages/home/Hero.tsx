@@ -1,54 +1,24 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowRight } from "react-icons/fa";
 import Hero1 from '../../assets/viedos/Hero1.mp4';
 import Hero2 from '../../assets/viedos/Hero2.mp4';
-
 
 const slides = [
     {
         video: Hero1,
-        title: (
-            <>
-                {/* Wealth Zone <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
-                    Group AI
-                </span> */}
-            </>
-        ),
-        // description: "Empowering the future through intelligent digital transformation, secure infrastructures, and groundbreaking user experiences."
+        title: "Building on Belief.",
+        subtitle: "We help customers around the world build a future through innovation and collective knowledge.",
+        cta: "Discover More"
     },
     {
         video: Hero2,
-        title: (
-            <>
-                {/* Innovate <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
-                    With Precision
-                </span> */}
-            </>
-        ),
-        // description: "Leading the charge in AI-driven solutions and enterprise-scale digital evolution for global businesses."
+        title: "Innovation for Everyone.",
+        subtitle: "Leading the charge in AI-driven solutions and enterprise-scale digital evolution.",
+        cta: "Explore Our Expertise"
     }
 ];
-
-const FloatBlob: React.FC<{ className: string; duration: number }> = ({ className, duration }) => {
-    return (
-        <motion.div
-            className={`absolute rounded-full blur-[120px] ${className}`}
-            animate={{
-                x: [0, 50, -50, 0],
-                y: [0, -50, 50, 0],
-                scale: [1, 1.1, 0.9, 1],
-            }}
-            transition={{
-                duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-            }}
-        />
-    );
-};
 
 export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -61,9 +31,9 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative h-[80vh] flex items-end justify-center overflow-hidden bg-black pb-24">
-            {/* Video Background Layer */}
-            <div className="absolute inset-0 z-0">
+        <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
+            {/* Video Background Layer - FIXED for Parallax Effect */}
+            <div className="fixed inset-0 w-full h-full -z-10">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`video-${currentSlide}`}
@@ -81,58 +51,57 @@ export default function Hero() {
                             playsInline
                             className="w-full h-full object-cover"
                         />
-                        {/* Overlays */}
-                        <div className="absolute inset-0 bg-black/40" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+                        {/* Professional Dark Overlay  */}
+                        <div className="absolute inset-0 bg-black/50" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
                     </motion.div>
                 </AnimatePresence>
             </div>
 
-            {/* Decorative Blobs */}
-            <FloatBlob className="bg-blue-600/20 w-[40rem] h-[40rem] -top-40 -left-40 z-10" duration={15} />
-            <FloatBlob className="bg-purple-600/20 w-[45rem] h-[45rem] -bottom-40 -right-40 z-10" duration={18} />
-
-            <div className="relative z-20 text-center px-6 max-w-6xl">
+            {/* Content Container - Left Aligned */}
+            <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`content-${currentSlide}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -30 }}
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 50 }}
                         transition={{ duration: 0.8 }}
+                        className="max-w-3xl"
                     >
-                        {/* <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white leading-[1.1] tracking-tight">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-8">
                             {slides[currentSlide].title}
                         </h1>
 
-                        <p className="mt-8 text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
-                            {slides[currentSlide].description}
-                        </p> */}
+                        <p className="text-xl md:text-2xl text-gray-200 font-normal leading-relaxed mb-12 border-l-4 border-yellow-500 pl-6">
+                            {slides[currentSlide].subtitle}
+                        </p>
 
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 ">
+                        <div className="flex flex-col sm:flex-row gap-6">
                             <Link
                                 to="/contact"
-                                className="w-full sm:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-2xl shadow-blue-600/40 hover:scale-105 active:scale-95 text-center"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full font-bold text-lg transition-all transform hover:scale-105"
                             >
-                                Get Started
+                                {slides[currentSlide].cta}
+                                <FaArrowRight />
                             </Link>
                             <Link
                                 to="/services"
-                                className="w-full sm:w-auto px-10 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-2xl font-bold text-lg transition-all duration-300 backdrop-blur-md hover:scale-105 active:scale-95 text-center"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-black text-white rounded-full font-bold text-lg transition-all transform hover:scale-105"
                             >
-                                Our Expertise
+                                Our Services
                             </Link>
                         </div>
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Slide Indicators */}
-                {/* <div className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 flex gap-3">
+                {/* Slider Indicators - Bottom Left */}
+                {/* <div className="absolute bottom-12 left-6 md:left-12 lg:left-20 flex gap-4">
                     {slides.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => setCurrentSlide(idx)}
-                            className={`h-2.5 rounded-full transition-all duration-500 ${currentSlide === idx ? "w-12 bg-blue-500" : "w-2.5 bg-white/30"
+                            className={`h-1.5 transition-all duration-500 ${currentSlide === idx ? "w-12 bg-yellow-500" : "w-8 bg-white/40 hover:bg-white/60"
                                 }`}
                         />
                     ))}
